@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+ - "14"
+
+
+
+
+
+
+script:
+  - npm i
+  # - ng test
+  - ng build --prod
+
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local-dir: ./dist/
+  on:
