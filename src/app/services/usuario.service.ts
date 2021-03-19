@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap} from 'rxjs/operators';
 import { Router } from '@angular/router';
-const base_url = environment.base_url;
+const base_url = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
