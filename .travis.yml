@@ -3,10 +3,6 @@ node_js:
  - "14"
 
 
-
-
-
-
 script:
   - npm i
   # - ng test

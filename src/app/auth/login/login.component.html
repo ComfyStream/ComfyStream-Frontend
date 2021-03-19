@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div style="text-align: center;"><a href="/">Ir a la web</a></div>
+
+    <form class="form-signin" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()" id="loginform">
+        <h2 class="form-signin-heading">Iniciar sesion</h2>
+        <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+        <input type="password" class="form-control" placeholder="Contraseña" formControlName="password" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar</button>
+
+        <div class="form-group m-b-0">
+            <div class="col-sm-12 text-center">
+                No tienes cuenta? <a routerLink="/register" class="text-primary m-l-5"><b>Regístrate</b></a>
+            </div>
+        </div>
+
+    </form>
+</div>
