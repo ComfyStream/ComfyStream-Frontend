@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Event } from 'src/app/models/event';
 import { EventService } from '../../services/event.service';
+import { ActivatedRoute } from '@angular/router';
+import { Event } from 'src/app/models/event';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-event',
+  templateUrl: './event.component.html',
+  styleUrls: ['./event.component.css']
 })
-export class HomeComponent implements OnInit {
+export class EventComponent implements OnInit {
 
-  public events: Event[] = [];
-  public fecha = new Date;
+  public event: Event;
+  public eventId: string;
 
-  constructor(private eventService : EventService,
-    private router: Router) { }
+  constructor(private eventService: EventService,
+    private activatedRoute: ActivatedRoute) {
+    
+    }
 
   async ngOnInit() {
 
-    const event1: Event = {
+    this.activatedRoute.params.subscribe( params => {
+      this.eventId = params['id']; 
+    });
+
+    let event1: Event = {
       titulo: "Charla sobre inteligencia artificial",
       imagenes: [],
       descripcion: "Charla sobre el futuro de la inteligencia artificial.",
@@ -32,7 +38,7 @@ export class HomeComponent implements OnInit {
       _id: "605396f8a3edff5f615522e1"
     }
 
-    const event2: Event = {
+    let event2: Event = {
       titulo: "Charla sobre emprendimiento",
       imagenes: [],
       descripcion: "Charla sobre emprendimiento",
@@ -44,15 +50,14 @@ export class HomeComponent implements OnInit {
       enlace: "http://enlace-de-la-charla.com",
       profesional: "605392f8dad1741f1c379d59",
       _id: "605496fb09e32253bcf983ad"
-      
     }
 
-    /* this.events = await (this.eventService.getEventos()); */
-    this.events.push(event1, event2);
-  }
-
-  showEvent(id: number){
-    this.router.navigate(['/event', id]);
+    /* this.event = this.eventService.getEventByID(this.eventId); */
+    if (this.eventId == "605396f8a3edff5f615522e1"){
+      this.event = event1;
+    } else if (this.eventId == "605496fb09e32253bcf983ad"){
+      this.event = event2;
+    }
   }
 
 }

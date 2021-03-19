@@ -3,3 +3,9 @@
     <p class="lead">La plataforma de conferencias online donde podrás compartir tus conocimientos y adquirir nuevos organizando o asistiendo a charlas de profesionales sobre temas tan diversos como economía, ciencia, educación, emprendimiento, etc., además de poder solicitar
         consultas privadas a estos profesionales.</p>
 </div>
+
+<div class="w-75 centrado">
+    <div class="row row-cols-1 row-cols-md-3 ">
+        <app-event-card [event]="event" (selectedEvent)="showEvent($event)" *ngFor="let event of events "></app-event-card>
+    </div>
+</div>
