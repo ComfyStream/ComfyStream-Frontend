@@ -1,0 +1,41 @@
+<!-- <div class="col mb-4 animated fadeIn " (click)="mostrarEvento()">
+    <div class="card h-100">
+        <div class="card-body nombre">
+            <h5 class="card-title">{{evento.titulo}}</h5>
+            <h6 class="card-subtitle">{{evento.precio}}</h6>
+            <h6 class="card-subtitle">{{evento.fecha}}</h6>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="col mb-4 animated fadeIn tarjeta">
+    <div class="row row-cols-1 row-cols-md-3">
+        <div class="col-md-3">
+            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap">
+        </div>
+        <div class="col-md-6">
+            <div class="titulo">
+                <h5 class="card-title">{{evento.titulo}}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text fecha"> Fecha : {{evento.fecha | date: 'M/d/yy'}}</p>
+            </div>
+        </div>
+        <div class="col-md-1 px-0">
+            <div class="titulo">
+                <h5 class="card-title">‎</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text precio">{{evento.precio }} €</p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="botones-container">
+                <a class="botones">Contactar</a>
+                <a class="botones" (click)="mostrarEvento()">Más detalles</a>
+                <a class="botones">Asistir</a>
+            </div>
+        </div>
+    </div>
+</div>

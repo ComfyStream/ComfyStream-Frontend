@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  public emailIncorrecto: boolean = false;
+  public passwordIncorrecta: boolean = false;
   loginForm:FormGroup;
   formSubmited:boolean = false;
   public auth2: any;
@@ -26,22 +28,33 @@ export class LoginComponent {
     
       });
     }
-    
-    login() {
   
-      this.usuarioService.login(this.loginForm.value).subscribe(resp=>{ 
-        // Navegar al Dashboard
-        this.router.navigateByUrl('/');
-        console.log(resp)
-        
-        }, (err)=> {
-          console.log(err);
-          this.loginIncorrecto = true
-          Swal.fire('Error', err.error.msg, 'error');
-        });
-  
-  
+    get emailRequerido(){
+      return this.loginForm.get('email').invalid && this.loginForm.get('email').touched
     }
- 
-  
-}
+
+    get passwordRequerido(){
+      return this.loginForm.get('password').invalid && this.loginForm.get('password').touched
+    }
+    
+    async login(){
+      if(this.loginForm.valid){
+        Swal.showLoading();
+        const msg = await this.usuarioService.login(this.loginForm.value);
+        if (msg === 'No se ha encontrado el usuario'){
+          this.emailIncorrecto = true;
+        }
+        else if(msg === 'Password incorrecta'){
+          this.passwordIncorrecta = true;
+        }
+        else{
+          this.router.navigateByUrl('/');
+        }
+        Swal.close();
+      }
+      else{
+        this.loginForm.markAllAsTouched();
+      }
+    }
+
+  }

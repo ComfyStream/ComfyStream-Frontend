@@ -1,0 +1,16 @@
+<div class="wrapper" *ngIf="evento">
+    <div class="row">
+        <div class="col-md-3 producto-izquierda">
+            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
+        </div>
+        <div class="col-md-4 evento-derecha">
+            <h3 style="text-align: left;">{{evento.titulo}}</h3>
+            <h5 style="text-align: left;">Precio: {{evento.precio}} €</h5>
+            <h5 style="text-align: left;">Fecha: {{evento.fecha | date: 'M/d/yy'}}</h5>
+            <h6 style="text-align: left;">Descripción: {{evento.descripcion}}</h6>
+            <h6 style="text-align: left;">Categoría: {{evento.categoria}}</h6>
+            <h6 style="text-align: left;">Subcategoría: {{evento.subCategoria}}</h6>
+            <h6 style="color:blue; text-align: left;">{{evento.enlace}}</h6>
+        </div>
+    </div>
+</div>

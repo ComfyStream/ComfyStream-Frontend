@@ -13,21 +13,34 @@ export class UsuarioService {
   constructor(private http: HttpClient,
     private router: Router) { }
 
-  login( formData: any ) {
+  login( formData: any ): Promise<string> {
+      return new Promise<string>(resolve => {
+        this.http.post(`${base_url}/login`,formData).subscribe(data => {
+          const msg = data['msg']
+          if(msg === 'Login realizado con exito'){
+            localStorage.setItem('token', data['token'])
+            localStorage.setItem('usuarioId', data['usuarioId'])
+          }
+          resolve(msg)
+        })
+      })
     
-    return this.http.post(`${ base_url }/login`, formData ).pipe(
+
+
+
+
+
+    /* return this.http.post(`${ base_url }/login`, formData ).pipe(
       tap( (resp: any) => {
         localStorage.setItem('token', resp.token )
       })
-    );
+    ); */
 
   }
 
   logout() {
-
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
-
   }
 
 }
