@@ -14,7 +14,7 @@
                 <a *ngIf="usuario" class="nav-link" (click)="logout()">Cerrar sesión</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="profesional">
                 <a *ngIf="usuario" class="nav-link" routerLink="/mis-eventos">Mis eventos</a>
             </li>
 

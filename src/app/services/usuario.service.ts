@@ -20,6 +20,7 @@ export class UsuarioService {
           if(msg === 'Login realizado con exito'){
             localStorage.setItem('token', data['token'])
             localStorage.setItem('usuarioId', data['usuarioId'])
+            localStorage.setItem('profesional', data['profesional'])
           }
           resolve(msg)
         })
