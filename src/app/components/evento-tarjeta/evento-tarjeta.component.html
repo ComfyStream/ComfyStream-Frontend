@@ -10,9 +10,9 @@
 
 
 <div class="col mb-4 animated fadeIn tarjeta">
-    <div class="row row-cols-1 row-cols-md-3">
+    <div class="row ">
         <div class="col-md-3">
-            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap">
+            <img class="card-img-top " src="/assets/images/no_image.jpg" alt="Card image cap">
         </div>
         <div class="col-md-6">
             <div class="titulo">
@@ -32,9 +32,9 @@
         </div>
         <div class="col-md-2">
             <div class="botones-container">
-                <a class="botones">Contactar</a>
+                <a *ngIf="href !='/mis-eventos'" class="botones">Contactar</a>
                 <a class="botones" (click)="mostrarEvento()">Más detalles</a>
-                <a class="botones">Asistir</a>
+                <a *ngIf="href !='/mis-eventos'" class="botones">Comprar</a>
             </div>
         </div>
     </div>

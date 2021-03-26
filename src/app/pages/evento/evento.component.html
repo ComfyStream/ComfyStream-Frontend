@@ -1,16 +1,30 @@
 <div class="wrapper" *ngIf="evento">
     <div class="row">
-        <div class="col-md-3 producto-izquierda">
+        <div class="col-md-2 info">
             <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
         </div>
-        <div class="col-md-4 evento-derecha">
-            <h3 style="text-align: left;">{{evento.titulo}}</h3>
-            <h5 style="text-align: left;">Precio: {{evento.precio}} €</h5>
-            <h5 style="text-align: left;">Fecha: {{evento.fecha | date: 'M/d/yy'}}</h5>
-            <h6 style="text-align: left;">Descripción: {{evento.descripcion}}</h6>
-            <h6 style="text-align: left;">Categoría: {{evento.categoria}}</h6>
-            <h6 style="text-align: left;">Subcategoría: {{evento.subCategoria}}</h6>
-            <h6 style="color:blue; text-align: left;">{{evento.enlace}}</h6>
+        <div class="col"></div>
+        <div class="col-md-4 py-2">
+            <h2 style="text-align: left;">{{evento.titulo}}</h2>
+            <h5 style="text-align: left;"><strong>Profesional : </strong> {{usuario}}</h5>
+            <h5 style="text-align: left;"><strong>Categoría : </strong> {{evento.categoria}}</h5>
+            <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'M/d/yy hh:mm'}}</h5>
+            <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
+
         </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <div class="asistir">
+                <strong>{{evento.titulo}}</strong> <br> Por: {{usuario}} <br> Dia: {{evento.fecha | date: 'M/d/yy hh:mm'}}<br> {{evento.precio}} € <br>
+                <a class="botones">Asistir</a>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
     </div>
+    <div class="col-md-7 descripcion-container">
+        <h5 class="descripcion-titulo"><strong>Descripción</strong></h5>
+        <p class="descripcion"> {{evento.descripcion}}</p>
+    </div>
+
 </div>

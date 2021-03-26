@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Router } from '@angular/router';
 import { Evento } from 'src/app/models/evento';
 
 
@@ -7,16 +8,20 @@ import { Evento } from 'src/app/models/evento';
   templateUrl: './evento-tarjeta.component.html',
   styleUrls: ['./evento-tarjeta.component.css']
 })
-export class EventoTarjetaComponent {
+export class EventoTarjetaComponent implements OnInit{
 
   @Input() evento: Evento;
   @Output() eventoSeleccionado: EventEmitter<string>;
+  public href: string = "";
 
-  constructor(){
+  constructor(private router: Router){
     this.eventoSeleccionado = new EventEmitter();
   }
 
   async ngOnInit() {
+    this.href = this.router.url;
+    console.log(this.router.url);
+    
   }
 
   mostrarEvento(){

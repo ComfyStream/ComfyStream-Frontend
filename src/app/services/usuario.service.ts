@@ -13,6 +13,10 @@ export class UsuarioService {
   constructor(private http: HttpClient,
     private router: Router) { }
 
+
+    get token(): string {
+      return localStorage.getItem('token') || '';
+    }
   login( formData: any ): Promise<string> {
       return new Promise<string>(resolve => {
         this.http.post(`${base_url}/login`,formData).subscribe(data => {
@@ -25,24 +29,26 @@ export class UsuarioService {
           resolve(msg)
         })
       })
-    
-
-
-
-
-
-    /* return this.http.post(`${ base_url }/login`, formData ).pipe(
-      tap( (resp: any) => {
-        localStorage.setItem('token', resp.token )
-      })
-    ); */
-
   }
 
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
   }
+
+  getUsuarioPorId(id:string):Promise<any>{
+    return new Promise<any>(
+      resolve=> {
+        this.http.get(`${base_url}/usuario/${id}`).subscribe(data=>{
+          
+          const usuario = data["usuario"];
+          console.log(usuario);
+          resolve(usuario);
+
+        });
+     })
+ }
+
 
 }
 

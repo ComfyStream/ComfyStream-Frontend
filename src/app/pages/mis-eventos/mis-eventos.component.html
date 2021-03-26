@@ -1,3 +1,7 @@
-<div class="centrado w-75">
-    <app-evento-tarjeta [evento]="evento" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+<div class="row centrado">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <app-evento-tarjeta [evento]="evento" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+    </div>
+    <div class="col-md-2"></div>
 </div>

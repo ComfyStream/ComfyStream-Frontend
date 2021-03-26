@@ -1,8 +1,74 @@
-.evento-izquierda {
-    margin-left: 5%;
+.info {
+    padding: 1%;
 }
 
 .row {
     padding-left: 15px;
     padding-top: 15px;
 }
+
+.descripcion {
+    margin: 2%;
+}
+
+.descripcion-container {
+    border: 1px solid rgb(156, 156, 156);
+    text-align: center;
+    margin: 1%;
+}
+
+.descripcion-titulo {
+    text-align: center;
+    margin-top: 1%;
+}
+
+.botones-container {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+a.botones {
+    display: inline-block;
+    width: 80%;
+    padding: 0.3em 1.2em;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #000000;
+    background-color: #cfcfcf;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+a.botones:hover {
+    background-color: #1076eb;
+}
+
+@media all and (max-width:30em) {
+    a.botones {
+        display: block;
+        margin: 0.2em auto;
+    }
+}
+
+.asistir {
+    margin-right: 1%;
+    background-color: rgb(52, 58, 64);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    border: 1px solid rgb(12, 15, 13);
+    border-radius: 10px;
+}
+
+
+/* .ticket {
+    background-image: url("/assets/images/ticket.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border: 1px solid rgb(12, 15, 13);
+    border-radius: 10px;
+} */

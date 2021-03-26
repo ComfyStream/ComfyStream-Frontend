@@ -52,11 +52,10 @@ describe('LoginComponent', () => {
     })
   })
 
-    xdescribe('Login', () => {
+  describe('Login', () => {
     it('Login: Datos enviados', () => {
       let email = component.loginForm.controls['email']
       let password = component.loginForm.controls['password']
-      
       email.setValue('jescoevas@hotmail.com')
       password.setValue('1234')
       spyOn(usuarioService, 'login')
@@ -67,7 +66,7 @@ describe('LoginComponent', () => {
     it('Login: Datos no enviados por password vacía', () => {
       let email = component.loginForm.controls['email']
       let password = component.loginForm.controls['password']
-      email.setValue('jescoevas@hotmail.com')
+      email.setValue('seperu.7@gmail.com')
       password.setValue('')
       spyOn(usuarioService, 'login')
       component.login()
@@ -77,7 +76,7 @@ describe('LoginComponent', () => {
     it('Login: Botón de submit funciona correctamente', () => {
       let email = component.loginForm.controls['email']
       let password = component.loginForm.controls['password']
-      email.setValue('jescoevas@hotmail.com')
+      email.setValue('seperu.7@gmail.com')
       password.setValue('1234')
       spyOn(usuarioService, 'login')
       const button = fixture.debugElement.nativeElement.querySelector('#submit');
@@ -88,13 +87,14 @@ describe('LoginComponent', () => {
     it('Login: Login exitoso', () => {
       let email = component.loginForm.controls['email']
       let password = component.loginForm.controls['password']
-      email.setValue('jescoevas@hotmail.com')
+      email.setValue('seperu.7@gmail.com')
       password.setValue('1234')
-      spyOn(usuarioService, 'login')
+      spyOn(usuarioService, 'login').and.callFake(() => Promise.resolve('Login exitoso'))
       component.login()
       expect(usuarioService.login).toHaveBeenCalled()
       fixture.whenStable().then(() => {
-        expect(component.loginIncorrecto).toBeFalsy()
+        expect(component.emailIncorrecto).toBeFalsy()
+        expect(component.passwordIncorrecta).toBeFalsy()
       })
     })
 
@@ -103,12 +103,22 @@ describe('LoginComponent', () => {
       let password = component.loginForm.controls['password']
       email.setValue('testing@gmail.com')
       password.setValue('testing')
-      spyOn(usuarioService, 'login')
+      spyOn(usuarioService, 'login').and.callFake(() => Promise.resolve('No se ha encontrado el usuario'))
       component.login()
       expect(usuarioService.login).toHaveBeenCalled()
-      fixture.whenStable().then(() => expect(component.loginIncorrecto).toBeTruthy())
+      fixture.whenStable().then(() => expect(component.emailIncorrecto).toBeTruthy())
     })
 
-    
+    it('Login: Password incorrecta', () => {
+      let email = component.loginForm.controls['email']
+      let password = component.loginForm.controls['password']
+      email.setValue('seperu.7@gmail.com')
+      password.setValue('testing')
+      spyOn(usuarioService, 'login').and.callFake(() => Promise.resolve('Password incorrecta'))
+      component.login()
+      expect(usuarioService.login).toHaveBeenCalled()
+      fixture.whenStable().then(() => expect(component.passwordIncorrecta).toBeTruthy())
+    })
   })
+
 });
