@@ -2,10 +2,14 @@
     <div style="text-align: center;"><a href="/">Ir a la web</a></div>
 
     <form class="form-signin" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()" id="loginform">
-        <h2 class="form-signin-heading">Iniciar sesion</h2>
-        <input type="email" class="form-control" placeholder="Email" formControlName="email" />
-        <input type="password" class="form-control" placeholder="Contraseña" formControlName="password" />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar</button>
+        <h2 class="form-signin-heading">Iniciar sesión</h2>
+        <input type="email" (keyup)="emailIncorrecto = false" class="form-control" placeholder="Email" formControlName="email" />
+        <small *ngIf="emailRequerido" class="text-danger">Email requerido</small>
+        <small *ngIf="emailIncorrecto" class="text-danger">Email incorrecto</small>
+        <input type="password" (keyup)="passwordIncorrecta = false" class="form-control" placeholder="Contraseña" formControlName="password" />
+        <small *ngIf="passwordRequerido" class="text-danger">Contraseña requerida</small>
+        <small *ngIf="passwordIncorrecta" class="text-danger">Contraseña incorrecta</small>
+        <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Iniciar</button>
 
         <div class="form-group m-b-0">
             <div class="col-sm-12 text-center">
