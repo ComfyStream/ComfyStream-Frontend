@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 const base_url = environment.apiUrl;
 
 @Injectable({
@@ -48,6 +49,77 @@ export class UsuarioService {
         });
      })
  }
+
+  enlazarZoom():Promise<any>{
+    return new Promise<any>(
+      resolve=> {
+        this.http.get(`${base_url}/zoom/token`,{
+          headers: { 
+            'x-token': this.token
+          }
+        }).subscribe(res=>{
+          
+          const data = res["data"];
+          resolve(data);
+  
+        });
+     })
+  }
+
+
+  almacenarUsuarioZoom( formData: any ): Promise<string> {
+    return new Promise<string>(resolve => {
+      this.http.post(`${base_url}/zoom/token`,formData,{
+        headers: { 
+          'x-token': this.token
+        }
+      }).subscribe(res=>{
+        const data = res["data"];
+        Swal.fire('Guardado', 'Cuenta de Zoom vinculada correctamente', 'success');
+        resolve(data);
+        this.router.navigate(['/'])
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Algo salió mal', err.error.msg, 'error');
+      });
+    })
+  }
+
+
+  getUsuarioZoom( ): Promise<string> {
+    return new Promise<any>(
+      resolve=> {
+        this.http.get(`${base_url}/usuarioZoom`,{
+          headers: { 
+            'x-token': this.token
+          }
+        }).subscribe(data=>{
+          
+          const usuarioZoom = data["usuarioZoom"];
+          console.log(usuarioZoom);
+          resolve(usuarioZoom);
+
+        });
+     })
+  }
+
+  borrarUsuarioZoom(): Promise<string> {
+    return new Promise<string>(resolve => {
+      this.http.delete(`${base_url}/zoom/token`,{
+        headers: { 
+          'x-token': this.token
+        }
+      }).subscribe(res=>{
+        const data = res["data"];
+        Swal.fire('Guardado', 'Cuenta de Zoom desvinculada correctamente', 'success');
+        resolve(data);
+        this.router.navigate(['/'])
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Algo salió mal', err.error.msg, 'error');
+      });
+    })
+  }
 
 
 }

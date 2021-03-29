@@ -1,0 +1,11 @@
+<div *ngIf="!usuarioZoom && token" class="card" (click)="enlazarCuenta()">
+    <div class="card-body">
+        <h5 class="card-title">Enlazar Zoom</h5>
+    </div>
+</div>
+
+<div *ngIf="usuarioZoom && token" class="card" (click)="borrarCuenta()">
+    <div class="card-body">
+        <h5 class="card-title">Desvincular cuenta de Zoom</h5>
+    </div>
+</div>
