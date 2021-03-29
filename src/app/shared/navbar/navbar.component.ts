@@ -11,12 +11,14 @@ export class NavbarComponent implements OnInit {
   public usuario = false;
   public profesional: boolean = false;
 
+
   constructor(private usuarioService:UsuarioService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(){
     if(localStorage.getItem("token")){
       this.usuario = true;
       /* this.profesional = Boolean(localStorage.getItem('profesional')); */
+
       if(localStorage.getItem('profesional')){
         this.profesional = true;
       }
@@ -26,4 +28,6 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.usuarioService.logout();
   }
+
+
 }

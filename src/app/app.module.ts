@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common'; 
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,8 @@ import { PagesComponent } from './pages/pages.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthComponent } from './auth/auth.component';
 import { MisEventosComponent } from './pages/mis-eventos/mis-eventos.component';
+import { LandingComponent } from './pages/landing/landing.component';
+import { CuentaComponent } from './pages/cuenta/cuenta.component';
 
 
 @NgModule({
@@ -26,7 +29,9 @@ import { MisEventosComponent } from './pages/mis-eventos/mis-eventos.component';
     PagesComponent,
     LoginComponent,
     AuthComponent,
-    MisEventosComponent
+    MisEventosComponent,
+    LandingComponent,
+    CuentaComponent
 
   ],
   imports: [
@@ -34,7 +39,8 @@ import { MisEventosComponent } from './pages/mis-eventos/mis-eventos.component';
     AppRoutingModule,
     FormsModule, 
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
