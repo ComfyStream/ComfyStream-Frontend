@@ -17,6 +17,7 @@ import { AuthComponent } from './auth/auth.component';
 import { MisEventosComponent } from './pages/mis-eventos/mis-eventos.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
+import { CrearEventoComponent } from './pages/crear-evento/crear-evento.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CuentaComponent } from './pages/cuenta/cuenta.component';
     AuthComponent,
     MisEventosComponent,
     LandingComponent,
-    CuentaComponent
+    CuentaComponent,
+    CrearEventoComponent
 
   ],
   imports: [
