@@ -7,6 +7,7 @@ import { EventoComponent } from './evento/evento.component';
 import { MisEventosComponent } from './mis-eventos/mis-eventos.component';
 import { LandingComponent } from './landing/landing.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
+import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
             { path: 'home', component: HomeComponent},
             { path: 'landing', component: LandingComponent},
             { path: 'mi-cuenta', component: CuentaComponent},
+            { path: 'crear-evento', component: CrearEventoComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },
