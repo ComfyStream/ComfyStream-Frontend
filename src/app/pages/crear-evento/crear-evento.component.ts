@@ -55,19 +55,10 @@ export class CrearEventoComponent implements OnInit {
     const datos = this.crearEventoForm.value;
     delete datos.img;
     const evento =  await this.eventoService.crearEvento(datos, this.imagenSubir);
+    console.log(evento["evento"]);
     const room =  await this.eventoService.crearSalaZoom(evento["evento"]);
     console.log(room);
 
-    
-    // console.log(this.imagenesSubir);
-    // for(let imagen of this.imagenesSubir)
-    // this.subirImagenService.postearImagen(imagen, 'productos', productoId)
-    // .then( () => {
-    //   Swal.fire('Guardado', 'Imagen de usuario subida', 'success');
-    // }).catch( err => {
-    //   console.log(err);
-    //   Swal.fire('Error', 'No se pudo subir la imagen', 'error');
-    // });
   }
   
 }

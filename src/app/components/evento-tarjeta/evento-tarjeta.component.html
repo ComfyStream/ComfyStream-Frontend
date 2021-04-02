@@ -24,6 +24,8 @@
                 <!-- <a *ngIf="!esMio" class="botones">Contactar</a> -->
                 <a class="botones" (click)="mostrarEvento()">Más detalles</a>
                 <a *ngIf="!esMio && !asistido" class="botones" (click)="asistir()">¡Quiero asistir!</a>
+                <a *ngIf="esMio && activo" class="botones" (click)="comenzarEvento()">Comenzar evento</a>
+                <a *ngIf="asistido && activo" class="botones" (click)="entrarEvento()">Entrar al evento</a>
             </div>
         </div>
     </div>

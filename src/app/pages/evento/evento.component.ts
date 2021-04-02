@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../services/evento.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Evento } from 'src/app/models/evento';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AsistenciaService } from '../../services/asistencia.service';
@@ -28,7 +28,8 @@ export class EventoComponent implements OnInit {
   constructor(private eventoService: EventoService,
     private asistenciaService: AsistenciaService,
     private activatedRoute: ActivatedRoute,
-    private usuarioService: UsuarioService) {
+    private usuarioService: UsuarioService,
+    private router:Router) {
     }
 
   async ngOnInit() {
@@ -72,11 +73,14 @@ export class EventoComponent implements OnInit {
   }
 
   asistir(){
+    if(!localStorage.getItem("x-token")){
+      this.router.navigateByUrl("/login")
+    }else{    
     const data = {
       eventoId: this.evento._id
     }
     const evento = this.asistenciaService.crearAsistencia(data);
 
-  }
+  }}
 
 }

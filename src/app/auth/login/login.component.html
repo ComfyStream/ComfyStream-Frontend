@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper login">
     <div style="text-align: center;"><a href="/">Ir a la web</a></div>
 
     <form class="form-signin" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()" id="loginform">
@@ -11,11 +11,11 @@
         <small *ngIf="passwordIncorrecta" class="text-danger">Contraseña incorrecta</small>
         <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Iniciar</button>
 
-        <div class="form-group m-b-0">
+        <!-- <div class="form-group m-b-0">
             <div class="col-sm-12 text-center">
                 No tienes cuenta? <a routerLink="/register" class="text-primary m-l-5"><b>Regístrate</b></a>
             </div>
-        </div>
+        </div> -->
 
     </form>
 </div>

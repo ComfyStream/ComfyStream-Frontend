@@ -14,12 +14,11 @@ export class NavbarComponent implements OnInit {
 
   constructor(private usuarioService:UsuarioService) { }
 
-  async ngOnInit(){
+  ngOnInit(){
     if(localStorage.getItem("token")){
       this.usuario = true;
-      /* this.profesional = Boolean(localStorage.getItem('profesional')); */
 
-      if(localStorage.getItem('profesional')){
+      if(localStorage.getItem('profesional')=== "true"){
         this.profesional = true;
       }
     }

@@ -133,6 +133,22 @@ export class UsuarioService {
       });
     })
   }
+  renuevaToken(): Promise<any> {
+    return new Promise<any>(resolve => {
+      this.http.post(`${base_url}/zoom/token/refresh`,{},{
+        headers: { 
+          'x-token': this.token
+        }
+      }).subscribe(res=>{
+        resolve(res);
+        console.log(res);
+
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Algo salió mal', err.error.msg, 'error');
+      });
+    })
+  }
 
 
 }

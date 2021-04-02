@@ -1,5 +1,6 @@
 body {
     background: #eee !important;
+    color: black;
 }
 
 .wrapper {
@@ -41,4 +42,8 @@ input[type="password"] {
     margin-bottom: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.login {
+    color: black;
 }

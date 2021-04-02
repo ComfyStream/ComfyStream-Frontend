@@ -48,6 +48,7 @@ export class LoginComponent {
           this.passwordIncorrecta = true;
         }
         else{
+          this.usuarioService.renuevaToken();
           this.router.navigateByUrl('/');
         }
         Swal.close();

@@ -69,7 +69,18 @@ export class AsistenciaService {
     this.http.post(`${ base_url }/asistencia/nueva`,eventoId,this.headers );
   } */
 
-
+  getDatosReunion(eventoId:any): Promise<any>{
+    return new Promise<any>(
+      resolve=> {
+        this.http.post(`${base_url}/zoom/datosReunion`,eventoId,{
+          headers: {
+          'x-token': this.token
+        }}).subscribe(data=>{
+          const zoomDatosUsuarios = data["zoomDatosUsuarios"];
+          resolve(zoomDatosUsuarios);
+        });
+     })
+   }
 
 
 
