@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Evento } from '../models/evento';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 const base_url = environment.apiUrl;
 
@@ -12,7 +14,8 @@ const base_url = environment.apiUrl;
 export class EventoService {
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router:Router) { }
 
   get token(): string {
     return localStorage.getItem('token') || '';
@@ -56,52 +59,56 @@ export class EventoService {
       })
   }
 
-  /* getEventos(){
+  
+  crearEvento( formData: any, imagen:File):Promise<any>{
 
-    let eventos: Evento[] = [];
+    let datos = new FormData();
+    datos.append("img", imagen,imagen.name )
+    datos.append("titulo", formData.titulo )
+    datos.append("descripcion", formData.descripcion )
+    datos.append("categoria", formData.categoria )
+    datos.append("subcategoria", formData.subcategoria )
+    datos.append("esPersonal", formData.esPersonal )
+    datos.append("fecha", formData.fecha )
+    datos.append("duracion", formData.duracion )
+    datos.append("precio", formData.precio )
 
-    let evento1: Evento = {
-      titulo: "Charla sobre inteligencia artificial",
-      imagenes: [],
-      descripcion: "Charla sobre el futuro de la inteligencia artificial.",
-      categoria: "Informática",
-      subCategoria: "Inteligencia artificial",
-      precio: 15,
-      esPersonal: false,
-      fecha: new Date,
-      enlace: "http://enlace-de-la-charla.com",
-      profesional: "605392f8dad1741f1c379d59",
-      _id: "605396f8a3edff5f615522e1"
-    }
 
-    let evento2: Evento = {
-      titulo: "Charla sobre emprendimiento",
-      imagenes: [],
-      descripcion: "Charla sobre emprendimiento",
-      categoria: "Empresa",
-      subCategoria: "Emprendimiento",
-      precio: 15,
-      esPersonal: false,
-      fecha: new Date,
-      enlace: "http://enlace-de-la-charla.com",
-      profesional: "605392f8dad1741f1c379d59",
-      _id: "605496fb09e32253bcf983ad"
-    }
+    return new Promise<any> (resolve=> {
 
-    eventos.push(evento1, evento2);
-
-    return eventos;
+      this.http.post(`${ base_url }/evento/nuevo`, datos,{
+        headers: { 
+          'x-token': this.token
+        }
+      } )
+      .subscribe(data =>{
+        const evento= data;
+        console.log(evento);
+        resolve(evento);
+      });
+    } )
   }
 
-  getEventoPorID(id:string){
-    let res: Evento = null;
-    for(let evento of this.getEventos()){
-      if(evento._id == id){
-        res = evento;
-      }
-    }
-    return res;
 
-  } */
+  crearSalaZoom( datos: any):Promise<any>{
+
+    return new Promise<any> (resolve=> {
+
+      this.http.post(`${ base_url }/zoom/room`, datos,{
+        headers: { 
+          'x-token': this.token
+        }
+      } )
+      .subscribe(data =>{
+        const evento= data;
+        Swal.fire('Guardado', 'Cuenta de Zoom vinculada correctamente', 'success');
+        resolve(evento);
+        this.router.navigate(['/mis-eventos'])
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Algo salió mal', err.error.msg, 'error');
+      });
+    })
+  }
 
 }

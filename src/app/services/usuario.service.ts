@@ -47,6 +47,23 @@ export class UsuarioService {
      })
  }
 
+ getUsuario():Promise<any>{
+  return new Promise<any>(
+    resolve=> {
+      this.http.get(`${base_url}/usuario`,{
+        headers: { 
+          'x-token': this.token
+        }
+      }).subscribe(data=>{
+        
+        const usuario = data["usuario"];
+        console.log(usuario);
+        resolve(usuario);
+
+      });
+   })
+}
+
   enlazarZoom():Promise<any>{
     return new Promise<any>(
       resolve=> {
