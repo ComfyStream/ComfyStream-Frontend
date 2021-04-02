@@ -41,11 +41,8 @@ export class UsuarioService {
     return new Promise<any>(
       resolve=> {
         this.http.get(`${base_url}/usuario/${id}`).subscribe(data=>{
-          
           const usuario = data["usuario"];
-          console.log(usuario);
           resolve(usuario);
-
         });
      })
  }
@@ -96,7 +93,6 @@ export class UsuarioService {
         }).subscribe(data=>{
           
           const usuarioZoom = data["usuarioZoom"];
-          console.log(usuarioZoom);
           resolve(usuarioZoom);
 
         });

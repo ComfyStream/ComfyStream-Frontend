@@ -7,6 +7,7 @@ import { EventoComponent } from './evento/evento.component';
 import { MisEventosComponent } from './mis-eventos/mis-eventos.component';
 import { LandingComponent } from './landing/landing.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
+import { MisAsistenciasComponent } from './mis-asistencias/mis-asistencias.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
             { path: '', component: HomeComponent},
             { path: 'evento/:id', component: EventoComponent},
             { path: 'mis-eventos', component: MisEventosComponent},
+            { path: 'mis-asistencias', component: MisAsistenciasComponent},
             { path: 'home', component: HomeComponent},
             { path: 'landing', component: LandingComponent},
             { path: 'mi-cuenta', component: CuentaComponent},

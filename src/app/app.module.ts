@@ -17,6 +17,7 @@ import { AuthComponent } from './auth/auth.component';
 import { MisEventosComponent } from './pages/mis-eventos/mis-eventos.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
+import { MisAsistenciasComponent } from './pages/mis-asistencias/mis-asistencias.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { CuentaComponent } from './pages/cuenta/cuenta.component';
     LoginComponent,
     AuthComponent,
     MisEventosComponent,
+    MisAsistenciasComponent,
     LandingComponent,
     CuentaComponent
 

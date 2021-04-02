@@ -18,6 +18,10 @@
                 <a *ngIf="usuario" class="nav-link" routerLink="/mis-eventos">Mis eventos</a>
             </li>
 
+            <li class="nav-item" *ngIf="profesional || usuario">
+                <a *ngIf="usuario" class="nav-link" routerLink="/mis-asistencias">Mis asistencias</a>
+            </li>
+
             <li class="nav-item" *ngIf="usuario">
                 <a *ngIf="usuario" class="nav-link" routerLink="/mi-cuenta">Mi cuenta</a>
             </li>
