@@ -14,12 +14,10 @@ export class CuentaComponent implements OnInit {
 
   async ngOnInit() {
     this.usuarioZoom = await this.usuarioService.getUsuarioZoom();
-    console.log(this.usuarioZoom)
   }
 
   async enlazarCuenta(){
     this.zoom = await this.usuarioService.enlazarZoom()
-    console.log(this.zoom);
     window.open(this.zoom, '_blank');
 
 
@@ -27,7 +25,6 @@ export class CuentaComponent implements OnInit {
 
   async borrarCuenta(){
     const resp = await this.usuarioService.borrarUsuarioZoom()
-    console.log(resp);
 
 
   }

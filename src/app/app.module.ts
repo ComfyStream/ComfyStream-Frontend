@@ -17,6 +17,7 @@ import { AuthComponent } from './auth/auth.component';
 import { MisEventosComponent } from './pages/mis-eventos/mis-eventos.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
+import { MisAsistenciasComponent } from './pages/mis-asistencias/mis-asistencias.component';
 import { CrearEventoComponent } from './pages/crear-evento/crear-evento.component';
 
 
@@ -31,6 +32,7 @@ import { CrearEventoComponent } from './pages/crear-evento/crear-evento.componen
     LoginComponent,
     AuthComponent,
     MisEventosComponent,
+    MisAsistenciasComponent,
     LandingComponent,
     CuentaComponent,
     CrearEventoComponent

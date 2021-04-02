@@ -25,7 +25,6 @@ export class EventoService {
     return new Promise<Evento>(
       resolve=> {
         this.http.post(`${base_url}/evento`, {_id:id}).subscribe(data=>{
-          console.log(data);
           const evento = data["evento"];
           resolve(evento);
 
@@ -34,7 +33,6 @@ export class EventoService {
  }
 
  getMisEventos():Promise<Evento[]>{
-  console.log(localStorage.getItem('token'));
   const headers = new HttpHeaders({
     'x-token': localStorage.getItem('token')
   });
@@ -44,7 +42,6 @@ export class EventoService {
       this.http.get(`${base_url}/mis-eventos`,{
         headers
       }).subscribe(data=>{
-        console.log(data);
         const eventos = data["eventos"];
         resolve(eventos);
       });

@@ -1,14 +1,3 @@
-<!-- <div class="col mb-4 animated fadeIn " (click)="mostrarEvento()">
-    <div class="card h-100">
-        <div class="card-body nombre">
-            <h5 class="card-title">{{evento.titulo}}</h5>
-            <h6 class="card-subtitle">{{evento.precio}}</h6>
-            <h6 class="card-subtitle">{{evento.fecha}}</h6>
-        </div>
-    </div>
-</div> -->
-
-
 <div class="col mb-4 animated fadeIn tarjeta">
     <div class="row ">
         <div class="col-md-3">
@@ -32,9 +21,9 @@
         </div>
         <div class="col-md-2">
             <div class="botones-container">
-                <a *ngIf="href !='/mis-eventos'" class="botones">Contactar</a>
+                <!-- <a *ngIf="!esMio" class="botones">Contactar</a> -->
                 <a class="botones" (click)="mostrarEvento()">Más detalles</a>
-                <a *ngIf="href !='/mis-eventos'" class="botones">Comprar</a>
+                <a *ngIf="!esMio && !asistido" class="botones" (click)="asistir()">¡Quiero asistir!</a>
             </div>
         </div>
     </div>
