@@ -21,9 +21,9 @@ export class EventoTarjetaComponent implements OnInit{
   public esMio: boolean = false;
   public misAsistencias: Evento[];
   public misEventos: Evento[];
-  public asistenciaChecked= false;
-  public miEventoChecked= false;
-  public cargando = true;
+  // public asistenciaChecked= false;
+  // public miEventoChecked= false;
+  // public cargando = true;
 
 
   constructor(private router: Router,
@@ -42,9 +42,9 @@ export class EventoTarjetaComponent implements OnInit{
     if(this.misEventos != null){
       this.esMiEvento();
     }
-    if(this.asistenciaChecked && this.miEventoChecked){
-      this.cargando = false;
-    }
+    // if(this.asistenciaChecked && this.miEventoChecked){
+    //   this.cargando = false;
+    // }
   }
 
   esAsistencia(){
@@ -54,7 +54,7 @@ export class EventoTarjetaComponent implements OnInit{
         break;
       }
     }
-    this.asistenciaChecked = true;
+    // this.asistenciaChecked = true;
   }
 
   esMiEvento(){
@@ -64,7 +64,7 @@ export class EventoTarjetaComponent implements OnInit{
         break;
       }
     }
-    this.miEventoChecked = true; 
+    // this.miEventoChecked = true; 
   }
 
   mostrarEvento(){
@@ -72,13 +72,11 @@ export class EventoTarjetaComponent implements OnInit{
   }
 
   asistir(){
-    this.asistenciaService.crearAsistencia(this.evento._id)
-    .then( () => {
-      Swal.fire('Guardado', 'Asistencia confirmada', 'success');
-    }).catch( err => {
-      console.log(err);
-      Swal.fire('Error', 'Ha ocurrido un problema', 'error');
-    });
+    const data = {
+      eventoId: this.evento._id
+    }
+    const evento = this.asistenciaService.crearAsistencia(data);
+
   }
 
 }

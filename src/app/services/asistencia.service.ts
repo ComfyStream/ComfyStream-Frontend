@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Evento } from '../models/evento';
 import { Asistencia } from '../models/asistencia';
+import Swal from 'sweetalert2';
 
 const base_url = environment.apiUrl;
 
@@ -47,14 +48,21 @@ export class AsistenciaService {
    })
  }
 
- crearAsistencia(eventoId:string): Promise<Asistencia>{
+ crearAsistencia(eventoId:any): Promise<Asistencia>{
   return new Promise<Asistencia> (resolve=> {
-    this.http.post(`${ base_url }/asistencia/nueva`, eventoId, this.headers )
+    this.http.post(`${ base_url }/asistencia/nuevo`, eventoId, {
+      headers: {
+      'x-token': this.token
+    }})
     .subscribe(data =>{
       const asistencia: Asistencia = data["asistencia"]["_id"];
       resolve(asistencia);
+      if (data["msg"] == "Exito")
+      Swal.fire('Guardado', 'Asistencia confirmada', 'success');
+      else
+      Swal.fire('Error', 'Ha ocurrido un problema', 'error');
     });
-  } )
+  } ) 
  }
 
 /* crearAsistencia(eventoId:string) {
