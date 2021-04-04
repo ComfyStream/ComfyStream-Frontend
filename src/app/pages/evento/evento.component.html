@@ -21,9 +21,12 @@
             </div>
             <div class="asistir" *ngIf="asistido && !esMio">
                 <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'M/d/yy hh:mm'}} por un precio de {{evento.precio}} € </h6>
+                <br>
+                <a *ngIf="asistido && activo" class="botones" (click)="entrarEvento()">Entrar al evento</a>
             </div>
             <div class="asistir" *ngIf="esMio">
-                <h6 class="card-subtitle">Usted es el profesional de este evento </h6>
+                <h6 class="card-subtitle">Usted es el profesional de este evento </h6><br>
+                <a *ngIf="esMio && activo" class="botones" (click)="comenzarEvento()">Comenzar evento</a>
             </div>
         </div>
         <div class="col-md-1"></div>
