@@ -76,7 +76,7 @@ export class EventoComponent implements OnInit {
   }
 
   asistir(){
-    if(!localStorage.getItem("x-token")){
+    if(!localStorage.getItem("token")){
       this.router.navigateByUrl("/login")
     }else{    
     const data = {
