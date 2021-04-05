@@ -83,6 +83,7 @@ export class EventoComponent implements OnInit {
       eventoId: this.evento._id
     }
     const evento = this.asistenciaService.crearAsistencia(data);
+    location.reload();
 
   }}
 
@@ -98,8 +99,9 @@ export class EventoComponent implements OnInit {
       if( usuarioId == datosReunion.userId ){
         this.urlProfesional = datosReunion.start_url;
       }
-      const horaComienzo = new Date (datosReunion.start_time)
-      if((horaComienzo.getHours() == new Date().getHours() -1) ||horaComienzo.getHours() == new Date().getHours() ||horaComienzo.getHours() == new Date().getHours() +1) {
+      const horaComienzo = new Date (datosReunion.start_time);
+      const hoy = new Date();
+      if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime())/36e5)<=1){
           this.activo= true;
       }
       console.log(horaComienzo);
