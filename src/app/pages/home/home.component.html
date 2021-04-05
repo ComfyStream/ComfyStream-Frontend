@@ -1,5 +1,13 @@
 <div class="jumbotron">
-    <h1 class="display-4">¡Bienvenido a ComfyStream!</h1>
-    <p class="lead">La plataforma de conferencias online donde podrás compartir tus conocimientos y adquirir nuevos organizando o asistiendo a charlas de profesionales sobre temas tan diversos como economía, ciencia, educación, emprendimiento, etc., además de poder solicitar
+    <h1 class="display-4 titulo-jumbotron">¡Bienvenido a ComfyStream!</h1>
+    <p class="lead descripcion-jumbotron">La plataforma de conferencias online donde podrás compartir tus conocimientos y adquirir nuevos organizando o asistiendo a charlas de profesionales sobre temas tan diversos como economía, ciencia, educación, emprendimiento, etc., además de poder solicitar
         consultas privadas a estos profesionales.</p>
+</div>
+
+<div class="row centrado">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+    </div>
+    <div class="col-md-2"></div>
 </div>

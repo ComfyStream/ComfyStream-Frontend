@@ -1,0 +1,32 @@
+<div class="col mb-4 animated fadeIn tarjeta">
+    <div class="row ">
+        <div class="col-md-3">
+            <img class="card-img-top " src="/assets/images/no_image.jpg" alt="Card image cap">
+        </div>
+        <div class="col-md-6">
+            <div class="titulo">
+                <h5 class="card-title">{{evento.titulo}}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text fecha"> Fecha : {{evento.fecha | date: 'M/d/yy hh:mm'}}</p>
+            </div>
+        </div>
+        <div class="col-md-1 px-0">
+            <div class="titulo">
+                <h5 class="card-title">‎</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text precio">{{evento.precio }} €</p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="botones-container">
+                <!-- <a *ngIf="!esMio" class="botones">Contactar</a> -->
+                <a class="botones" (click)="mostrarEvento()">Más detalles</a>
+                <a *ngIf="!esMio && !asistido" class="botones" (click)="asistir()">¡Quiero asistir!</a>
+                <a *ngIf="esMio && activo" class="botones" (click)="comenzarEvento()">Comenzar evento</a>
+                <a *ngIf="asistido && activo" class="botones" (click)="entrarEvento()">Entrar al evento</a>
+            </div>
+        </div>
+    </div>
+</div>

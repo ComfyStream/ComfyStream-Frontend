@@ -1,0 +1,42 @@
+<div class="wrapper" *ngIf="evento">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 info">
+            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
+        </div>
+        <div class="col"></div>
+        <div class="col-md-4 py-2">
+            <h2 style="text-align: left;">{{evento.titulo}}</h2>
+            <h5 style="text-align: left;"><strong>Profesional : </strong> {{usuario}}</h5>
+            <h5 style="text-align: left;"><strong>Categoría : </strong> {{evento.categoria}}</h5>
+            <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'M/d/yy hh:mm'}}</h5>
+            <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
+
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <div class="asistir" *ngIf="!asistido && !esMio">
+                <strong>{{evento.titulo}}</strong> <br> Por: {{usuario}} <br> Dia: {{evento.fecha | date: 'M/d/yy hh:mm'}}<br> {{evento.precio}} € <br>
+                <a class="botones" (click)="asistir()">Asistir</a>
+            </div>
+            <div class="asistir" *ngIf="asistido && !esMio">
+                <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'M/d/yy hh:mm'}} por un precio de {{evento.precio}} € </h6>
+                <br>
+                <a *ngIf="asistido && activo" class="botones" (click)="entrarEvento()">Entrar al evento</a>
+            </div>
+            <div class="asistir" *ngIf="esMio">
+                <h6 class="card-subtitle">Usted es el profesional de este evento </h6><br>
+                <a *ngIf="esMio && activo" class="botones" (click)="comenzarEvento()">Comenzar evento</a>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-7 descripcion-container">
+            <h5 class="descripcion-titulo"><strong>Descripción</strong></h5>
+            <p class="descripcion"> {{evento.descripcion}}</p>
+        </div>
+    </div>
+</div>

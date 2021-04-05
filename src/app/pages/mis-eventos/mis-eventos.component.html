@@ -1,0 +1,17 @@
+<div class="row centrado">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+        <h1>Mis eventos</h1>
+    </div>
+    <div class="col-md-2 centrado" style="text-align: right;"> <a routerLink="/crear-evento" class="botones">Crear evento</a></div>
+    <div class="col-md-2"></div>
+</div>
+<hr>
+
+<div class="row centrado">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+    </div>
+    <div class="col-md-2"></div>
+</div>
