@@ -15,12 +15,13 @@ import { EventoService } from '../../services/evento.service';
 export class EventoTarjetaComponent implements OnInit{
 
   @Input() evento: Evento;
+
+  @Input() misAsistencias: Evento[];
+  @Input() misEventos: Evento[];
   @Output() eventoSeleccionado: EventEmitter<string>;
   public href: string = "";
   public asistido: boolean = false;
   public esMio: boolean = false;
-  public misAsistencias: Evento[];
-  public misEventos: Evento[];
   public urlProfesional: string;
   public urlUsuario: string;
   public activo= false;
@@ -37,8 +38,6 @@ export class EventoTarjetaComponent implements OnInit{
 
   async ngOnInit() {
     this.href = this.router.url;
-    this.misAsistencias = await this.asistenciaService.getMisAsistencias();
-    this.misEventos = await this.eventoService.getMisEventos();
     
     if(this.misAsistencias != null){
       this.esAsistencia();
