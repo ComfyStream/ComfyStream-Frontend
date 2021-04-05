@@ -101,7 +101,7 @@ export class EventoService {
       } )
       .subscribe(data =>{
         const evento= data;
-        Swal.fire('Guardado', 'Cuenta de Zoom vinculada correctamente', 'success');
+        Swal.fire('Guardado', 'Evento creado', 'success');
         resolve(evento);
         this.router.navigate(['/mis-eventos'])
       }, (err) => {

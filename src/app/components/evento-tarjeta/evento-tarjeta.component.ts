@@ -15,12 +15,13 @@ import { EventoService } from '../../services/evento.service';
 export class EventoTarjetaComponent implements OnInit{
 
   @Input() evento: Evento;
+
+  @Input() misAsistencias: Evento[];
+  @Input() misEventos: Evento[];
   @Output() eventoSeleccionado: EventEmitter<string>;
   public href: string = "";
   public asistido: boolean = false;
   public esMio: boolean = false;
-  public misAsistencias: Evento[];
-  public misEventos: Evento[];
   public urlProfesional: string;
   public urlUsuario: string;
   public activo= false;
@@ -37,8 +38,6 @@ export class EventoTarjetaComponent implements OnInit{
 
   async ngOnInit() {
     this.href = this.router.url;
-    this.misAsistencias = await this.asistenciaService.getMisAsistencias();
-    this.misEventos = await this.eventoService.getMisEventos();
     
     if(this.misAsistencias != null){
       this.esAsistencia();
@@ -78,13 +77,14 @@ export class EventoTarjetaComponent implements OnInit{
   }
 
   asistir(){
-    if(!localStorage.getItem("x-token")){
+    if(!localStorage.getItem("token")){
       this.router.navigateByUrl("/login")
     }else{    
       const data = {
       eventoId: this.evento._id
     }
     const evento = this.asistenciaService.crearAsistencia(data);
+    this.router.navigateByUrl("/evento/"+this.evento._id)
   }
 
 
@@ -103,8 +103,9 @@ export class EventoTarjetaComponent implements OnInit{
       else if(this.asistido== true)
       this.urlUsuario = datosReunion.join_url;
 
+      const hoy = new Date();
       const horaComienzo = new Date (datosReunion.start_time)
-      if((horaComienzo.getHours() == new Date().getHours() -1) ||horaComienzo.getHours() == new Date().getHours() ||horaComienzo.getHours() == new Date().getHours() +1) {
+      if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime())/36e5)<=1){
           this.activo= true;
       }
       console.log(horaComienzo);

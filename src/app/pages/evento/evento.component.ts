@@ -23,7 +23,9 @@ export class EventoComponent implements OnInit {
   public cargando = true;
   public asistenciaChecked= false;
   public miEventoChecked= false;
-  
+  public urlProfesional: string;
+  public urlUsuario: string;
+  public activo= false;
 
   constructor(private eventoService: EventoService,
     private asistenciaService: AsistenciaService,
@@ -36,6 +38,7 @@ export class EventoComponent implements OnInit {
     this.activatedRoute.params.subscribe( params => {
       this.eventoId = params['id']; 
     });
+    this.datosEvento()
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     this.misAsistencias = await this.asistenciaService.getMisAsistencias();
@@ -73,7 +76,7 @@ export class EventoComponent implements OnInit {
   }
 
   asistir(){
-    if(!localStorage.getItem("x-token")){
+    if(!localStorage.getItem("token")){
       this.router.navigateByUrl("/login")
     }else{    
     const data = {
@@ -82,5 +85,34 @@ export class EventoComponent implements OnInit {
     const evento = this.asistenciaService.crearAsistencia(data);
 
   }}
+
+
+  async datosEvento(){
+    const eventoId={
+      eventoId :this.evento._id
+    }
+    
+    const datosReunion = await this.asistenciaService.getDatosReunion(eventoId);
+    if(datosReunion!=null){
+      const usuarioId = localStorage.getItem("usuarioId");
+      if( usuarioId == datosReunion.userId ){
+        this.urlProfesional = datosReunion.start_url;
+      }
+      const horaComienzo = new Date (datosReunion.start_time)
+      if((horaComienzo.getHours() == new Date().getHours() -1) ||horaComienzo.getHours() == new Date().getHours() ||horaComienzo.getHours() == new Date().getHours() +1) {
+          this.activo= true;
+      }
+      console.log(horaComienzo);
+    }
+     
+    
+    
+  }
+  comenzarEvento(){
+    window.open(this.urlProfesional);
+  }
+  entrarEvento(){
+    window.open(this.urlUsuario);
+  }
 
 }
