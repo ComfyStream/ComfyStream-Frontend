@@ -103,8 +103,9 @@ export class EventoTarjetaComponent implements OnInit{
       else if(this.asistido== true)
       this.urlUsuario = datosReunion.join_url;
 
+      const hoy = new Date();
       const horaComienzo = new Date (datosReunion.start_time)
-      if((horaComienzo.getHours() == new Date().getHours() -1) ||horaComienzo.getHours() == new Date().getHours() ||horaComienzo.getHours() == new Date().getHours() +1) {
+      if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime())/36e5)<=1){
           this.activo= true;
       }
       console.log(horaComienzo);
