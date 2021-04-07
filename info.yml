@@ -5,8 +5,6 @@ project:
   identities:
     github:
       url: 'https://github.com/ComfyStream/ComfyStream-Frontend'
-    firebase:
-      url: 'https://comfystream-s2.firebaseapp.com/'
     travis:
       url: 'https://www.travis-ci.com/github/ComfyStream/ComfyStream-Frontend'
   members:
