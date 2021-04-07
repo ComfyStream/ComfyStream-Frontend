@@ -17,7 +17,6 @@ export class LandingComponent implements OnInit {
 
   async ngOnInit(){
      this.code = this.route.snapshot.queryParamMap.get('code');
-     console.log(this.code);
      var datos = 
      {
          "code": this.code,

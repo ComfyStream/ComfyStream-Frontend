@@ -108,7 +108,6 @@ export class EventoTarjetaComponent implements OnInit{
       if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime())/36e5)<=1){
           this.activo= true;
       }
-      console.log(horaComienzo);
     }
      
     

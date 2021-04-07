@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl:'https://comfystream-1sprint.herokuapp.com/comfystream/api/'
+  apiUrl:'https://comfystream-backend-s2.herokuapp.com/comfystream/api/'
 };

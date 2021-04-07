@@ -34,6 +34,8 @@ export class UsuarioService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('profesional');
+
     this.router.navigateByUrl('/login');
   }
 
@@ -57,7 +59,6 @@ export class UsuarioService {
       }).subscribe(data=>{
         
         const usuario = data["usuario"];
-        console.log(usuario);
         resolve(usuario);
 
       });

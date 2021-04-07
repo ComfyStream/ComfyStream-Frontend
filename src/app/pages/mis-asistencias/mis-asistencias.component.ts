@@ -24,7 +24,6 @@ export class MisAsistenciasComponent implements OnInit {
       this.misEventos = await (this.eventoService.getMisEventos());
     }
     this.misAsistencias = await (this.asistenciaService.getMisAsistencias());
-    console.log(this.misAsistencias);
     this.eventos = this.misAsistencias;
   }
   
