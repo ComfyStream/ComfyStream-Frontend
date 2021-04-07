@@ -60,7 +60,7 @@ export class EventoService {
   }
 
   
-  crearEvento( formData: any, imagen:File):Promise<any>{
+  crearEvento( formData: any, imagen:File):Promise<Evento>{
 
     let datos = new FormData();
     datos.append("img", imagen,imagen.name )
@@ -74,7 +74,7 @@ export class EventoService {
     datos.append("precio", formData.precio )
 
 
-    return new Promise<any> (resolve=> {
+    return new Promise<Evento> (resolve=> {
 
       this.http.post(`${ base_url }/evento/nuevo`, datos,{
         headers: { 
@@ -82,8 +82,7 @@ export class EventoService {
         }
       } )
       .subscribe(data =>{
-        const evento= data;
-        console.log(evento);
+        const evento= data["evento"];
         resolve(evento);
       });
     } )

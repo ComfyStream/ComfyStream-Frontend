@@ -54,7 +54,7 @@ export class CrearEventoComponent implements OnInit {
     const datos = this.crearEventoForm.value;
     delete datos.img;
     const evento =  await this.eventoService.crearEvento(datos, this.imagenSubir);
-    const room =  await this.eventoService.crearSalaZoom(evento["evento"]);
+    const room =  await this.eventoService.crearSalaZoom(evento);
 
   }
 

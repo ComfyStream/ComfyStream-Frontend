@@ -18,16 +18,15 @@ export class HomeComponent implements OnInit {
 
   constructor(private eventoService : EventoService,
     private asistenciaService:AsistenciaService,
-    private router: Router) {
-      console.log(this.eventos); }
+    private router: Router) {}
 
   async ngOnInit() {
-    
     if(localStorage.getItem("profesional") == "true"){
       this.misEventos = await (this.eventoService.getMisEventos());
     }
-    this.misAsistencias = await (this.asistenciaService.getMisAsistencias());
-    console.log(this.misAsistencias);
+    if(localStorage.getItem("token")){
+      this.misAsistencias = await (this.asistenciaService.getMisAsistencias());
+    }
     this.eventos = await (this.eventoService.getEventos());
   }
 
