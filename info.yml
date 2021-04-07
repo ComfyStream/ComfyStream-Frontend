@@ -6,9 +6,9 @@ project:
     github:
       url: 'https://github.com/ComfyStream/ComfyStream-Frontend'
     firebase:
-      url: 'https://comfystream-backend-s2.herokuapp.com/'
+      url: 'https://comfystream-s2.firebaseapp.com/'
     travis:
-      url: 'https://www.travis-ci.com/github/ComfyStream/ComfyStream-Backend'
+      url: 'https://www.travis-ci.com/github/ComfyStream/ComfyStream-Frontend'
   members:
     member1:
       name: 'Sergio'
