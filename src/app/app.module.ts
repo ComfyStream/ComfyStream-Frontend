@@ -16,6 +16,9 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
 import { MisAsistenciasComponent } from './pages/mis-asistencias/mis-asistencias.component';
 import { CrearEventoComponent } from './pages/crear-evento/crear-evento.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { MisChatsComponent } from './pages/mis-chats/mis-chats.component';
+import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { CrearEventoComponent } from './pages/crear-evento/crear-evento.componen
     MisAsistenciasComponent,
     LandingComponent,
     CuentaComponent,
-    CrearEventoComponent
+    CrearEventoComponent,
+    ChatComponent,
+    MisChatsComponent,
+    ChatTarjetaComponent
 
   ],
   imports: [

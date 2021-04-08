@@ -5,6 +5,10 @@ import Swal from 'sweetalert2';
 import { Asistencia } from '../../models/asistencia';
 import { AsistenciaService } from '../../services/asistencia.service';
 import { EventoService } from '../../services/evento.service';
+import { ChatService } from '../../services/chat.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Usuario } from '../../models/usuario';
+import { Chat } from 'src/app/models/chat';
 
 
 @Component({
@@ -15,13 +19,15 @@ import { EventoService } from '../../services/evento.service';
 export class EventoTarjetaComponent implements OnInit{
 
   @Input() evento: Evento;
-
   @Input() misAsistencias: Evento[];
   @Input() misEventos: Evento[];
   @Output() eventoSeleccionado: EventEmitter<string>;
+  public misChats: Chat[] = [];
   public href: string = "";
+  public usuarioCreadorEvento: Usuario;
   public asistido: boolean = false;
   public esMio: boolean = false;
+  public yaTengoUnChatConElCreador:Boolean = false;
   public urlProfesional: string;
   public urlUsuario: string;
   public activo= false;
@@ -31,8 +37,9 @@ export class EventoTarjetaComponent implements OnInit{
 
 
   constructor(private router: Router,
-    private asistenciaService : AsistenciaService, 
-    private eventoService: EventoService){
+    private asistenciaService : AsistenciaService,
+    private chatService : ChatService,
+    private usuarioService: UsuarioService){
     this.eventoSeleccionado = new EventEmitter();
   }
 
@@ -47,9 +54,7 @@ export class EventoTarjetaComponent implements OnInit{
     }
     this.datosEvento()
 
-    // if(this.asistenciaChecked && this.miEventoChecked){
-    //   this.cargando = false;
-    // }
+    this.yaTengoUnChatConElCreador = await this.chatService.existeChat(this.evento.profesional)
   }
 
   esAsistencia(){
@@ -86,9 +91,9 @@ export class EventoTarjetaComponent implements OnInit{
     const evento = this.asistenciaService.crearAsistencia(data);
     this.router.navigateByUrl("/evento/"+this.evento._id)
   }
-
-
   }
+
+  
    async datosEvento(){
     const eventoId={
       eventoId :this.evento._id
@@ -109,9 +114,6 @@ export class EventoTarjetaComponent implements OnInit{
           this.activo= true;
       }
     }
-     
-    
-    
   }
 
   comenzarEvento(){
@@ -120,6 +122,35 @@ export class EventoTarjetaComponent implements OnInit{
   entrarEvento(){
     window.open(this.urlUsuario);
   }
+
+  async iniciarChat(){
+    if(!localStorage.getItem("token")){
+      this.router.navigateByUrl("/login")
+    }else{    
+      var creadorEventoId: string = this.evento.profesional;
+      const chat = await this.chatService.iniciarChat(creadorEventoId);
+      this.router.navigateByUrl("/chat/"+chat._id)
+    }
+  }
+
+  async getChatExistente(){
+    if(!localStorage.getItem("token")){
+      this.router.navigateByUrl("/login")
+    }else{    
+      var miUsuario: Usuario = await this.usuarioService.getUsuario();
+      var creadorEventoId: string = this.evento.profesional;
+      this.usuarioCreadorEvento = await this.usuarioService.getUsuarioPorId(creadorEventoId);
+      this.misChats = await this.chatService.getMisChats();
+      for(let chat of this.misChats){
+        if((chat.usuario1 === miUsuario._id && chat.usuario2 === this.usuarioCreadorEvento._id) ||
+         (chat.usuario1 === this.usuarioCreadorEvento._id && chat.usuario2 === miUsuario._id)){
+            this.router.navigateByUrl("/chat/"+chat._id)
+         }
+      }
+    }
+  }
+
+
 
 
 }
