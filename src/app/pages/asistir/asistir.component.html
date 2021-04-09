@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 info">
+            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4 py-2">
+            <h2 style="text-align: left;">{{evento.titulo}}</h2>
+            <h5 style="text-align: left;"><strong>Profesional : </strong> {{usuario.nombre}}</h5>
+            <h5 style="text-align: left;"><strong>Categoría : </strong> {{evento.categoria}}</h5>
+            <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'short'}}</h5>
+            <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
+        </div>
+        <div class="col-md-3" style="padding-top: 20px;">
+            <div #paypal>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-7 descripcion-container">
+            <h5 class="descripcion-titulo"><strong>Descripción</strong></h5>
+            <p class="descripcion"> {{evento.descripcion}}</p>
+        </div>
+    </div>
+</div>

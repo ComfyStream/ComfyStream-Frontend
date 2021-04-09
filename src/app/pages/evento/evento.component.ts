@@ -102,9 +102,7 @@ export class EventoComponent implements OnInit {
     const data = {
       eventoId: this.evento._id
     }
-    this.asistenciaService.crearAsistencia(data);
-    location.reload();
-
+    this.router.navigateByUrl("/asistir/"+this.evento._id)
   }}
 
 
