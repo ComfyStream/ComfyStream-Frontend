@@ -29,12 +29,21 @@
     </div>
 
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-7 descripcion-container" *ngFor="let mensaje of mensajes; let i=index">
-            <h5 class="descripcion-titulo" id="autor{{i}}"></h5>
-            <h6 class="descripcion-titulo">Fecha: {{mensaje.fecha | date: 'd/M/yy hh:mm'}}</h6>
-            <p class="descripcion">Mensaje: {{mensaje.cuerpo}}</p>
+        <div class="col-md-3"></div>
+        <div class="col-md-6 ">
+            <div *ngFor="let mensaje of mensajes; let i=index" class="descripcion-container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <strong class="descripcion-titulo" id="autor{{i}}"></strong>&nbsp;
+                        <strong class="descripcion-titulo">Fecha: {{mensaje.fecha | date: 'short'}}</strong>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <p class="descripcion">{{mensaje.cuerpo}}</p>
+            </div>
         </div>
+        <div class="col-md-3"></div>
     </div>
 
 </div>

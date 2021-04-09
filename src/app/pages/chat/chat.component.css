@@ -1,11 +1,13 @@
 .descripcion {
     margin: 2%;
+    font-size: large;
 }
 
 .descripcion-container {
     border: 1px solid rgb(156, 156, 156);
     text-align: center;
     margin: 1%;
+    border-radius: 10px;
 }
 
 .descripcion-titulo {
