@@ -1,0 +1,7 @@
+<div class="row centrado">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <app-chat-tarjeta [chat]="chat" (chatSeleccionado)="mostrarChat($event)" *ngFor="let chat of misChats "></app-chat-tarjeta>
+    </div>
+    <div class="col-md-2"></div>
+</div>

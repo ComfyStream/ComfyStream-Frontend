@@ -9,6 +9,8 @@ import { LandingComponent } from './landing/landing.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
 import { MisAsistenciasComponent } from './mis-asistencias/mis-asistencias.component';
 import { CrearEventoComponent } from './crear-evento/crear-evento.component';
+import { ChatComponent } from './chat/chat.component';
+import { MisChatsComponent } from './mis-chats/mis-chats.component';
 
 
 
@@ -19,6 +21,8 @@ const routes: Routes = [
         children: [
             { path: '', component: HomeComponent},
             { path: 'evento/:id', component: EventoComponent},
+            { path: 'mis-chats', component: MisChatsComponent},
+            { path: 'chat/:id', component: ChatComponent},
             { path: 'mis-eventos', component: MisEventosComponent},
             { path: 'mis-asistencias', component: MisAsistenciasComponent},
             { path: 'home', component: HomeComponent},

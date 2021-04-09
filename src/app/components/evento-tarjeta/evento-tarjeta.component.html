@@ -8,7 +8,7 @@
                 <h5 class="card-title">{{evento.titulo}}</h5>
             </div>
             <div class="card-body">
-                <p class="card-text fecha"> Fecha : {{evento.fecha | date: 'M/d/yy hh:mm'}}</p>
+                <p class="card-text fecha"> Fecha : {{evento.fecha | date: 'short'}}</p>
             </div>
         </div>
         <div class="col-md-1 px-0">
@@ -21,7 +21,8 @@
         </div>
         <div class="col-md-2">
             <div class="botones-container">
-                <!-- <a *ngIf="!esMio" class="botones">Contactar</a> -->
+                <a *ngIf="!esMio && !yaTengoUnChatConElCreador" class="botones" (click)="iniciarChat()">Contacto</a>
+                <a *ngIf="!esMio && yaTengoUnChatConElCreador" class="botones" (click)="getChatExistente()">Ver chat</a>
                 <a class="botones" (click)="mostrarEvento()">Más detalles</a>
                 <a *ngIf="!esMio && !asistido" class="botones" (click)="asistir()">¡Quiero asistir!</a>
                 <a *ngIf="esMio && activo" class="botones" (click)="comenzarEvento()">Comenzar evento</a>

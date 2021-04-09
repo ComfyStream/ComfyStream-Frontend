@@ -1,0 +1,38 @@
+.descripcion {
+    margin: 2%;
+    font-size: large;
+}
+
+.descripcion-container {
+    border: 1px solid rgb(156, 156, 156);
+    text-align: center;
+    margin: 1%;
+    border-radius: 10px;
+}
+
+.descripcion-titulo {
+    text-align: center;
+    margin-top: 1%;
+}
+
+.row {
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.formulario {
+    background-color: #e4e4e4;
+    margin: auto,
+}
+
+.form-div {
+    margin: auto;
+    color: black;
+}
+
+.form {
+    width: 90%;
+    margin: auto;
+}
