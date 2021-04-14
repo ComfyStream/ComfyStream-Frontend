@@ -91,6 +91,7 @@ export class EventoService {
 
   crearSalaZoom( datos: any):Promise<any>{
 
+    console.log(datos);
     return new Promise<any> (resolve=> {
 
       this.http.post(`${ base_url }/zoom/room`, datos,{

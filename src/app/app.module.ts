@@ -19,6 +19,9 @@ import { CrearEventoComponent } from './pages/crear-evento/crear-evento.componen
 import { ChatComponent } from './pages/chat/chat.component';
 import { MisChatsComponent } from './pages/mis-chats/mis-chats.component';
 import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.component';
+import { AsistirComponent } from './pages/asistir/asistir.component';
+
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.com
     CrearEventoComponent,
     ChatComponent,
     MisChatsComponent,
-    ChatTarjetaComponent
+    ChatTarjetaComponent,
+    AsistirComponent
 
   ],
   imports: [
@@ -46,7 +50,8 @@ import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.com
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    NgxPayPalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

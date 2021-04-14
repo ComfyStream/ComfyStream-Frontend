@@ -88,8 +88,7 @@ export class EventoTarjetaComponent implements OnInit{
       const data = {
       eventoId: this.evento._id
     }
-    const evento = this.asistenciaService.crearAsistencia(data);
-    this.router.navigateByUrl("/evento/"+this.evento._id)
+    this.router.navigateByUrl("/asistir/"+this.evento._id)
   }
   }
 
