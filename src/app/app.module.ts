@@ -21,6 +21,8 @@ import { MisChatsComponent } from './pages/mis-chats/mis-chats.component';
 import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.component';
 import { AsistirComponent } from './pages/asistir/asistir.component';
 
+import { NgxPayPalModule } from 'ngx-paypal';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { AsistirComponent } from './pages/asistir/asistir.component';
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    NgxPayPalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

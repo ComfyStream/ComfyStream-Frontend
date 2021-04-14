@@ -14,8 +14,10 @@
             <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
         </div>
         <div class="col-md-3" style="padding-top: 20px;">
-            <div #paypal>
-            </div>
+            <!-- <div #paypal> 
+                  </div>-->
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
         </div>
     </div>
 
