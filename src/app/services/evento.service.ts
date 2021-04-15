@@ -60,10 +60,10 @@ export class EventoService {
   }
 
   
-  crearEvento( formData: any, imagen:File):Promise<Evento>{
+  crearEvento( formData: any, imagen:string):Promise<Evento>{
 
     let datos = new FormData();
-    datos.append("img", imagen,imagen.name )
+    datos.append("img",imagen)
     datos.append("titulo", formData.titulo )
     datos.append("descripcion", formData.descripcion )
     datos.append("categoria", formData.categoria )

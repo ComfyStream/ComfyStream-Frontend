@@ -3,6 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { EventoService } from 'src/app/services/evento.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { environment } from 'src/environments/environment';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
+
 
 const base_url = environment.apiUrl;
 
@@ -17,10 +20,12 @@ export class CrearEventoComponent implements OnInit {
   public crearEventoForm: FormGroup;
   public imagenSubir: File;
   public imgTemp: any = null;
+  public urlImagen:string;
 
   constructor(private fb:FormBuilder,
     private usuarioService:UsuarioService,
-    private eventoService:EventoService) { }
+    private eventoService:EventoService,
+    private cargaImagenService:CargaImagenesService) { }
 
   async ngOnInit() {
 
@@ -51,12 +56,23 @@ export class CrearEventoComponent implements OnInit {
       this.crearEventoForm.markAllAsTouched()
       return;
     }
+
+    await this.subirImagen();
+
     const datos = this.crearEventoForm.value;
     delete datos.img;
-    const evento =  await this.eventoService.crearEvento(datos, this.imagenSubir);
+
+    const evento =  await this.eventoService.crearEvento(datos, this.urlImagen);
     const room =  await this.eventoService.crearSalaZoom(evento);
 
   }
+  async subirImagen(){
+    let nombre = Math.random().toString() + this.imagenSubir.name; 
+    await this.cargaImagenService.subirCloudStorage(nombre, this.imagenSubir);
+    this.urlImagen = await this.cargaImagenService.referenciaCloudStorage(nombre)
+  }
+
+
 
   //Validaciones
   get tituloNoValido(){

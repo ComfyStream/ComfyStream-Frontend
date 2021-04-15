@@ -31,6 +31,7 @@ export class EventoTarjetaComponent implements OnInit{
   public urlProfesional: string;
   public urlUsuario: string;
   public activo= false;
+  public usuario:Usuario;
   // public asistenciaChecked= false;
   // public miEventoChecked= false;
   // public cargando = true;
@@ -45,7 +46,7 @@ export class EventoTarjetaComponent implements OnInit{
 
   async ngOnInit() {
     this.href = this.router.url;
-    
+    this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     if(this.misAsistencias != null){
       this.esAsistencia();
     }

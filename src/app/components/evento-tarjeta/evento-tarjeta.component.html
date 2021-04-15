@@ -1,6 +1,9 @@
 <div class="col mb-4 animated fadeIn tarjeta">
     <div class="row ">
-        <div class="col-md-3">
+        <div class="col-md-3" *ngIf="evento.img">
+            <img class="card-img-top " src={{evento.img}} alt="Card image cap">
+        </div>
+        <div class="col-md-3" *ngIf="!evento.img">
             <img class="card-img-top " src="/assets/images/no_image.jpg" alt="Card image cap">
         </div>
         <div class="col-md-6">
@@ -8,15 +11,23 @@
                 <h5 class="card-title">{{evento.titulo}}</h5>
             </div>
             <div class="card-body">
-                <p class="card-text fecha"> Fecha : {{evento.fecha | date: 'short'}}</p>
+                <p class="card-text fecha"> <strong>Profesional : {{usuario.nombre}}</strong> </p>
             </div>
+            <div class="card-body">
+                <p class="card-text fecha" style="margin-bottom: 10px;"> Categoria : {{evento.categoria}}</p>
+            </div>
+            <div class="card-body">
+                <p class="card-text fecha" style="margin-bottom: 10px;"> Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm'}} - Duración : {{evento.duracion}} minutos</p>
+            </div>
+
+
         </div>
         <div class="col-md-1 px-0">
             <div class="titulo">
                 <h5 class="card-title">‎</h5>
             </div>
             <div class="card-body">
-                <p class="card-text precio">{{evento.precio }} €</p>
+                <p class="card-text precio"><strong>{{evento.precio }} € </strong></p>
             </div>
         </div>
         <div class="col-md-2">

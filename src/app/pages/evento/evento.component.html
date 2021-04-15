@@ -1,16 +1,20 @@
 <div class="wrapper" *ngIf="evento && !cargando">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-2 info">
+        <div class="col-md-2 info" *ngIf="evento.img">
+            <img class="card-img-top img-hover-zoom" src={{evento.img}} alt="Card image cap" width="100%">
+        </div>
+        <div class="col-md-2 info" *ngIf="!evento.img">
             <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
         </div>
+
         <div class="col"></div>
         <div class="col-md-4 py-2">
             <h2 style="text-align: left;">{{evento.titulo}}</h2>
             <h5 style="text-align: left;"><strong>Profesional : </strong> {{usuario.nombre}}</h5>
             <h5 style="text-align: left;"><strong>Categoría : </strong> {{evento.categoria}}</h5>
             <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
-            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'short'}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm'}}</h5>
             <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
             <a *ngIf="!esMio && !yaTengoUnChatConElCreador" class="botones" (click)="iniciarChat()">Contacto</a>
             <a *ngIf="!esMio && yaTengoUnChatConElCreador" class="botones" (click)="getChatExistente()">Ver chat</a>
@@ -19,11 +23,11 @@
         <div class="col-md-1"></div>
         <div class="col-md-2">
             <div class="asistir" *ngIf="!asistido && !esMio">
-                <strong>{{evento.titulo}}</strong> <br> Por: {{usuario.nombre}} <br> Dia: {{evento.fecha | date: 'short'}}<br> {{evento.precio}} € <br>
+                <strong>{{evento.titulo}}</strong> <br> Por: {{usuario.nombre}} <br> Dia: {{evento.fecha | date: 'dd/MM/yy HH:mm'}}<br> {{evento.precio}} € <br>
                 <a class="botones" (click)="asistir()">Asistir</a>
             </div>
             <div class="asistir" *ngIf="asistido && !esMio">
-                <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'short'}} por un precio de {{evento.precio}} € </h6>
+                <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'dd/MM/yy HH:mm'}} por un precio de {{evento.precio}} € </h6>
                 <br>
                 <a *ngIf="asistido && activo" class="botones" (click)="entrarEvento()">Entrar al evento</a>
             </div>

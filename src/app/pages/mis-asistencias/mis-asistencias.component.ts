@@ -14,6 +14,7 @@ export class MisAsistenciasComponent implements OnInit {
   public eventos: Evento[] = [];
   public misEventos: Evento[] = [];
   public misAsistencias: Evento[] = [];
+  public cargado=false;
 
   constructor(private asistenciaService : AsistenciaService,
     private eventoService: EventoService,
@@ -25,6 +26,7 @@ export class MisAsistenciasComponent implements OnInit {
     }
     this.misAsistencias = await (this.asistenciaService.getMisAsistencias());
     this.eventos = this.misAsistencias;
+    this.cargado=true;
   }
   
 

@@ -6,10 +6,11 @@ export class Evento {
     public precio?: number,
     public esPersonal?: boolean,
     public fecha?: Date,
+    public duracion?: Date,
     public enlace?: string,
     public profesional?: string,
     public _id?: string,
     public subCategoria?: string,
-    public imagen?: string
+    public img?: string
     ){}
 }
