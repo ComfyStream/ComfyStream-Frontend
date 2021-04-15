@@ -19,7 +19,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-2">
             <div class="asistir" *ngIf="!asistido && !esMio">
-                <strong>{{evento.titulo}}</strong> <br> Por: {{usuario}} <br> Dia: {{evento.fecha | date: 'short'}}<br> {{evento.precio}} € <br>
+                <strong>{{evento.titulo}}</strong> <br> Por: {{usuario.nombre}} <br> Dia: {{evento.fecha | date: 'short'}}<br> {{evento.precio}} € <br>
                 <a class="botones" (click)="asistir()">Asistir</a>
             </div>
             <div class="asistir" *ngIf="asistido && !esMio">
