@@ -41,7 +41,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ChatComponent,
     MisChatsComponent,
     ChatTarjetaComponent,
-    RegistroComponent
+    RegistroComponent,
     AsistirComponent
 
   ],
