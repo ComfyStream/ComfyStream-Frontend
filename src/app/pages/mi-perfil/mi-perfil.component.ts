@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class MiPerfilComponent implements OnInit {
-  public usuario: Usuario;
+  public usuario: Usuario ;
   public perfilProfesionalForm: FormGroup;
   public perfilForm: FormGroup;
   constructor(private usuarioService : UsuarioService,private datePipe: DatePipe,
@@ -19,7 +19,8 @@ export class MiPerfilComponent implements OnInit {
 
   async ngOnInit(){
     if(localStorage.getItem("token")){
-      this.usuario = await (this.usuarioService.getUsuario());
+      this.usuario = new Usuario();
+      this.usuario = await (this.usuarioService.getUsuarioPorId(localStorage.getItem("usuarioId")));
     
 
      if(this.usuario.profesional){
@@ -54,7 +55,6 @@ export class MiPerfilComponent implements OnInit {
     }
     
     const datos = this.perfilProfesionalForm.value;
-    console.log(datos);
     this.usuario = await this.usuarioService.editarPerfil(datos);
     
     
@@ -66,7 +66,6 @@ export class MiPerfilComponent implements OnInit {
     }
     
     const datos = this.perfilForm.value;
-    console.log(datos);
     const usuario = await this.usuarioService.editarPerfil(datos);
     
   }
@@ -80,10 +79,13 @@ get nombreCampoRequerido(){
 }
 
 get emailNoValido(){
-  return this.emailCampoRequerido
+  return this.emailCampoRequerido || this.vvalidarEmail
 }
 get emailCampoRequerido(){
   return this.perfilProfesionalForm.get('email').errors ? this.perfilProfesionalForm.get('email').errors.required && this.perfilProfesionalForm.get('email').touched : null
+}
+get vvalidarEmail(){
+  return this.perfilProfesionalForm.get('email').errors ? this.perfilProfesionalForm.get('email').errors.email && this.perfilProfesionalForm.get('email').touched : null
 }
 
 get fechaNoValido(){
@@ -134,12 +136,14 @@ get nombreNoProfCampoRequerido(){
 }
 
 get emailNoProfNoValido(){
-  return this.emailNoProfCampoRequerido
+  return this.emailNoProfCampoRequerido || this.vvalidarNoProfEmail
 }
 get emailNoProfCampoRequerido(){
   return this.perfilForm.get('email').errors ? this.perfilForm.get('email').errors.required && this.perfilForm.get('email').touched : null
 }
-
+get vvalidarNoProfEmail(){
+  return this.perfilForm.get('email').errors ? this.perfilForm.get('email').errors.email && this.perfilForm.get('email').touched : null
+}
 get fechaNoProfNoValido(){
   return this.fechaNoProfCampoRequerido || this.fechaFechaNoProfPosteriorAHoy
 }

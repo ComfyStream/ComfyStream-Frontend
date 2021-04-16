@@ -167,9 +167,17 @@ export class UsuarioService {
       } )
       .subscribe(data =>{
         const msg= data["msg"];
-        console.log(msg)
-        const usuario= data["usuarioActualizado"];
-        resolve(usuario);
+        if(msg == "El email ya está en uso"){
+          Swal.fire('No es posible actualizar el perfil', msg, 'error');
+        }
+        else {
+          const usuario= data["usuarioActualizado"];
+          Swal.fire('Guardado', msg , 'success');
+          resolve(usuario);
+          
+
+        }
+        
       });
     } )
   }
