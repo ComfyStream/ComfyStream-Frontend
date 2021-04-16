@@ -27,3 +27,10 @@ a.botones:hover {
         margin: 0.2em auto;
     }
 }
+
+.filtro {
+    float: right;
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+}

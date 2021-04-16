@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatTarjetaComponent } from './chat-tarjeta.component';
+import { AsistirComponent } from './asistir.component';
 
-describe('ChatTarjetaComponent', () => {
-  let component: ChatTarjetaComponent;
-  let fixture: ComponentFixture<ChatTarjetaComponent>;
+describe('AsistirComponent', () => {
+  let component: AsistirComponent;
+  let fixture: ComponentFixture<AsistirComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChatTarjetaComponent ]
+      declarations: [ AsistirComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatTarjetaComponent);
+    fixture = TestBed.createComponent(AsistirComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

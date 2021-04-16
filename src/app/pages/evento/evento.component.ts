@@ -32,6 +32,7 @@ export class EventoComponent implements OnInit {
   public urlProfesional: string;
   public urlUsuario: string;
   public activo= false;
+  public asistentes: Usuario[] =[];
 
   constructor(private eventoService: EventoService,
     private asistenciaService: AsistenciaService,
@@ -59,6 +60,10 @@ export class EventoComponent implements OnInit {
       }
       if(this.misEventos != null){
         this.miEvento();
+      }
+      if(this.esMio){
+        this.asistentes = await this.eventoService.asistentesAlEvento(this.eventoId);
+        console.log(this.asistentes);
       }
     }
     
@@ -102,9 +107,7 @@ export class EventoComponent implements OnInit {
     const data = {
       eventoId: this.evento._id
     }
-    this.asistenciaService.crearAsistencia(data);
-    location.reload();
-
+    this.router.navigateByUrl("/asistir/"+this.evento._id)
   }}
 
 

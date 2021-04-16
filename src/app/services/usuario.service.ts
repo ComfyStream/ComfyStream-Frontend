@@ -155,6 +155,33 @@ export class UsuarioService {
  
   editarPerfil( formData: any):Promise<Usuario>{
 
+  registro( formData: any, imagen:File):Promise<String>{
+
+    let datos = new FormData();
+    datos.append("img", imagen,imagen.name )
+    datos.append("nombre", formData.nombre )
+    datos.append("email", formData.email )
+    datos.append("password", formData.password )
+    datos.append("fechaNacimiento", formData.fechaNacimiento )
+    datos.append("profesional", formData.profesional )
+
+    if(formData.profesional){
+      datos.append("sector", formData.sector )
+      datos.append("descripcion", formData.descripcion )
+      datos.append("cuentaBancariaIBAN", formData.cuentaBancariaIBAN )
+      datos.append("titularCuenta", formData.titularCuenta )
+    }
+
+    return new Promise<String> (resolve=> {
+
+      this.http.post(`${ base_url }/registro`, datos)
+      .subscribe(data =>{
+        const msg= data["msg"];
+        resolve(msg);
+      });
+    } )
+  }
+
 
 
     return new Promise<Usuario> (resolve=> {
