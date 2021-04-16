@@ -25,6 +25,10 @@ import { AsistirComponent } from './pages/asistir/asistir.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
+import { PoliticaPrivacidadComponent } from './pages/politica-privacidad/politica-privacidad.component';
+import { TerminosUsoComponent } from './pages/terminos-uso/terminos-uso.component';
+import { SoporteComponent } from './pages/soporte/soporte.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 
@@ -48,7 +52,11 @@ import { AngularFireModule } from '@angular/fire';
     MisChatsComponent,
     ChatTarjetaComponent,
     RegistroComponent,
-    AsistirComponent
+    AsistirComponent,
+    PoliticaPrivacidadComponent,
+    TerminosUsoComponent,
+    SoporteComponent,
+    FooterComponent
 
   ],
   imports: [
