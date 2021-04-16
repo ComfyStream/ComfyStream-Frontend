@@ -29,6 +29,9 @@
             <li class="nav-item " *ngIf="usuario">
                 <a *ngIf="usuario" class="nav-link" routerLink="/mi-cuenta">Mi cuenta</a>
             </li>
+            <li class="nav-item " *ngIf="usuario">
+                <a *ngIf="usuario" class="nav-link" routerLink="/mi-perfil">Mi perfil</a>
+            </li>
 
             <li class="nav-item">
                 <a *ngIf="!usuario" class="nav-link" (click)="logout()">Iniciar sesión</a>

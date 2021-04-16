@@ -11,6 +11,7 @@ import { MisAsistenciasComponent } from './mis-asistencias/mis-asistencias.compo
 import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 import { ChatComponent } from './chat/chat.component';
 import { MisChatsComponent } from './mis-chats/mis-chats.component';
+import { MiPerfilComponent} from './mi-perfil/mi-perfil.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
             { path: 'landing', component: LandingComponent},
             { path: 'mi-cuenta', component: CuentaComponent},
             { path: 'crear-evento', component: CrearEventoComponent},
+            { path: 'mi-perfil', component: MiPerfilComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },
