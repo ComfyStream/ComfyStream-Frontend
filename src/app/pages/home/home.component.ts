@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     if(localStorage.getItem("token")){
       this.misAsistencias = await (this.asistenciaService.getMisAsistencias());
     }
-    this.eventos = await (this.eventoService.getEventos());
+    this.eventos = await (this.eventoService.getEventosDisponibles());
   }
 
   mostrarEvento(id: string){
