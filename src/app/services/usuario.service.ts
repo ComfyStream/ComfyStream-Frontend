@@ -155,6 +155,31 @@ export class UsuarioService {
  
   editarPerfil( formData: any):Promise<Usuario>{
 
+    return new Promise<Usuario> (resolve=> {
+      console.log("token:"+this.token)
+      this.http.post(`${ base_url }/editar-perfil`,formData,{
+        headers: { 
+          
+          'x-token': this.token
+        }
+      } )
+      .subscribe(data =>{
+        const msg= data["msg"];
+        if(msg == "El email ya está en uso"){
+          Swal.fire('No es posible actualizar el perfil', msg, 'error');
+        }
+        else {
+          const usuario= data["usuarioActualizado"];
+          Swal.fire('Guardado', msg , 'success');
+          resolve(usuario);
+          
+
+        }
+        
+      });
+    } )
+  }
+
   registro( formData: any, imagen:File):Promise<String>{
 
     let datos = new FormData();
@@ -178,33 +203,6 @@ export class UsuarioService {
       .subscribe(data =>{
         const msg= data["msg"];
         resolve(msg);
-      });
-    } )
-  }
-
-
-
-    return new Promise<Usuario> (resolve=> {
-      console.log("token:"+this.token)
-      this.http.post(`${ base_url }/editar-perfil`,formData,{
-        headers: { 
-          
-          'x-token': this.token
-        }
-      } )
-      .subscribe(data =>{
-        const msg= data["msg"];
-        if(msg == "El email ya está en uso"){
-          Swal.fire('No es posible actualizar el perfil', msg, 'error');
-        }
-        else {
-          const usuario= data["usuarioActualizado"];
-          Swal.fire('Guardado', msg , 'success');
-          resolve(usuario);
-          
-
-        }
-        
       });
     } )
   }
