@@ -19,15 +19,12 @@ import { CrearEventoComponent } from './pages/crear-evento/crear-evento.componen
 import { ChatComponent } from './pages/chat/chat.component';
 import { MisChatsComponent } from './pages/mis-chats/mis-chats.component';
 import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.component';
+import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { AsistirComponent } from './pages/asistir/asistir.component';
-
 import { NgxPayPalModule } from 'ngx-paypal';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
-
-
-
 
 
 @NgModule({
@@ -47,8 +44,10 @@ import { AngularFireModule } from '@angular/fire';
     ChatComponent,
     MisChatsComponent,
     ChatTarjetaComponent,
+    MiPerfilComponent,
     RegistroComponent,
     AsistirComponent
+
 
   ],
   imports: [

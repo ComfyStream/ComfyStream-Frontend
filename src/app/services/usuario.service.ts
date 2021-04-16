@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { tap} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Usuario } from '../models/usuario';
 const base_url = environment.apiUrl;
 
 @Injectable({
@@ -59,6 +60,7 @@ export class UsuarioService {
       }).subscribe(data=>{
         
         const usuario = data["usuario"];
+        console.log("usuario get usuario"+usuario["nombre"])
         resolve(usuario);
 
       });
@@ -150,6 +152,33 @@ export class UsuarioService {
   //     });
   //   })
   // }
+ 
+  editarPerfil( formData: any):Promise<Usuario>{
+
+    return new Promise<Usuario> (resolve=> {
+      console.log("token:"+this.token)
+      this.http.post(`${ base_url }/editar-perfil`,formData,{
+        headers: { 
+          
+          'x-token': this.token
+        }
+      } )
+      .subscribe(data =>{
+        const msg= data["msg"];
+        if(msg == "El email ya está en uso"){
+          Swal.fire('No es posible actualizar el perfil', msg, 'error');
+        }
+        else {
+          const usuario= data["usuarioActualizado"];
+          Swal.fire('Guardado', msg , 'success');
+          resolve(usuario);
+          
+
+        }
+        
+      });
+    } )
+  }
 
   registro( formData: any, imagen:File):Promise<String>{
 
@@ -177,8 +206,6 @@ export class UsuarioService {
       });
     } )
   }
-
-
 }
 
 
