@@ -25,6 +25,7 @@ import { AsistirComponent } from './pages/asistir/asistir.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
+import { EditarEventoComponent } from './pages/editar-evento/editar-evento.component';
 
 
 
@@ -48,7 +49,8 @@ import { AngularFireModule } from '@angular/fire';
     MisChatsComponent,
     ChatTarjetaComponent,
     RegistroComponent,
-    AsistirComponent
+    AsistirComponent,
+    EditarEventoComponent
 
   ],
   imports: [

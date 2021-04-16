@@ -12,6 +12,7 @@ import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 import { ChatComponent } from './chat/chat.component';
 import { MisChatsComponent } from './mis-chats/mis-chats.component';
 import { AsistirComponent } from './asistir/asistir.component';
+import { EditarEventoComponent } from './editar-evento/editar-evento.component';
 
 
 
@@ -28,6 +29,7 @@ const routes: Routes = [
             { path: 'mis-asistencias', component: MisAsistenciasComponent},
             { path: 'home', component: HomeComponent},
             { path: 'landing', component: LandingComponent},
+            { path: 'editar-evento/:id', component: EditarEventoComponent},
             { path: 'mi-cuenta', component: CuentaComponent},
             { path: 'crear-evento', component: CrearEventoComponent},
             { path: 'asistir/:id', component: AsistirComponent},
