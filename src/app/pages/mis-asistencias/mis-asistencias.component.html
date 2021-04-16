@@ -1,13 +1,41 @@
-<div class="row centrado">
+<div class="row centrado" *ngIf="eventos.length>0 && cargado ">
     <div class="col-md-2"></div>
-    <div class="col-md-8" *ngIf="eventos.length>0 && cargado">
-        <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+    <div class="col-md-6">
+        <h1>Mis asistencias</h1>
     </div>
-    <div class="col-md-8" *ngIf="eventos.length==0 && cargado">
-        <div class="jumbotron">
-            <h1 class="display-4 titulo-jumbotron">En estos momentos no tiene ninguna asistencia</h1>
-            <p class="lead descripcion-jumbotron">Aquí aparecerán sus asistencias cuando disponga de ellas.</p>
+    <div class="col-md-2 centrado" style="text-align: right;">
+        <div class="row filtro">
+            <form [formGroup]="filtro" id="filtroform" class="filtro">
+                <select formControlName="filtro" (change)="verActivos()">
+                    <option value="todos" selected="selected" >Todos los eventos</option> 
+                    <option value="activos" >Eventos activos</option>
+                </select>
+            </form>
         </div>
     </div>
     <div class="col-md-2"></div>
+</div>
+<hr>
+
+<div class="row centrado" *ngIf="!mostrarActivos">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <app-evento-tarjeta [evento]="evento" [misAsistencias]="soloEventosFuturos" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="row centrado" *ngIf="mostrarActivos">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <app-evento-tarjeta [evento]="evento" [misAsistencias]="soloEventosFuturos" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of soloEventosFuturos "></app-evento-tarjeta>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="col-md-8" *ngIf="eventos.length==0 && cargado ">
+    <div class="jumbotron">
+        <h1 class="display-4 titulo-jumbotron">En estos momentos no tiene ninguna asistencia</h1>
+        <p class="lead descripcion-jumbotron">Aquí aparecerán sus asistencias cuando disponga de ellas.</p>
+    </div>
 </div>

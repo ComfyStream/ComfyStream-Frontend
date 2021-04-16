@@ -35,7 +35,7 @@
                 <a *ngIf="!esMio && !yaTengoUnChatConElCreador" class="botones" (click)="iniciarChat()">Contacto</a>
                 <a *ngIf="!esMio && yaTengoUnChatConElCreador" class="botones" (click)="getChatExistente()">Ver chat</a>
                 <a class="botones" (click)="mostrarEvento()">Más detalles</a>
-                <a *ngIf="!esMio && !asistido" class="botones" (click)="asistir()">¡Quiero asistir!</a>
+                <a *ngIf="!esMio && !asistido" class="botones asistir" (click)="asistir()">¡Quiero asistir!</a>
                 <a *ngIf="esMio && activo" class="botones" (click)="comenzarEvento()">Comenzar evento</a>
                 <a *ngIf="asistido && activo" class="botones" (click)="entrarEvento()">Entrar al evento</a>
             </div>

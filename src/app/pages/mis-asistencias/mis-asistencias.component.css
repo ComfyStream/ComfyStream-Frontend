@@ -20,3 +20,11 @@
 .descripcion-jumbotron {
     font-size: 100%;
 }
+
+.filtro {
+    float: right;
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

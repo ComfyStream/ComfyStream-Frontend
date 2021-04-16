@@ -82,3 +82,7 @@ a.botones:hover {
         margin: 0.2em auto;
     }
 }
+
+a.asistir {
+    background-color: #a0c8f1;
+}

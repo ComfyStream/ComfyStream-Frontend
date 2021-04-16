@@ -21,7 +21,7 @@
 
         </div>
         <div class="col-md-1"></div>
-        <div class="col-md-2">
+        <div class="col-md-3" style="margin-right: 5%;">
             <div class="asistir" *ngIf="!asistido && !esMio">
                 <strong>{{evento.titulo}}</strong> <br> Por: {{usuario.nombre}} <br> Dia: {{evento.fecha | date: 'dd/MM/yy HH:mm'}}<br> {{evento.precio}} € <br>
                 <a class="botones" (click)="asistir()">Asistir</a>
@@ -34,9 +34,21 @@
             <div class="asistir" *ngIf="esMio">
                 <h6 class="card-subtitle">Usted es el profesional de este evento </h6><br>
                 <a *ngIf="esMio && activo" class="botones" (click)="comenzarEvento()">Comenzar evento</a>
+
+            </div>
+            <div *ngIf="esMio && asistentes.length>0 " class="asistentes">
+                <h5>Asistentes a este evento</h5>
+                <div *ngFor="let asistente of asistentes">
+                    {{asistente.nombre}} - {{asistente.email}}
+
+                </div>
+            </div>
+            <div *ngIf="esMio && asistentes.length==0 " class="asistentes">
+                <h5>No hay asistentes a este evento</h5>
+
             </div>
         </div>
-        <div class="col-md-1"></div>
+
     </div>
     <div class="row">
         <div class="col-md-1"></div>
