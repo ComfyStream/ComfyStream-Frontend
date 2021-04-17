@@ -87,7 +87,8 @@ export class AsistirComponent implements OnInit {
     onClientAuthorization: (data) => {
       console.log("onClientAuthorization");
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        this.comprar();
+        const urlPago: string = data["links"][0]["href"];
+        this.comprar(urlPago);
         
     },
     onCancel: (data, actions) => {
@@ -130,13 +131,14 @@ export class AsistirComponent implements OnInit {
     //   }).render(this.paypalElement.nativeElement);
 
 
-  comprar(){
+  comprar(pago:string){
     if(!localStorage.getItem("token")){
       this.router.navigateByUrl("/login")
     }else{    
       console.log(this.evento._id);
     const data = {
-      eventoId: this.evento._id
+      eventoId: this.evento._id,
+      pagoPaypalUrl: pago
     }
     this.asistenciaService.crearAsistencia(data);
         console.log("asistido");

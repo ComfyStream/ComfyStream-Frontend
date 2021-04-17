@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Evento } from '../models/evento';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario';
 
 const base_url = environment.apiUrl;
 
@@ -59,11 +60,35 @@ export class EventoService {
       })
   }
 
+  getEventosDisponibles():Promise<Evento[]>{
+    return new Promise<Evento[]>(
+      resolve => {
+        this.http.get(`${base_url}/evento/disponibles`,{
+        }).subscribe(data=>{
+          const eventos = data["respuesta"];
+          resolve(eventos);
+        });
+      })
+  }
+
+  asistentesAlEvento(eventoId:string):Promise<Usuario[]>{
+    return new Promise<Usuario[]>(
+      resolve => {
+        this.http.post(`${base_url}/evento/asistentes`, {eventoId:eventoId}, {
+          headers: {
+          'x-token': this.token
+        }}).subscribe(data=>{
+          const asistentes = data["asistentes"];
+          resolve(asistentes);
+        });
+      })
+  }
+
   
-  crearEvento( formData: any, imagen:File):Promise<Evento>{
+  crearEvento( formData: any, imagen:string):Promise<Evento>{
 
     let datos = new FormData();
-    datos.append("img", imagen,imagen.name )
+    datos.append("img",imagen)
     datos.append("titulo", formData.titulo )
     datos.append("descripcion", formData.descripcion )
     datos.append("categoria", formData.categoria )
