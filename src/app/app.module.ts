@@ -22,6 +22,7 @@ import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.com
 import { AsistirComponent } from './pages/asistir/asistir.component';
 
 import { NgxPayPalModule } from 'ngx-paypal';
+import { BuscadorComponent } from './pages/buscador/buscador.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ChatComponent,
     MisChatsComponent,
     ChatTarjetaComponent,
-    AsistirComponent
+    AsistirComponent,
+    BuscadorComponent
 
   ],
   imports: [
