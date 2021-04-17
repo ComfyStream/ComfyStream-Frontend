@@ -3,6 +3,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario} from 'src/app/models/usuario';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -14,7 +15,9 @@ export class MiPerfilComponent implements OnInit {
   public usuario: Usuario ;
   public perfilProfesionalForm: FormGroup;
   public perfilForm: FormGroup;
-  constructor(private usuarioService : UsuarioService,private datePipe: DatePipe,
+  public imagenSubir: File;
+  public urlImagen:string;
+  constructor(private usuarioService : UsuarioService,private datePipe: DatePipe,private cargaImagenService:CargaImagenesService,
     private fb:FormBuilder) { }
 
   async ngOnInit(){
@@ -31,7 +34,7 @@ export class MiPerfilComponent implements OnInit {
       profesional: [ this.usuario.profesional , Validators.required ],
       sector: [ this.usuario.sector , Validators.required ],
       descripcion: [ this.usuario.descripcion , Validators.required ],
-      img: [ this.usuario.img , Validators.required ],
+      img: [],
     });
   }
   if(!this.usuario.profesional){
@@ -40,7 +43,7 @@ export class MiPerfilComponent implements OnInit {
      email: [ this.usuario.email, [ Validators.required, Validators.email ] ],
      fechaNacimiento: [ this.datePipe.transform(this.usuario.fechaNacimiento,'yyyy-MM-dd'), [Validators.required,this.fechaPosteriorAHoy]],
      profesional: [ this.usuario.profesional , Validators.required ],
-     img: [ this.usuario.img , Validators.required ],   
+     img: [],   
    });
   
    
@@ -53,8 +56,13 @@ export class MiPerfilComponent implements OnInit {
       this.perfilProfesionalForm.markAllAsTouched()
       return;
     }
+    if(this.perfilProfesionalForm.controls['img'].value){
+      await this.subirImagen();
+    }
     
     const datos = this.perfilProfesionalForm.value;
+    delete datos.img;
+    datos.img = this.urlImagen;
     this.usuario = await this.usuarioService.editarPerfil(datos);
     
     
@@ -64,11 +72,29 @@ export class MiPerfilComponent implements OnInit {
       this.perfilForm.markAllAsTouched()
       return;
     }
+    if(this.perfilForm.controls['img'].value){
+      await this.subirImagen();
+    }
     
     const datos = this.perfilForm.value;
-    const usuario = await this.usuarioService.editarPerfil(datos);
+    delete datos.img;
+    datos.img = this.urlImagen;
+    this.usuario = await this.usuarioService.editarPerfil(datos);
     
   }
+
+
+  cambiarImagen( event ) {
+    const file = event.target.files[0];
+    this.imagenSubir = file;
+  }
+
+  async subirImagen(){
+    let nombre = Math.random().toString() + this.imagenSubir.name; 
+    await this.cargaImagenService.subirCloudStorage(nombre, this.imagenSubir);
+    this.urlImagen = await this.cargaImagenService.referenciaCloudStorage(nombre)
+  }
+
 // Validaciones profesional
 
 get nombreNoValido(){

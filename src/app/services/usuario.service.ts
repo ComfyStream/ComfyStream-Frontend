@@ -172,6 +172,7 @@ export class UsuarioService {
           const usuario= data["usuarioActualizado"];
           Swal.fire('Guardado', msg , 'success');
           resolve(usuario);
+          this.router.navigate(['/'])
           
 
         }

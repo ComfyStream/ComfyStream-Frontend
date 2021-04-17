@@ -173,4 +173,9 @@ export class EventoComponent implements OnInit {
     }
   }
 
+  borrar(){
+    if(confirm("¿Estás seguro de que quieres borrar este evento?"))
+    this.eventoService.borrarEvento(this.eventoId);
+  }
+
 }

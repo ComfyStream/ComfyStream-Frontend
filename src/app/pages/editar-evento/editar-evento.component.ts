@@ -30,6 +30,7 @@ export class EditarEventoComponent implements OnInit {
   public urlImagen:string;
   public eventoPasado: boolean = false;
   public asistentes: Usuario[] =[];
+  public editable=false;
 
   constructor(private fb:FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -44,24 +45,23 @@ export class EditarEventoComponent implements OnInit {
         this.eventoId = params['id']; 
       });
       this.evento = await this.eventoService.getEventoPorID(this.eventoId);
+      this.eventoAntiguo()
       await this.datosEvento();
-      this.eventoAntiguo();
       this.asistentes = await this.eventoService.asistentesAlEvento(this.eventoId);
+      if(this.evento.profesional === this.usuario._id && (this.asistentes.length == 0)  && !this.eventoPasado)
+            this.editable = true;
+      this.editarEventoForm = this.fb.group({
+        titulo:[this.evento.titulo, [Validators.required]],
+        descripcion:[this.evento.descripcion, [Validators.required]],
+        categoria:[this.evento.categoria, [ Validators.required] ],
+        subcategoria:[this.evento.subCategoria],
+        esPersonal:[this.evento.esPersonal, [Validators.required]],
+        precio:[this.evento.precio, [Validators.required, this.valorPositivo]],
+        img:[]
+      });
 
-      if(this.evento.profesional === this.usuario._id && 
-        (this.asistentes.length == 0) && !this.activo && !this.eventoPasado){
-        this.editarEventoForm = this.fb.group({
-          titulo:[this.evento.titulo, [Validators.required]],
-          descripcion:[this.evento.descripcion, [Validators.required]],
-          categoria:[this.evento.categoria, [ Validators.required] ],
-          subcategoria:[this.evento.subCategoria],
-          esPersonal:[this.evento.esPersonal, [Validators.required]],
-          precio:[this.evento.precio, [Validators.required, this.valorPositivo]],
-          img:[]
-        });
-      }else{
-        console.log("Acceso denegado para editar este evento");
-      };
+      console.log(this.editable);
+               
   }
 
   async editarEvento(){

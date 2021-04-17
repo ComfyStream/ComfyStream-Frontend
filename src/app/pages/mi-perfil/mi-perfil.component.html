@@ -50,19 +50,20 @@
                             <small *ngIf="descripcionCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
                     </div>
+                    <div class="col-md-4 info">
+                        <label for="subcategoria">Imagen actual: </label>
+                        <img class="card-img-top img-hover-zoom" src={{usuario.img}} alt="Card image cap" width="100%">
+                    </div>
+                    <br>
                     <div class="form-group">
-                        <label for="img">Img</label>
-                        <div class="input-group">
-
-                            <input type="text" class="form-control" id="img" formControlName="img" [class.is-invalid]="imgNoValido">
-                            <small *ngIf="imgCampoRequerido" class="text-danger">Campo requerido</small>
-                        </div>
+                        <label for="img">Nueva imagen</label>
+                        <input type="file" class="form-control" id="img" formControlName="img" (change)="cambiarImagen($event)" accept="image/x-png,image/gif,image/jpeg">
                     </div>
 
 
 
 
-                    <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10">
+                    <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                         <i class="fa fa-save"></i>
                         Guardar cambios
                     </button>
@@ -113,19 +114,20 @@
                         </div>
                     </div>
 
+                    <div class="col-md-4 info">
+                        <label for="subcategoria">Imagen actual: </label>
+                        <img class="card-img-top img-hover-zoom" src={{usuario.img}} alt="Card image cap" width="100%">
+                    </div>
+                    <br>
                     <div class="form-group">
-                        <label for="img">Img</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input type="text" class="form-control" id="img" formControlName="img" [class.is-invalid]="imgNoProfNoValido">
-                            <small *ngIf="imgNoProfCampoRequerido" class="text-danger">Campo requerido</small>
-                        </div>
+                        <label for="img">Nueva imagen</label>
+                        <input type="file" class="form-control" id="img" formControlName="img" (change)="cambiarImagen($event)" accept="image/x-png,image/gif,image/jpeg">
                     </div>
 
 
 
 
-                    <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10">
+                    <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                         <i class="fa fa-save"></i>
                         Guardar cambios
                     </button>
