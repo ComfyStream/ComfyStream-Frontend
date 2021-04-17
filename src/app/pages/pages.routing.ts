@@ -13,6 +13,7 @@ import { ChatComponent } from './chat/chat.component';
 import { MisChatsComponent } from './mis-chats/mis-chats.component';
 import { MiPerfilComponent} from './mi-perfil/mi-perfil.component';
 import { AsistirComponent } from './asistir/asistir.component';
+import { EditarEventoComponent } from './editar-evento/editar-evento.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
             { path: 'mis-asistencias', component: MisAsistenciasComponent},
             { path: 'home', component: HomeComponent},
             { path: 'landing', component: LandingComponent},
+            { path: 'editar-evento/:id', component: EditarEventoComponent},
             { path: 'mi-cuenta', component: CuentaComponent},
             { path: 'crear-evento', component: CrearEventoComponent},
             { path: 'mi-perfil', component: MiPerfilComponent},
