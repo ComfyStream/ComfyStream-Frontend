@@ -170,4 +170,15 @@ export class EventoService {
     })
   }
 
+
+  buscar(datos:any):Promise<Evento[]>{
+    return new Promise<Evento[]>(
+      resolve => {
+        this.http.post(`${base_url}/buscador`,datos,{
+        }).subscribe(data=>{
+          const eventos = data["eventosDisponibles"];
+          resolve(eventos);
+        });
+      })
+  }
 }
