@@ -26,6 +26,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
+import { EditarEventoComponent } from './pages/editar-evento/editar-evento.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AngularFireModule } from '@angular/fire';
     BuscadorComponent,
     MiPerfilComponent,
     RegistroComponent,
-    AsistirComponent
+    AsistirComponent,
+    EditarEventoComponent
 
 
   ],
