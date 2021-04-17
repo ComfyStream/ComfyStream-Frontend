@@ -23,6 +23,7 @@ import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { AsistirComponent } from './pages/asistir/asistir.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 
@@ -44,6 +45,8 @@ import { AngularFireModule } from '@angular/fire';
     ChatComponent,
     MisChatsComponent,
     ChatTarjetaComponent,
+    AsistirComponent,
+    BuscadorComponent,
     MiPerfilComponent,
     RegistroComponent,
     AsistirComponent
