@@ -34,6 +34,7 @@ export class EventoComponent implements OnInit {
   public urlUsuario: string;
   public activo= false;
   public asistentes: Usuario[] =[];
+  public editable=false;
 
   constructor(private eventoService: EventoService,
     private asistenciaService: AsistenciaService,
@@ -53,6 +54,7 @@ export class EventoComponent implements OnInit {
 
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     
+    
     if(localStorage.getItem("token")){
       this.yaTengoUnChatConElCreador = await this.chatService.existeChat(this.evento.profesional);
       this.misAsistencias = await this.asistenciaService.getMisAsistencias();
@@ -65,7 +67,10 @@ export class EventoComponent implements OnInit {
       }
       if(this.esMio){
         this.asistentes = await this.eventoService.asistentesAlEvento(this.eventoId);
+        if(this.evento.profesional === this.usuario._id && (this.asistentes.length == 0)  && !this.eventoPasado)
+            this.editable = true;
       }
+      
     }
     
     if(this.asistenciaChecked && this.miEventoChecked){
