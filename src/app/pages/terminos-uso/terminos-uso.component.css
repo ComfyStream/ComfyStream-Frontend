@@ -1,0 +1,21 @@
+.row {
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.descripcion {
+    margin: 2%;
+}
+
+.descripcion-container {
+    border: 1px solid rgb(156, 156, 156);
+    text-align: center;
+    margin: 1%;
+}
+
+.descripcion-titulo {
+    text-align: center;
+    margin-top: 1%;
+}

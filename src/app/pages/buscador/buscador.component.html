@@ -1,0 +1,50 @@
+<div class="row m-0">
+    <div class=" filtro col-md-3 ">
+        <form class="form-signin my-3 mx-3" autocomplete="off" id="buscadorform" (ngSubmit)="buscar()">
+
+            <div class="form-group">
+                <label for="titulo">Nombre del evento</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="datos.titulo">
+            </div>
+            <div class="form-group">
+                <label for="precioMin">Precio mínimo</label>
+                <input type="number" class="form-control" id="precioMin" name="precioMin" min="0" [(ngModel)]="datos.precioMin">
+                <small *ngIf="precioMinError" style="color: red;">No puede ser un valor negativo</small>
+            </div>
+            <div class="form-group">
+                <label for="precioMax">Precio máximo</label>
+                <input type="number" class="form-control" id="precioMax" name="precioMax" min="0" [(ngModel)]="datos.precioMax">
+                <small *ngIf="precioMaxError" style="color: red;">No puede ser un valor negativo</small>
+            </div>
+            <div class="form-group">
+                <label for="fechaMin">Fecha mínima</label>
+                <input type="date" class="form-control" id="fechaMin" name="fechaMin" [(ngModel)]="datos.fechaMin">
+            </div>
+            <div class="form-group">
+                <label for="fechaMax">Fecha máxima</label>
+                <input type="date" class="form-control" id="fechaMax" name="fechaMax" [(ngModel)]="datos.fechaMax">
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <select class="form-control" id="categoria" name="categoria" [(ngModel)]="datos.categoria">
+                        <option value=""></option>
+                        <option value="Educación">Educación</option>
+                        <option value="Medicina">Medicina</option>
+                        <option value="Deporte">Deporte</option>
+                        <option value="Arte y cultura">Arte y cultura</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Economía">Economía</option>
+                        <option value="Física">Física</option>
+                        <option value="Entretenimiento">Entretenimiento</option>
+                    </select>
+            </div>
+            <button class="btn btn-outline-dark btn-block">Buscar</button>
+
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-7 ">
+        <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+    </div>
+
+</div>

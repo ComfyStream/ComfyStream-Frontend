@@ -1,0 +1,49 @@
+<div class="wrapper" *ngIf="mensajes && misChats && miUsuario">
+
+    <h2 class="card-title text-center" *ngIf="!soyUsuario1 && !usuario1.profesional">Chat con el usuario: {{usuario1.nombre}}</h2>
+    <h2 class="card-title text-center" *ngIf="!soyUsuario1 && usuario1.profesional">Chat con el profesional: {{usuario1.nombre}}</h2>
+    <h2 class="card-title text-center" *ngIf="soyUsuario1 && usuario2.profesional">Chat con el profesional: {{usuario2.nombre}}</h2>
+    <h2 class="card-title text-center" *ngIf="soyUsuario1 && !usuario2.profesional">Chat con el usuario: {{usuario2.nombre}}</h2>
+
+    <div class="row">
+        <form class="form " autocomplete="off" [formGroup]="crearMensajeForm" (submit)="enviarMensaje()">
+            <div class="row">
+                <div class="col-md-6 form-div">
+                    <div class="card">
+                        <div class="card-body formulario">
+                            <h3 class="card-title">Nuevo mensaje</h3>
+                            <hr>
+                            <div class="form-group">
+                                <label for="cuerpo">Mensaje:</label>
+                                <textarea type="text" class="form-control" id="cuerpo" formControlName="cuerpo" [class.is-invalid]="cuerpoNoValido"></textarea>
+                                <small *ngIf="cuerpoCampoRequerido" class="text-danger">Campo requerido</small>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                        Enviar mensaje
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 ">
+            <div *ngFor="let mensaje of mensajes; let i=index" class="descripcion-container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <strong class="descripcion-titulo" id="autor{{i}}"></strong>&nbsp;
+                        <strong class="descripcion-titulo">Fecha: {{mensaje.fecha | date: 'short'}}</strong>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <p class="descripcion">{{mensaje.cuerpo}}</p>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Chat } from '../../models/chat';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,9 +14,10 @@ export class NavbarComponent implements OnInit {
   public profesional: boolean = false;
 
 
-  constructor(private usuarioService:UsuarioService) { }
+  constructor(private usuarioService:UsuarioService,
+    private chatService: ChatService) { }
 
-  ngOnInit(){
+  async ngOnInit(){
     if(localStorage.getItem("token")){
       this.usuario = true;
 

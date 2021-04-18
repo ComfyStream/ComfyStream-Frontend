@@ -1,0 +1,19 @@
+<div class="col mb-4 animated fadeIn tarjeta" *ngIf="miUsuario && usuario2 && usuario1">
+    <div class="row ">
+        <div class="col-md-6">
+            <div class="titulo">
+                <h5 class="card-title" *ngIf="!soyUsuario1 && !usuario1.profesional">Chat con el usuario: {{usuario1.nombre}}</h5>
+                <h5 class="card-title" *ngIf="!soyUsuario1 && usuario1.profesional">Chat con el profesional: {{usuario1.nombre}}</h5>
+                <h5 class="card-title" *ngIf="soyUsuario1 && usuario2.profesional">Chat con el profesional: {{usuario2.nombre}}</h5>
+                <h5 class="card-title" *ngIf="soyUsuario1 && !usuario2.profesional">Chat con el usuario: {{usuario2.nombre}}</h5>
+            </div>
+        </div>
+        <div class="col-md-4 px-0">
+        </div>
+        <div class="col-md-2">
+            <div class="botones-container">
+                <a class="botones" (click)="mostrarChat()">Ver mensajes</a>
+            </div>
+        </div>
+    </div>
+</div>

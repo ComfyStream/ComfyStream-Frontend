@@ -1,0 +1,22 @@
+.centrado {
+    margin: auto;
+}
+
+.jumbotron {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: rgb(67, 75, 83);
+    text-align: center;
+    font-size: large;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.titulo-jumbotron {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.descripcion-jumbotron {
+    font-size: 100%;
+}

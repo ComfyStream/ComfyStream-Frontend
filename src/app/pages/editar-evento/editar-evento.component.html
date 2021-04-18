@@ -1,0 +1,86 @@
+<div *ngIf="usuario && usuario['profesional']===true && evento && asistentes && editable">
+
+
+
+    <form class="form " autocomplete="off" [formGroup]="editarEventoForm" (submit)="editarEvento()">
+
+        <div class="row">
+            <div class="col-md-6 form-div">
+                <div class="card">
+                    <div class="card-body formulario">
+                        <h3 class="card-title">Modificar evento</h3>
+                        <hr>
+
+                        <div class="form-group">
+                            <label for="titulo">Título *</label>
+                            <input type="text" class="form-control" id="titulo" placeholder="Título del evento" formControlName="titulo" [class.is-invalid]="tituloNoValido">
+                            <small *ngIf="tituloCampoRequerido" class="text-danger">Campo requerido</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción *</label>
+                            <input type="text" class="form-control" id="descripcion" placeholder="Descripción" formControlName="descripcion" [class.is-invalid]="descripcionNoValido">
+                            <small *ngIf="descripcionCampoRequerido" class="text-danger">Campo requerido</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoría *</label>
+                            <select type="categoria" class="form-control" id="categoria" formControlName="categoria" [class.is-invalid]="categoriaNoValido">
+                                <option value=""></option>
+                                <option value="Educación">Educación</option>
+                                <option value="Medicina">Medicina</option>
+                                <option value="Deporte">Deporte</option>
+                                <option value="Arte y cultura">Arte y cultura</option>
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Economía">Economía</option>
+                                <option value="Física">Física</option>
+                                <option value="Entretenimiento">Entretenimiento</option>
+                            </select>
+                            <small *ngIf="categoriaCampoRequerido" class="text-danger">Campo requerido</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="subcategoria">Subcategoría</label>
+                            <input type="text" class="form-control" id="subcategoria" formControlName="subcategoria">
+                        </div>
+                        <div class="form-group">
+                            Evento para un único asistente &nbsp; <input type="checkbox" formControlName="esPersonal">
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Precio *</label>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control" id="precio" min="1" max="999" formControlName="precio" [class.is-invalid]="precioNoValido">
+                                </div>
+                                <p style="padding-top: 5px;">€</p>
+                                <small *ngIf="precioRequerido" class="text-danger">Campo requerido.&nbsp;</small>
+                                <small *ngIf="precioPositivo" class="text-danger">Debe ser un valor positivo >= 1.00</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subcategoria">Fecha del evento: <strong>{{evento.fecha | date: 'dd/MM/yy HH:mm'}}</strong></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="subcategoria">Duración: <strong>{{evento.duracion}} minutos</strong></label>
+                        </div>
+                        <div class="col-md-4 info" *ngIf="evento.img">
+                            <label for="subcategoria">Imagen actual: </label>
+                            <img class="card-img-top img-hover-zoom" src={{evento.img}} alt="Card image cap" width="100%">
+                        </div>
+                        <div class="col-md-4 info" *ngIf="!evento.img">
+                            <label for="subcategoria">Imagen actual: </label>
+                            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="img">Nueva imagen</label>
+                            <input type="file" class="form-control" id="img" formControlName="img" (change)="cambiarImagen($event)" accept="image/x-png,image/gif,image/jpeg">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                    Actualizar evento
+                </button>
+                <p style="color: white;">(*) campos obligatorios</p>
+            </div>
+
+        </div>
+    </form>
+</div>
