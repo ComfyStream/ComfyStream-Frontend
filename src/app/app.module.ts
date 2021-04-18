@@ -26,6 +26,10 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
+import { PoliticaPrivacidadComponent } from './pages/politica-privacidad/politica-privacidad.component';
+import { TerminosUsoComponent } from './pages/terminos-uso/terminos-uso.component';
+import { SoporteComponent } from './pages/soporte/soporte.component';
+import { FooterComponent } from './shared/footer/footer.component';
 import { EditarEventoComponent } from './pages/editar-evento/editar-evento.component';
 
 
@@ -51,9 +55,11 @@ import { EditarEventoComponent } from './pages/editar-evento/editar-evento.compo
     MiPerfilComponent,
     RegistroComponent,
     AsistirComponent,
+    PoliticaPrivacidadComponent,
+    TerminosUsoComponent,
+    SoporteComponent,
+    FooterComponent,
     EditarEventoComponent
-
-
   ],
   imports: [
     BrowserModule,
