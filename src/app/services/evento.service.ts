@@ -113,6 +113,40 @@ export class EventoService {
     } )
   }
 
+  actualizarEvento( formData: any, idEvento: string, imagen:string):Promise<Evento>{
+
+    let datos = new FormData();
+    datos.append("id", idEvento)
+    datos.append("img",imagen)
+    datos.append("titulo", formData.titulo )
+    datos.append("descripcion", formData.descripcion )
+    datos.append("categoria", formData.categoria )
+    datos.append("subcategoria", formData.subcategoria )
+    datos.append("esPersonal", formData.esPersonal )
+    datos.append("precio", formData.precio )
+
+
+    return new Promise<Evento> (resolve=> {
+
+      this.http.post(`${ base_url }/evento/editar`, datos,{
+        headers: { 
+          'x-token': this.token
+        }
+      } )
+      .subscribe(data =>{
+        if(data["msg"] == "El evento no es tuyo" ){
+          Swal.fire('Algo salió mal', data["msg"], 'error');
+        }
+        const evento= data["evento"];
+        console.log(data["msg"])
+        Swal.fire('Guardado', 'Evento creado', 'success');
+        resolve(evento);
+        this.router.navigate(['/evento/'+idEvento])
+
+      });
+    } )
+  }
+
 
   crearSalaZoom( datos: any):Promise<any>{
 
@@ -136,4 +170,15 @@ export class EventoService {
     })
   }
 
+
+  buscar(datos:any):Promise<Evento[]>{
+    return new Promise<Evento[]>(
+      resolve => {
+        this.http.post(`${base_url}/buscador`,datos,{
+        }).subscribe(data=>{
+          const eventos = data["eventosDisponibles"];
+          resolve(eventos);
+        });
+      })
+  }
 }

@@ -26,6 +26,7 @@ export class EventoComponent implements OnInit {
   public misChats: Chat[] = [];
   public cargando = true;
   public asistenciaChecked= false;
+  public eventoPasado: boolean = false;
   public yaTengoUnChatConElCreador:Boolean = false;
   public usuarioCreadorEvento: Usuario;
   public miEventoChecked= false;
@@ -48,6 +49,7 @@ export class EventoComponent implements OnInit {
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
     this.datosEvento();
+    this.eventoAntiguo();
 
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     
@@ -63,7 +65,6 @@ export class EventoComponent implements OnInit {
       }
       if(this.esMio){
         this.asistentes = await this.eventoService.asistentesAlEvento(this.eventoId);
-        console.log(this.asistentes);
       }
     }
     
@@ -86,7 +87,7 @@ export class EventoComponent implements OnInit {
           break;
         }
       }
-      this.miEventoChecked = true; 
+      this.miEventoChecked = true;
       
   }
 
@@ -127,7 +128,7 @@ export class EventoComponent implements OnInit {
       if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime())/36e5)<=1){
           this.activo= true;
       }
-    }  
+    } 
   }
 
   comenzarEvento(){
@@ -161,6 +162,14 @@ export class EventoComponent implements OnInit {
             this.router.navigateByUrl("/chat/"+chat._id)
          }
       }
+    }
+  }
+
+  eventoAntiguo(){
+    let hoy = new Date().getTime();
+    let fecha = new Date(this.evento.fecha).getTime();
+    if(fecha < hoy){
+      this.eventoPasado = true;
     }
   }
 

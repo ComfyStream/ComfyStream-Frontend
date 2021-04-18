@@ -19,19 +19,18 @@ import { CrearEventoComponent } from './pages/crear-evento/crear-evento.componen
 import { ChatComponent } from './pages/chat/chat.component';
 import { MisChatsComponent } from './pages/mis-chats/mis-chats.component';
 import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.component';
+import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { AsistirComponent } from './pages/asistir/asistir.component';
-
 import { NgxPayPalModule } from 'ngx-paypal';
+import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { PoliticaPrivacidadComponent } from './pages/politica-privacidad/politica-privacidad.component';
 import { TerminosUsoComponent } from './pages/terminos-uso/terminos-uso.component';
 import { SoporteComponent } from './pages/soporte/soporte.component';
 import { FooterComponent } from './shared/footer/footer.component';
-
-
-
+import { EditarEventoComponent } from './pages/editar-evento/editar-evento.component';
 
 
 @NgModule({
@@ -51,13 +50,16 @@ import { FooterComponent } from './shared/footer/footer.component';
     ChatComponent,
     MisChatsComponent,
     ChatTarjetaComponent,
+    AsistirComponent,
+    BuscadorComponent,
+    MiPerfilComponent,
     RegistroComponent,
     AsistirComponent,
     PoliticaPrivacidadComponent,
     TerminosUsoComponent,
     SoporteComponent,
-    FooterComponent
-
+    FooterComponent,
+    EditarEventoComponent
   ],
   imports: [
     BrowserModule,
