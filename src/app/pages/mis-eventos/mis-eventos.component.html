@@ -7,7 +7,7 @@
         <a routerLink="/crear-evento" class="botones">Crear evento</a> <br>
         <div class="row filtro">
             <form [formGroup]="filtro" id="filtroform" class="filtro">
-                <select formControlName="filtro" (change)="verActivos()">
+                <select formControlName="filtro" class="form-control" (change)="verActivos()">
                     <option value="todos" selected="selected" >Todos los eventos</option> 
                     <option value="activos" >Eventos activos</option>
                 </select>

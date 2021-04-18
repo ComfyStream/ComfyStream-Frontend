@@ -34,7 +34,9 @@
             <div class="asistir" *ngIf="esMio">
                 <h6 class="card-subtitle">Usted es el profesional de este evento </h6><br>
                 <a *ngIf="esMio && activo" class="botones" (click)="comenzarEvento()">Comenzar evento</a>
-                <a *ngIf="esMio && !activo && asistentes.length == 0 !eventoPasado" class="botones" routerLink="/editar-evento/{{eventoId}}">Modificar evento</a>
+                <a *ngIf="esMio && asistentes.length == 0 !eventoPasado" class="botones mt-4" routerLink="/editar-evento/{{eventoId}}">Modificar evento</a>
+
+                <a *ngIf="esMio  && asistentes.length == 0 !eventoPasado" class="botones mt-4" (click)="borrar()" style="background-color: rgb(189, 57, 57);">Borrar evento</a>
             </div>
             <div *ngIf="esMio && asistentes.length>0 " class="asistentes">
                 <h5>Asistentes a este evento</h5>

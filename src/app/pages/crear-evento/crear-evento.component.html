@@ -1,4 +1,4 @@
-<div *ngIf="usuario && usuario['profesional']===true">
+<div *ngIf="usuario && usuario['profesional']===true && enlazadoZoom">
 
 
 
@@ -50,8 +50,8 @@
                                     <input type="number" class="form-control" id="precio" min="1" max="999" formControlName="precio" [class.is-invalid]="precioNoValido">
                                 </div>
                                 <p style="padding-top: 5px;">€</p>
-                                <small *ngIf="precioRequerido" class="text-danger">Campo requerido.&nbsp;</small>
-                                <small *ngIf="precioPositivo" class="text-danger">Debe ser un valor positivo >= 1.00</small>
+                                <small *ngIf="precioRequerido" class="text-danger" style="padding-top: 5px;">&nbsp; Campo requerido.&nbsp;</small>
+                                <small *ngIf="precioPositivo" class="text-danger" style="padding-top: 5px;">&nbsp;  Debe ser un valor positivo >= 1.00</small>
                             </div>
                         </div>
                         <div class="form-group">
@@ -81,4 +81,11 @@
 
         </div>
     </form>
+</div>
+
+<div *ngIf="!enlazadoZoom">
+    <div class="jumbotron" (click)="enlazarCuenta()">
+        <h1 class="display-4 titulo-jumbotron">Para poder crear un evento tiene que tener enlazada una cuenta de Zoom</h1>
+        <p class="lead descripcion-jumbotron"> Click aquí para enlazar la cuenta de Zoom</p>
+    </div>
 </div>

@@ -172,6 +172,7 @@ export class UsuarioService {
           const usuario= data["usuarioActualizado"];
           Swal.fire('Guardado', msg , 'success');
           resolve(usuario);
+          this.router.navigate(['/'])
           
 
         }
@@ -205,6 +206,22 @@ export class UsuarioService {
         resolve(msg);
       });
     } )
+  }
+
+  zoomEnlazado():Promise<boolean>{
+    return new Promise<boolean>(
+      resolve=> {
+        this.http.get(`${base_url}/zoom/usuario-enlazado`,{
+          headers: { 
+            'x-token': this.token
+          }
+        }).subscribe(data=>{
+          
+          const encontrado = data["encontrado"];
+          resolve(encontrado);
+  
+        });
+     })
   }
 }
 

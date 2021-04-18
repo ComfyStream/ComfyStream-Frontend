@@ -75,6 +75,9 @@ export class EventoComponent implements OnInit {
       this.cargando = false;
     }
     
+    console.log(this.esMio)
+      console.log(this.asistentes.length == 0);
+      console.log(this.eventoPasado);
     
   }
 
@@ -171,6 +174,11 @@ export class EventoComponent implements OnInit {
     if(fecha < hoy){
       this.eventoPasado = true;
     }
+  }
+
+  borrar(){
+    if(confirm("¿Estás seguro de que quieres borrar este evento?"))
+    this.eventoService.borrarEvento(this.eventoId);
   }
 
 }

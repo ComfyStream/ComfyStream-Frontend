@@ -175,9 +175,32 @@ export class EventoService {
     return new Promise<Evento[]>(
       resolve => {
         this.http.post(`${base_url}/buscador`,datos,{
-        }).subscribe(data=>{
+}).subscribe(data=>{
           const eventos = data["eventosDisponibles"];
           resolve(eventos);
+        });
+      })
+  }
+
+  borrarEvento(idEvento:any):Promise<any>{
+    return new Promise<Evento[]>(
+      resolve => {
+        this.http.delete(`${base_url}/evento/eliminar/${idEvento}`,{
+          headers: { 
+            'x-token': this.token
+          }
+        }).subscribe(data=>{
+          const msg = data["msg"];
+          if(msg == "Borrado con éxito"){
+            Swal.fire('Evento borrado', 'Borrado con éxito', 'success');
+            resolve(msg);
+            this.router.navigate(['/mis-eventos']);
+          }
+          else{
+            Swal.fire('Algo salió mal', msg, 'error');
+            resolve(msg);
+          }
+          
         });
       })
   }
