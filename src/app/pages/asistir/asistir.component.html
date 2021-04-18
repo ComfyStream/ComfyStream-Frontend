@@ -1,8 +1,8 @@
 <div class="wrapper">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-2 info">
-            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
+        <div class="col-md-2 info" *ngIf="evento.img">
+            <img class="card-img-top img-hover-zoom" src={{evento.img}} alt="Card image cap" width="100%">
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-4 py-2">

@@ -54,7 +54,7 @@ export class EditarEventoComponent implements OnInit {
         titulo:[this.evento.titulo, [Validators.required]],
         descripcion:[this.evento.descripcion, [Validators.required]],
         categoria:[this.evento.categoria, [ Validators.required] ],
-        subcategoria:[this.evento.subCategoria],
+        subCategoria:[this.evento.subCategoria],
         esPersonal:[this.evento.esPersonal, [Validators.required]],
         precio:[this.evento.precio, [Validators.required, this.valorPositivo]],
         img:[]
