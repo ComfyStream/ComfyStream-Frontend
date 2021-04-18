@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
+import { Router } from '@angular/router';
 
 
 const base_url = environment.apiUrl;
@@ -21,14 +22,17 @@ export class CrearEventoComponent implements OnInit {
   public imagenSubir: File;
   public imgTemp: any = null;
   public urlImagen:string;
+  public enlazadoZoom = false;
+  public zoom:string;
 
   constructor(private fb:FormBuilder,
+    private router: Router,
     private usuarioService:UsuarioService,
     private eventoService:EventoService,
     private cargaImagenService:CargaImagenesService) { }
 
   async ngOnInit() {
-
+  this.enlazadoZoom = await this.usuarioService.zoomEnlazado();
     this.crearEventoForm = this.fb.group({
       titulo:['', [Validators.required]],
       descripcion:['', [Validators.required]],
@@ -50,7 +54,12 @@ export class CrearEventoComponent implements OnInit {
     this.imagenSubir = file;
     
     }
+    async enlazarCuenta(){
+    
+      this.router.navigateByUrl('/mi-cuenta');
   
+  
+    }
   async crearEvento(){
     if(this.crearEventoForm.invalid){
       this.crearEventoForm.markAllAsTouched()

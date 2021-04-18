@@ -75,6 +75,9 @@ export class EventoComponent implements OnInit {
       this.cargando = false;
     }
     
+    console.log(this.esMio)
+      console.log(this.asistentes.length == 0);
+      console.log(this.eventoPasado);
     
   }
 
