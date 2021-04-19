@@ -181,10 +181,10 @@ export class UsuarioService {
     } )
   }
 
-  registro( formData: any, imagen:File):Promise<String>{
+  registro( formData: any, imagen:string):Promise<String>{
 
     let datos = new FormData();
-    datos.append("img", imagen,imagen.name )
+    datos.append("img", imagen)
     datos.append("nombre", formData.nombre )
     datos.append("email", formData.email )
     datos.append("password", formData.password )
@@ -203,7 +203,17 @@ export class UsuarioService {
       this.http.post(`${ base_url }/registro`, datos)
       .subscribe(data =>{
         const msg= data["msg"];
-        resolve(msg);
+        if(msg == "El email ya está en uso"){
+          Swal.fire('No es posible crear el usuario', msg, 'error');
+          resolve(msg);
+        }else if(msg == "Esta cuenta bancaria ya está en uso"){
+          Swal.fire('No es posible crear el usuario', msg, 'error');
+          resolve(msg);
+        }else{
+          Swal.fire('Guardado', msg , 'success');
+          resolve(msg);
+        }
+
       });
     } )
   }
