@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
 
 @Component({
   selector: 'app-registro',
@@ -15,11 +16,17 @@ export class RegistroComponent {
   imagenSubir: File;
   emailEnUso:boolean = false
   cuentaBancariaEnUso:boolean = false
+  public urlImagen:string;
 
-  constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private router:Router) {
+  constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private router:Router,private cargaImagenService:CargaImagenesService) {
     this.iniciarForm()
    }
 
+async subirImagen(){
+  let nombre = Math.random().toString() + this.imagenSubir.name; 
+  await this.cargaImagenService.subirCloudStorage(nombre, this.imagenSubir);
+  this.urlImagen = await this.cargaImagenService.referenciaCloudStorage(nombre)
+}
   //Cambio de formularios
   iniciarForm(){
     this.form = this.fb.group({
@@ -161,8 +168,10 @@ export class RegistroComponent {
 
   async submit(){
     if(this.form.valid){
+      await this.subirImagen();
       const datos = this.form.value;
-      const msg = await this.usuarioService.registro(datos, this.imagenSubir)
+      delete datos.img;
+      const msg = await this.usuarioService.registro(datos, this.urlImagen)
       
       if(msg == "El email ya está en uso"){
         this.emailEnUso = true
