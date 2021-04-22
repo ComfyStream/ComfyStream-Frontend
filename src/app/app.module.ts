@@ -31,6 +31,7 @@ import { TerminosUsoComponent } from './pages/terminos-uso/terminos-uso.componen
 import { SoporteComponent } from './pages/soporte/soporte.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { EditarEventoComponent } from './pages/editar-evento/editar-evento.component';
+import { SerProfesionalComponent } from './pages/ser-profesional/ser-profesional.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { EditarEventoComponent } from './pages/editar-evento/editar-evento.compo
     TerminosUsoComponent,
     SoporteComponent,
     FooterComponent,
-    EditarEventoComponent
+    EditarEventoComponent,
+    SerProfesionalComponent
   ],
   imports: [
     BrowserModule,
