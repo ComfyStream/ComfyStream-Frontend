@@ -1,0 +1,36 @@
+<div class="wrapper" *ngIf="profesional && eventosDelProfesional">
+
+    <div class="row">
+
+        <div class="col-md-2"></div>
+
+        <div class="col-md-3 info" *ngIf="profesional.img">
+            <img class="card-img-top img-hover-zoom" src={{profesional.img}} alt="Card image cap" width="100%">
+        </div>
+        <div class="col-md-3 info" *ngIf="!profesional.img">
+            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
+        </div>
+
+        <div class="col-md-1"></div>
+        <div class="col-md-4 py-2">
+            <h2 style="text-align: left;">{{profesional.nombre}}</h2>
+            <h5 style="text-align: left;"><strong>Email:</strong> {{profesional.email}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm'}}</h5>
+            <h5 style="text-align: left;"><strong>Sector:</strong> {{profesional.sector}}</h5>
+            <h5 style="text-align: left;"><strong>Sobre mí:</strong> {{profesional.descripcion}}</h5>
+        </div>
+
+        <div class="col-md-1"></div>
+
+    </div>
+    <br>
+    <hr class="col-md-8 form-div">
+    <br>
+
+    <h3 class="card-title text-center">Eventos disponibles del profesional</h3>
+    <div class="row centrado">
+        <div class="col-md-8 form-div">
+            <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventosDelProfesional "></app-evento-tarjeta>
+        </div>
+    </div>
+</div>

@@ -11,8 +11,10 @@
         <div class="col"></div>
         <div class="col-md-4 py-2">
             <h2 style="text-align: left;">{{evento.titulo}}</h2>
-            <h5 style="text-align: left;"><strong>Profesional : </strong> {{usuario.nombre}}</h5>
-            <h5 style="text-align: left;"><strong>Categoría : </strong> {{evento.categoria}}</h5>
+            <h5 style="text-align: left;"><strong>Profesional:</strong>
+                <a routerLink="/detalles-profesional/{{evento.profesional}}"> {{ usuario.nombre}} </a>
+            </h5>
+            <h5 style="text-align: left;"><strong>Categoría: </strong> {{evento.categoria}}</h5>
             <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
             <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm'}}</h5>
             <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
