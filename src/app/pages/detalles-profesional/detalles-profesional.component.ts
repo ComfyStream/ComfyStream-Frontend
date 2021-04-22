@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { Evento } from 'src/app/models/evento';
 import { EventoService } from '../../services/evento.service';
 import { AsistenciaService } from '../../services/asistencia.service';
+import { Valoracion } from 'src/app/models/valoracion';
 
 @Component({
   selector: 'app-detalles-profesional',
@@ -19,6 +20,9 @@ export class DetallesProfesionalComponent implements OnInit {
   public eventosDelProfesional: Evento[] = [];
   public misEventos: Evento[] = [];
   public misAsistencias: Evento[] = [];
+  public mediaEstrellas :number = 3.5
+  public valoraciones:Valoracion[] = [];
+  public numeroValoraciones:number;
 
   constructor(private activatedRoute: ActivatedRoute,
     private usuarioService: UsuarioService,
@@ -37,7 +41,16 @@ export class DetallesProfesionalComponent implements OnInit {
       this.misAsistencias = await (this.asistenciaService.getMisAsistencias());
     }
     this.profesional = await this.usuarioService.getUsuarioPorId(this.usuarioId);
+    this.numeroValoraciones = this.profesional.numeroValoraciones;
+    this.mediaEstrellas = this.profesional.valoracionMedia;
+    if(typeof this.numeroValoraciones === 'undefined'){
+      this.numeroValoraciones = 0;
+    }else{
+      this.numeroValoraciones = this.profesional.numeroValoraciones;
+    }
+    
     this.eventosDisponibles = await this.eventoService.getEventosDisponibles();
+    this.valoraciones = await this.usuarioService.getValoracionesPorId(this.usuarioId);
     for(let evento of this.eventosDisponibles){
       if(evento.profesional === this.usuarioId){
         this.eventosDelProfesional.push(evento);

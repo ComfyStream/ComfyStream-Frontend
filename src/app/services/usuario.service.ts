@@ -5,6 +5,7 @@ import { tap} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Usuario } from '../models/usuario';
+import { Valoracion } from '../models/valoracion';
 const base_url = environment.apiUrl;
 
 @Injectable({
@@ -20,7 +21,7 @@ export class UsuarioService {
       return localStorage.getItem('token') || '';
     }
   login( formData: any ): Promise<string> {
-      return new Promise<string>(resolve => {
+      return new Promise<string>(resolve => {0
         this.http.post(`${base_url}/login`,formData).subscribe(data => {
           const msg = data['msg']
           if(msg === 'Login realizado con exito'){
@@ -153,11 +154,11 @@ export class UsuarioService {
   //   })
   // }
  
-  editarPerfil( formData: any):Promise<Usuario>{
+  editarPerfil( datos: any):Promise<Usuario>{
 
     return new Promise<Usuario> (resolve=> {
       console.log("token:"+this.token)
-      this.http.post(`${ base_url }/editar-perfil`,formData,{
+      this.http.post(`${ base_url }/editar-perfil`,datos,{
         headers: { 
           
           'x-token': this.token
@@ -203,17 +204,7 @@ export class UsuarioService {
       this.http.post(`${ base_url }/registro`, datos)
       .subscribe(data =>{
         const msg= data["msg"];
-        if(msg == "El email ya está en uso"){
-          Swal.fire('No es posible crear el usuario', msg, 'error');
           resolve(msg);
-        }else if(msg == "Esta cuenta bancaria ya está en uso"){
-          Swal.fire('No es posible crear el usuario', msg, 'error');
-          resolve(msg);
-        }else{
-          Swal.fire('Guardado', msg , 'success');
-          resolve(msg);
-        }
-
       });
     } )
   }
@@ -233,6 +224,67 @@ export class UsuarioService {
         });
      })
   }
+
+  getValoracionesPorId(id:string):Promise<Valoracion[]>{
+    return new Promise<Valoracion[]>(
+      resolve=> {
+        this.http.get(`${base_url}/valoraciones-recibidas/${id}`).subscribe(data=>{
+          if(data['msg'] == "Exito"){            
+          const valoraciones = data["valoraciones"];
+          resolve(valoraciones);
+        }
+        });
+     })
+ }
+ puedoValorar(profesionalId:string):Promise<boolean>{
+  return new Promise<boolean>(
+    resolve=> {
+      this.http.get(`${base_url}/puede-valorar/${profesionalId}`,{
+        headers: { 
+          'x-token': this.token
+        }
+      }).subscribe(data=>{
+        console.log(data);
+        const puede = data["puede"];
+        resolve(puede);
+
+      });
+   })
+}
+
+valorar( datos: any):Promise<Valoracion>{
+
+  return new Promise<Valoracion> (resolve=> {
+
+    this.http.post(`${ base_url }/valoracion/nueva`, datos,{
+      headers: { 
+        'x-token': this.token
+      }
+    })
+    .subscribe(data =>{
+      const msg= data["msg"];
+      if(msg == "Valoración creada"){
+        Swal.fire('Guardado', msg , 'success');
+        resolve(data["valoracion"]);
+        this.router.navigateByUrl("/detalles-profesional/"+datos.id)
+      }else{
+        Swal.fire('Algo ha salido mal', 'error');
+        resolve(data["valoracion"]);
+      }
+
+    });
+  } )
+}
+
+confirmarCuenta(urlConfirmacion:string):Promise<string>{
+  return new Promise<string>(resolve => {
+    this.http.put(`${base_url}/confirmar/${urlConfirmacion}`, {}).subscribe(data => {
+      const msg = data["msg"];
+      resolve(msg);
+    })
+  })
+}
+
 }
 
 

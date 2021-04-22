@@ -32,6 +32,7 @@
                 <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'dd/MM/yy HH:mm'}} por un precio de {{evento.precio}} € </h6>
                 <br>
                 <a *ngIf="asistido && activo" class="botones" (click)="entrarEvento()">Entrar al evento</a>
+                <a *ngIf="puedoValorar" class="botones" (click)="valorar()">Valorar al profesional</a>
             </div>
             <div class="asistir" *ngIf="esMio">
                 <h6 class="card-subtitle">Usted es el profesional de este evento </h6><br>

@@ -1,0 +1,8 @@
+.valorarForm {
+    max-width: 50%;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #343a40;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}

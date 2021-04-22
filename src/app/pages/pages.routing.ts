@@ -19,6 +19,7 @@ import { SoporteComponent } from './soporte/soporte.component';
 import { EditarEventoComponent } from './editar-evento/editar-evento.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { DetallesProfesionalComponent } from './detalles-profesional/detalles-profesional.component';
+import { ValorarProfesionalComponent } from './valorar-profesional/valorar-profesional.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
             { path: 'support', component: SoporteComponent},
             { path: 'detalles-profesional/:id', component: DetallesProfesionalComponent},
             { path: 'buscador', component: BuscadorComponent},
+            { path: 'valorar/:id', component: ValorarProfesionalComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },

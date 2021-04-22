@@ -13,11 +13,15 @@
 
         <div class="col-md-1"></div>
         <div class="col-md-4 py-2">
-            <h2 style="text-align: left;">{{profesional.nombre}}</h2>
-            <h5 style="text-align: left;"><strong>Email:</strong> {{profesional.email}}</h5>
+            <h2 style="text-align: left; padding-top: 50px;">{{profesional.nombre}}</h2>
+            <h5 style="text-align: left;padding-top: 10px;"><strong>Email:</strong> {{profesional.email}}</h5>
             <h5 style="text-align: left;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm'}}</h5>
             <h5 style="text-align: left;"><strong>Sector:</strong> {{profesional.sector}}</h5>
             <h5 style="text-align: left;"><strong>Sobre mí:</strong> {{profesional.descripcion}}</h5>
+
+
+            <ngb-rating [(rate)]="mediaEstrellas" [readonly]="true" [max]="5" style="font-size: large;"></ngb-rating> ( {{numeroValoraciones}} valoraciones )
+
         </div>
 
         <div class="col-md-1"></div>
@@ -33,4 +37,22 @@
             <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventosDelProfesional "></app-evento-tarjeta>
         </div>
     </div>
+
+    <div *ngIf="valoraciones.length>0">
+        <h3 class="card-title text-center pt-2">Valoraciones del profesional</h3>
+        <div class="row m-0">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" *ngFor="let valoracion of valoraciones; let i = index">
+                <div class="valoracion">
+                    {{valoracion.nombreAutor}}
+                    <ngb-rating [max]="5" [(rate)]="valoracion.estrellas" [readonly]="true"></ngb-rating><br> Valorado el : {{valoracion.fecha | date: 'dd/MM/yy HH:mm'}}
+                    <p> {{valoracion.mensaje}}</p>
+
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <br>
 </div>

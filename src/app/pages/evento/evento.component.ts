@@ -35,6 +35,8 @@ export class EventoComponent implements OnInit {
   public activo= false;
   public asistentes: Usuario[] =[];
   public editable=false;
+  public puedoValorar = false;
+
 
   constructor(private eventoService: EventoService,
     private asistenciaService: AsistenciaService,
@@ -49,6 +51,7 @@ export class EventoComponent implements OnInit {
       this.eventoId = params['id']; 
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
+    this.puedoValorar = await this.usuarioService.puedoValorar(this.evento.profesional);
     this.datosEvento();
     this.eventoAntiguo();
 
@@ -144,6 +147,10 @@ export class EventoComponent implements OnInit {
   }
   entrarEvento(){
     window.open(this.urlUsuario);
+  }
+  valorar(){
+    this.router.navigateByUrl("/valorar/"+this.evento.profesional);
+
   }
 
   async iniciarChat(){

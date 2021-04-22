@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { ConfirmarComponent } from './confirmar/confirmar.component';
 
 
 const routes: Routes = [
 
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
+    { path: 'confirmar/:urlConfirmacion', component: ConfirmarComponent },
 
 ];
 

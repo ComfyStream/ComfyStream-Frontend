@@ -20,7 +20,7 @@
 <div class="row centrado" *ngIf="!mostrarActivos">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <app-evento-tarjeta [evento]="evento" [misAsistencias]="soloEventosFuturos" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+        <app-evento-tarjeta [evento]="evento" [misAsistencias]="eventos" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
     </div>
     <div class="col-md-2"></div>
 </div>
