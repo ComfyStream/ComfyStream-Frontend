@@ -31,6 +31,7 @@ import { TerminosUsoComponent } from './pages/terminos-uso/terminos-uso.componen
 import { SoporteComponent } from './pages/soporte/soporte.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { EditarEventoComponent } from './pages/editar-evento/editar-evento.component';
+import { SerProfesionalComponent } from './pages/ser-profesional/ser-profesional.component';
 import { DetallesProfesionalComponent } from './pages/detalles-profesional/detalles-profesional.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -62,6 +63,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SoporteComponent,
     FooterComponent,
     EditarEventoComponent,
+    SerProfesionalComponent,
     DetallesProfesionalComponent
   ],
   imports: [

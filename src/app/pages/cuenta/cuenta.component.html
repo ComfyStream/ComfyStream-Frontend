@@ -1,11 +1,31 @@
-<div *ngIf="!usuarioZoom && token" class="card" (click)="enlazarCuenta()">
-    <div class="card-body">
-        <h5 class="card-title">Enlazar Zoom</h5>
-    </div>
-</div>
+<div class="wrapper">
+    <div class="row">
 
-<div *ngIf="usuarioZoom && token" class="card" (click)="borrarCuenta()">
-    <div class="card-body">
-        <h5 class="card-title">Desvincular cuenta de Zoom</h5>
+        <div class="col-md-2" *ngIf="usuario && token">
+            <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                Cambiar contraseña
+            </button>
+        </div>
+        <div class="col-md-2" *ngIf="!usuarioZoom && token">
+            <button (click)="enlazarCuenta()" type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                    Enlazar cuenta de Zoom
+                </button>
+        </div>
+        <div class="col-md-2" *ngIf="usuarioZoom && token">
+            <button (click)="borrarCuenta()" type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                    Desvincular cuenta de Zoom
+                </button>
+        </div>
+        <div class="col-md-2" *ngIf="!usuario.profesional && token">
+            <button routerLink="/ser-profesional/{{usuario._id}}" type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                    Ser un profesional
+                </button>
+        </div>
+        <div class="col-md-2" *ngIf="usuario.profesional && token">
+            <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                Actualizar datos bancarios
+            </button>
+        </div>
+
     </div>
 </div>

@@ -169,7 +169,9 @@ export class UsuarioService {
           Swal.fire('No es posible actualizar el perfil', msg, 'error');
         }
         else {
-          const usuario= data["usuarioActualizado"];
+          const usuario = data["usuarioActualizado"];
+          const token = data["token"];
+          localStorage.setItem('token', token);
           Swal.fire('Guardado', msg , 'success');
           resolve(usuario);
           this.router.navigate(['/'])
@@ -234,5 +236,7 @@ export class UsuarioService {
      })
   }
 }
+
+
 
 

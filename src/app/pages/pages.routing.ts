@@ -18,6 +18,7 @@ import { TerminosUsoComponent } from './terminos-uso/terminos-uso.component';
 import { SoporteComponent } from './soporte/soporte.component';
 import { EditarEventoComponent } from './editar-evento/editar-evento.component';
 import { BuscadorComponent } from './buscador/buscador.component';
+import { SerProfesionalComponent } from './ser-profesional/ser-profesional.component';
 import { DetallesProfesionalComponent } from './detalles-profesional/detalles-profesional.component';
 
 
@@ -44,6 +45,7 @@ const routes: Routes = [
             { path: 'support', component: SoporteComponent},
             { path: 'detalles-profesional/:id', component: DetallesProfesionalComponent},
             { path: 'buscador', component: BuscadorComponent},
+            { path: 'ser-profesional/:id', component: SerProfesionalComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },
