@@ -32,6 +32,7 @@ import { SoporteComponent } from './pages/soporte/soporte.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { EditarEventoComponent } from './pages/editar-evento/editar-evento.component';
 import { DetallesProfesionalComponent } from './pages/detalles-profesional/detalles-profesional.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { DetallesProfesionalComponent } from './pages/detalles-profesional/detal
       appId: "1:503131251870:web:3f1170aba6356fff36c78f",
       measurementId: "G-5JFMBYSXEV"
     }),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
