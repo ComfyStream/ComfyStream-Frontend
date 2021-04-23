@@ -242,7 +242,7 @@ export class UsuarioService {
         console.log(err)
         Swal.fire('Algo salió mal', err.error.msg, 'error');
       });
-    } )
+    } )}
 
   registro( formData: any, imagen:string):Promise<String>{
 
