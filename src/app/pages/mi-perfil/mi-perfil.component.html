@@ -24,6 +24,7 @@
                             <div class="input-group-addon"><i class="ti-email"></i></div>
                             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" formControlName="email" [class.is-invalid]="emailNoValido" >
                             <small *ngIf="emailCampoRequerido" class="text-danger">Campo requerido</small>
+                            <small *ngIf="vvalidarEmail" class="text-danger">Email no valido</small>
                         </div>
                     </div>
                     <div class="form-group">
@@ -76,8 +77,9 @@
                         <i class="fa fa-save"></i>
                         Guardar cambios
                     </button>
+                   
                 </form>
-            
+                
             </div>
         </div>
     </div>
@@ -110,6 +112,7 @@
                             <div class="input-group-addon"><i class="ti-email"></i></div>
                             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" formControlName="email" [class.is-invalid]="emailNoProfNoValido" >
                             <small *ngIf="emailNoProfCampoRequerido" class="text-danger">Campo requerido</small>
+                            <small *ngIf="vvalidarNoProfEmail" class="text-danger">Email no valido</small>
                         </div>
                     </div>
                     <div class="form-group">
@@ -141,14 +144,17 @@
                     </div>
                 
                     
-
+                   
 
                     <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10">
                         <i class="fa fa-save"></i>
                         Guardar cambios
                     </button>
+                
                 </form>
-            
+                <button type="button" class="btn btn-info" href="">Cambiar contraseña</button>
+                <button type="button" class="btn btn-dark" href="">Cambiar datos bancarios</button>
+                
             </div>
         </div>
     </div>

@@ -12,7 +12,8 @@ import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 import { ChatComponent } from './chat/chat.component';
 import { MisChatsComponent } from './mis-chats/mis-chats.component';
 import { MiPerfilComponent} from './mi-perfil/mi-perfil.component';
-
+import { ContrasenaComponent} from './contrasena/contrasena.component';
+import { DatosBancariosComponent} from './datos-bancarios/datos-bancarios.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,8 @@ const routes: Routes = [
             { path: 'mi-cuenta', component: CuentaComponent},
             { path: 'crear-evento', component: CrearEventoComponent},
             { path: 'mi-perfil', component: MiPerfilComponent},
+            { path: 'contrasena', component: ContrasenaComponent},
+            { path: 'datos-bancarios', component: DatosBancariosComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },

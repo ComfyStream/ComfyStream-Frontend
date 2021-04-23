@@ -19,13 +19,13 @@ export class MiPerfilComponent implements OnInit {
 
   async ngOnInit(){
     if(localStorage.getItem("token")){
-      this.usuario = await (this.usuarioService.getUsuario());
+      this.usuario = await (this.usuarioService.getUsuarioPorId(localStorage.getItem("usuarioId")));
     
 
      if(this.usuario.profesional){
      this.perfilProfesionalForm = this.fb.group({
       nombre: [ this.usuario.nombre , Validators.required ],
-      email: [ this.usuario.email, [ Validators.required, Validators.email ] ],
+      email: [ this.usuario.email, [ Validators.required,Validators.email ] ],
       fechaNacimiento: [ this.datePipe.transform(this.usuario.fechaNacimiento,'yyyy-MM-dd'), [Validators.required,this.fechaPosteriorAHoy]],
       profesional: [ this.usuario.profesional , Validators.required ],
       sector: [ this.usuario.sector , Validators.required ],
@@ -80,10 +80,13 @@ get nombreCampoRequerido(){
 }
 
 get emailNoValido(){
-  return this.emailCampoRequerido
+  return this.emailCampoRequerido || this.vvalidarEmail
 }
 get emailCampoRequerido(){
   return this.perfilProfesionalForm.get('email').errors ? this.perfilProfesionalForm.get('email').errors.required && this.perfilProfesionalForm.get('email').touched : null
+}
+get vvalidarEmail(){
+  return this.perfilProfesionalForm.get('email').errors ? this.perfilProfesionalForm.get('email').errors.email && this.perfilProfesionalForm.get('email').touched : null
 }
 
 get fechaNoValido(){
@@ -134,10 +137,13 @@ get nombreNoProfCampoRequerido(){
 }
 
 get emailNoProfNoValido(){
-  return this.emailNoProfCampoRequerido
+  return this.emailNoProfCampoRequerido || this.vvalidarNoProfEmail
 }
 get emailNoProfCampoRequerido(){
   return this.perfilForm.get('email').errors ? this.perfilForm.get('email').errors.required && this.perfilForm.get('email').touched : null
+}
+get vvalidarNoProfEmail(){
+  return this.perfilForm.get('email').errors ? this.perfilForm.get('email').errors.email && this.perfilForm.get('email').touched : null
 }
 
 get fechaNoProfNoValido(){

@@ -20,6 +20,8 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { MisChatsComponent } from './pages/mis-chats/mis-chats.component';
 import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.component';
 import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
+import { ContrasenaComponent } from './pages/contrasena/contrasena.component';
+import { DatosBancariosComponent } from './pages/datos-bancarios/datos-bancarios.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
     ChatComponent,
     MisChatsComponent,
     ChatTarjetaComponent,
-    MiPerfilComponent
+    MiPerfilComponent,
+    ContrasenaComponent,
+    DatosBancariosComponent
 
   ],
   imports: [

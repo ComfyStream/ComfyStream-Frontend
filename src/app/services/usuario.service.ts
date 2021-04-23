@@ -173,6 +173,67 @@ export class UsuarioService {
       });
     } )
   }
+  
+  editarBanco( formData: any):Promise<Usuario>{
+
+
+    console.log("editaBanco")
+    return new Promise<Usuario> (resolve=> {
+      console.log("token:"+this.token)
+      this.http.post(`${ base_url }/usuario/cambiar/banco`,formData,{
+        headers: { 
+          
+          'x-token': this.token
+        }
+      } )
+      .subscribe(data =>{
+        console.log("prueba")
+        const msg= data["msg"];
+        if(msg=="Password incorrecta"){
+        Swal.fire('Algo salió mal', msg, 'error');  
+        }else{
+          console.log(msg)
+          const usuario= data["usuario"];
+          resolve(usuario);
+          Swal.fire('Guardado', msg, 'success');
+        }
+        
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Algo salió mal', err.error.msg, 'error');
+      });
+    } )
+  }
+  actualizarContrasena( formData: any):Promise<Usuario>{
+
+
+    console.log("editaPass")
+    return new Promise<Usuario> (resolve=> {
+      console.log("token:"+this.token)
+      this.http.post(`${ base_url }/usuario/cambiar/pass`,formData,{
+        headers: { 
+          
+          'x-token': this.token
+        }
+      } )
+      .subscribe(data =>{
+        console.log("prueba")
+        const msg= data["msg"];
+        if(msg=="Password incorrecta"){
+        Swal.fire('Algo salió mal', msg, 'error');  
+        }else{
+          console.log(msg)
+          const usuario= data["usuario"];
+          resolve(usuario);
+          Swal.fire('Guardado', msg, 'success');
+        }
+        
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Algo salió mal', err.error.msg, 'error');
+      });
+    } )
+  }
 }
 
 
