@@ -1,4 +1,4 @@
-<div *ngIf="usuario && usuario['profesional']===true">
+<div *ngIf="usuario && usuario['profesional']===true && enlazadoZoom">
 
 
 
@@ -12,17 +12,17 @@
                         <hr>
 
                         <div class="form-group">
-                            <label for="titulo">Título</label>
+                            <label for="titulo">Título *</label>
                             <input type="text" class="form-control" id="titulo" placeholder="Título del evento" formControlName="titulo" [class.is-invalid]="tituloNoValido">
                             <small *ngIf="tituloCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
                         <div class="form-group">
-                            <label for="descripcion">Descripción</label>
+                            <label for="descripcion">Descripción *</label>
                             <input type="text" class="form-control" id="descripcion" placeholder="Descripción" formControlName="descripcion" [class.is-invalid]="descripcionNoValido">
                             <small *ngIf="descripcionCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
                         <div class="form-group">
-                            <label for="categoria">Categoría</label>
+                            <label for="categoria">Categoría *</label>
                             <select type="categoria" class="form-control" id="categoria" formControlName="categoria" [class.is-invalid]="categoriaNoValido">
                                 <option value=""></option>
                                 <option value="Educación">Educación</option>
@@ -38,35 +38,36 @@
                         </div>
                         <div class="form-group">
                             <label for="subcategoria">Subcategoría</label>
-                            <input type="text" class="form-control" id="subcategoria" formControlName="subcategoria">
+                            <input type="text" class="form-control" id="subcategoria" formControlName="subCategoria">
                         </div>
                         <div class="form-group">
-                            <label for="esPersonal">Personal</label>
-                            <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <label class="checkbox">
-                                <input type="checkbox" formControlName="esPersonal"> 
-                            </label>
+                            Evento para un único asistente &nbsp; <input type="checkbox" formControlName="esPersonal">
                         </div>
                         <div class="form-group">
-                            <label for="precio">Precio</label>
-                            <input type="number" class="form-control" id="precio" min="1" formControlName="precio" [class.is-invalid]="precioNoValido">
-                            <small *ngIf="precioRequerido" class="text-danger">Campo requerido.&nbsp;</small>
-                            <small *ngIf="precioPositivo" class="text-danger">Debe ser un valor positivo</small>
+                            <label for="precio">Precio *</label>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control" id="precio" min="1" max="999" formControlName="precio" [class.is-invalid]="precioNoValido">
+                                </div>
+                                <p style="padding-top: 5px;">€</p>
+                                <small *ngIf="precioRequerido" class="text-danger" style="padding-top: 5px;">&nbsp; Campo requerido.&nbsp;</small>
+                                <small *ngIf="precioPositivo" class="text-danger" style="padding-top: 5px;">&nbsp;  Debe ser un valor positivo >= 1.00</small>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="subcategoria">Fecha del evento</label>
+                            <label for="fecha">Fecha del evento *</label>
                             <input type="datetime-local" class="form-control" id="fecha" formControlName="fecha" [class.is-invalid]="fechaNoValido">
                             <small *ngIf="fechaCampoRequerido" class="text-danger">Campo requerido</small>
                             <small *ngIf="fechaFechaPosteriorAHoy" class="text-danger">La fecha debe ser posterior a hoy</small>
                         </div>
                         <div class="form-group">
-                            <label for="duracion">Duración (minutos)</label>
+                            <label for="duracion">Duración (minutos) *</label>
                             <input type="number" class="form-control" id="duracion" min="1" formControlName="duracion" [class.is-invalid]="duracionNoValido">
                             <small *ngIf="duracionRequerido" class="text-danger">Campo requerido.&nbsp;</small>
                             <small *ngIf="duracionPositivo" class="text-danger">Debe ser un valor positivo</small>
                         </div>
                         <div class="form-group">
-                            <label for="img">Imagen</label>
+                            <label for="img">Imagen *</label>
                             <input type="file" class="form-control" id="img" formControlName="img" (change)="cambiarImagen($event)" accept="image/x-png,image/gif,image/jpeg" [class.is-invalid]="imgNoValido">
                             <small *ngIf="imgCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
@@ -75,8 +76,16 @@
                 <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                     Subir evento
                 </button>
+                <p style="color: white;">(*) campos obligatorios</p>
             </div>
 
         </div>
     </form>
+</div>
+
+<div *ngIf="!enlazadoZoom">
+    <div class="jumbotron" (click)="enlazarCuenta()">
+        <h1 class="display-4 titulo-jumbotron">Para poder crear un evento tiene que tener enlazada una cuenta de Zoom</h1>
+        <p class="lead descripcion-jumbotron"> Click aquí para enlazar la cuenta de Zoom</p>
+    </div>
 </div>

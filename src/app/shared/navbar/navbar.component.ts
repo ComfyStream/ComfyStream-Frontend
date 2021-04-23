@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Chat } from '../../models/chat';
 import { ChatService } from '../../services/chat.service';
@@ -15,7 +16,8 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(private usuarioService:UsuarioService,
-    private chatService: ChatService) { }
+    private chatService: ChatService,
+    private router:Router) { }
 
   async ngOnInit(){
     if(localStorage.getItem("token")){
@@ -29,6 +31,12 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     this.usuarioService.logout();
+  }
+  registro(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('profesional');
+
+    this.router.navigateByUrl('/registro');
   }
 
 

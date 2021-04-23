@@ -1,0 +1,96 @@
+<div class="wrapper login">
+    <div style="text-align: center; margin-bottom: 10px;">
+        <a href="/"><img src="./assets/images/logo.png" /> </a>
+    </div>
+
+    <form class="form-registro" autocomplete="off" [formGroup]="form" (ngSubmit)="submit()" id="loginform">
+        <h2 class="form-signin-heading" style="text-align: center;">Registro</h2>
+        <hr>
+
+        <p>Todos los campos son obligatorios</p>
+
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" formControlName="nombre" [class.is-invalid]="nombreRequerido">
+            <small *ngIf="nombreRequerido" style="color: red;">Nombre requerido</small>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" (keyup)="emailEnUso = false" class="form-control" name="email" id="email" formControlName="email" [class.is-invalid]="emailNoValido">
+            <small *ngIf="emailRequerido" style="color: red;">Nombre requerido</small>
+            <small *ngIf="emailFormatoNoValido" style="color: red;">Email no válido</small>
+            <small *ngIf="emailEnUso" style="color: red;">Email en uso</small>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" class="form-control" name="password" id="password" formControlName="password" [class.is-invalid]="passwordNoValido">
+            <small *ngIf="passwordRequerido" style="color: red;">Contraseña requerida</small>
+            <small *ngIf="passwordLongitud" style="color: red;">Debe tener al menos cuatro caracteres</small>
+        </div>
+
+        <div class="form-group">
+            <label for="fechaNacimiento">Fecha de nacimiento</label>
+            <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento" formControlName="fechaNacimiento" [class.is-invalid]="fechaNoValido">
+            <small *ngIf="fechaFechaAnteriorAHoy" class="text-danger">La fecha debe ser anterior a hoy</small>
+        </div>
+
+        <div class="form-group">
+            <label for="img">Foto de usuario</label>
+            <input type="file" class="form-control" id="img" name="img" formControlName="img" accept="image/x-png,image/jpeg" [class.is-invalid]="imgCampoRequerido" (change)="cambiarImagen($event)">
+            <small *ngIf="imgCampoRequerido" class="text-danger">Foto de usuario requerida</small>
+        </div>
+
+        <div class="form-group">
+            <label for="profesional" class="mr-2">Profesional</label>
+            <input type="checkbox" name="profesional" id="profesional" formControlName="profesional" (change)="cambiaForm()">
+        </div>
+
+        <div *ngIf="form.controls.profesional.value">
+
+            <div class="form-group">
+                <label for="sector">Sector</label>
+                <input type="text" class="form-control" name="sector" id="sector" formControlName="sector" [class.is-invalid]="sectorRequerido">
+                <small *ngIf="sectorRequerido" style="color: red;">Sector requerido</small>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea rows="4" type="text" class="form-control" name="descripcion" id="descripcion" formControlName="descripcion" [class.is-invalid]="descripcionRequerido"></textarea>
+                <small *ngIf="descripcionRequerido" style="color: red;">Descripción requerido</small>
+            </div>
+
+            <div class="form-group">
+                <label for="cuentaBancariaIBAN">Cuenta bancaria</label>
+                <input type="text" (keyup)="cuentaBancariaEnUso = false" placeholder="Ejemplo: ES141111222233334444" class="form-control" name="cuentaBancariaIBAN" id="cuentaBancariaIBAN" formControlName="cuentaBancariaIBAN" [class.is-invalid]="cuentaBancariaIbanNoValido">
+                <small *ngIf="cuentaBancariaIBANRequerido" style="color: red;">Cuenta bancaria requerida. </small>
+                <small *ngIf="cuentaBancariaFormato" style="color: red;">Formato incorrecto</small>
+                <small *ngIf="cuentaBancariaEnUso" style="color: red;">Cuenta bancaria en uso</small>
+            </div>
+
+            <div class="form-group">
+                <label for="titularCuenta">Titular de la cuenta</label>
+                <input type="text" class="form-control" name="titularCuenta" id="titularCuenta" formControlName="titularCuenta" [class.is-invalid]="titularCuentaRequerido">
+                <small *ngIf="titularCuentaRequerido" style="color: red;">Titular de la cuenta requerido</small>
+            </div>
+
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Registrarse</button>
+
+        <div class="form-group m-b-0">
+            <div class="col-sm-12 text-center">
+                <a routerLink="/login" class="text-primary m-l-5"><b>¿Ya tienes cuenta? Inicia sesión aquí</b></a>
+            </div>
+        </div>
+
+        <div class="form-group m-b-0">
+            <div class="col-sm-12 text-center">
+                <a routerLink="/" class="text-primary m-l-5"><b>Volver a la web</b></a>
+            </div>
+        </div>
+
+
+    </form>
+</div>

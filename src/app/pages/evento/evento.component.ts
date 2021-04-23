@@ -26,12 +26,15 @@ export class EventoComponent implements OnInit {
   public misChats: Chat[] = [];
   public cargando = true;
   public asistenciaChecked= false;
+  public eventoPasado: boolean = false;
   public yaTengoUnChatConElCreador:Boolean = false;
   public usuarioCreadorEvento: Usuario;
   public miEventoChecked= false;
   public urlProfesional: string;
   public urlUsuario: string;
   public activo= false;
+  public asistentes: Usuario[] =[];
+  public editable=false;
 
   constructor(private eventoService: EventoService,
     private asistenciaService: AsistenciaService,
@@ -47,8 +50,10 @@ export class EventoComponent implements OnInit {
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
     this.datosEvento();
+    this.eventoAntiguo();
 
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
+    
     
     if(localStorage.getItem("token")){
       this.yaTengoUnChatConElCreador = await this.chatService.existeChat(this.evento.profesional);
@@ -60,6 +65,12 @@ export class EventoComponent implements OnInit {
       if(this.misEventos != null){
         this.miEvento();
       }
+      if(this.esMio){
+        this.asistentes = await this.eventoService.asistentesAlEvento(this.eventoId);
+        if(this.evento.profesional === this.usuario._id && (this.asistentes.length == 0)  && !this.eventoPasado)
+            this.editable = true;
+      }
+      
     }
     
     if(this.asistenciaChecked && this.miEventoChecked){
@@ -69,6 +80,9 @@ export class EventoComponent implements OnInit {
       this.cargando = false;
     }
     
+    console.log(this.esMio)
+      console.log(this.asistentes.length == 0);
+      console.log(this.eventoPasado);
     
   }
 
@@ -81,7 +95,7 @@ export class EventoComponent implements OnInit {
           break;
         }
       }
-      this.miEventoChecked = true; 
+      this.miEventoChecked = true;
       
   }
 
@@ -102,9 +116,7 @@ export class EventoComponent implements OnInit {
     const data = {
       eventoId: this.evento._id
     }
-    this.asistenciaService.crearAsistencia(data);
-    location.reload();
-
+    this.router.navigateByUrl("/asistir/"+this.evento._id)
   }}
 
 
@@ -124,7 +136,7 @@ export class EventoComponent implements OnInit {
       if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime())/36e5)<=1){
           this.activo= true;
       }
-    }  
+    } 
   }
 
   comenzarEvento(){
@@ -159,6 +171,19 @@ export class EventoComponent implements OnInit {
          }
       }
     }
+  }
+
+  eventoAntiguo(){
+    let hoy = new Date().getTime();
+    let fecha = new Date(this.evento.fecha).getTime();
+    if(fecha < hoy){
+      this.eventoPasado = true;
+    }
+  }
+
+  borrar(){
+    if(confirm("¿Estás seguro de que quieres borrar este evento?"))
+    this.eventoService.borrarEvento(this.eventoId);
   }
 
 }

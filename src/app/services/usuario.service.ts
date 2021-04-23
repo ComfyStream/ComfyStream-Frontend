@@ -155,8 +155,6 @@ export class UsuarioService {
  
   editarPerfil( formData: any):Promise<Usuario>{
 
-
-
     return new Promise<Usuario> (resolve=> {
       console.log("token:"+this.token)
       this.http.post(`${ base_url }/editar-perfil`,formData,{
@@ -167,12 +165,24 @@ export class UsuarioService {
       } )
       .subscribe(data =>{
         const msg= data["msg"];
-        console.log(msg)
-        const usuario= data["usuarioActualizado"];
-        resolve(usuario);
+        if(msg == "El email ya está en uso"){
+          Swal.fire('No es posible actualizar el perfil', msg, 'error');
+        }
+        else {
+          const usuario = data["usuarioActualizado"];
+          const token = data["token"];
+          localStorage.setItem('token', token);
+          Swal.fire('Guardado', msg , 'success');
+          resolve(usuario);
+          this.router.navigate(['/'])
+          
+
+        }
+        
       });
     } )
   }
+
   
   editarBanco( formData: any):Promise<Usuario>{
 
@@ -233,7 +243,62 @@ export class UsuarioService {
         Swal.fire('Algo salió mal', err.error.msg, 'error');
       });
     } )
+
+  registro( formData: any, imagen:string):Promise<String>{
+
+    let datos = new FormData();
+    datos.append("img", imagen)
+    datos.append("nombre", formData.nombre )
+    datos.append("email", formData.email )
+    datos.append("password", formData.password )
+    datos.append("fechaNacimiento", formData.fechaNacimiento )
+    datos.append("profesional", formData.profesional )
+
+    if(formData.profesional){
+      datos.append("sector", formData.sector )
+      datos.append("descripcion", formData.descripcion )
+      datos.append("cuentaBancariaIBAN", formData.cuentaBancariaIBAN )
+      datos.append("titularCuenta", formData.titularCuenta )
+    }
+
+    return new Promise<String> (resolve=> {
+
+      this.http.post(`${ base_url }/registro`, datos)
+      .subscribe(data =>{
+        const msg= data["msg"];
+        if(msg == "El email ya está en uso"){
+          Swal.fire('No es posible crear el usuario', msg, 'error');
+          resolve(msg);
+        }else if(msg == "Esta cuenta bancaria ya está en uso"){
+          Swal.fire('No es posible crear el usuario', msg, 'error');
+          resolve(msg);
+        }else{
+          Swal.fire('Guardado', msg , 'success');
+          resolve(msg);
+        }
+
+      });
+    } )
+  }
+
+  zoomEnlazado():Promise<boolean>{
+    return new Promise<boolean>(
+      resolve=> {
+        this.http.get(`${base_url}/zoom/usuario-enlazado`,{
+          headers: { 
+            'x-token': this.token
+          }
+        }).subscribe(data=>{
+          
+          const encontrado = data["encontrado"];
+          resolve(encontrado);
+  
+        });
+     })
+
   }
 }
+
+
 
 

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiUrl:'http://localhost:3000/comfystream/api',
   //apiUrl:'https://comfystream-sprint1.herokuapp.com/comfystream/api'
-  
+  paypalClienteId : 'Aabt74GDM3PGqbRhGctct4k6Rra-dHBpG4NMlgQlckJOcwBYqdr1jS_QJt3yLWI3niGc1vQlui-BK1tm',
 };
 
 /*

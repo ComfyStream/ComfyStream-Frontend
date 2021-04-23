@@ -15,7 +15,7 @@
                             <hr>
                             <div class="form-group">
                                 <label for="cuerpo">Mensaje:</label>
-                                <input type="text" class="form-control" id="cuerpo" formControlName="cuerpo" [class.is-invalid]="cuerpoNoValido">
+                                <textarea type="text" class="form-control" id="cuerpo" formControlName="cuerpo" [class.is-invalid]="cuerpoNoValido"></textarea>
                                 <small *ngIf="cuerpoCampoRequerido" class="text-danger">Campo requerido</small>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-2"></div>
                 </div>
-                <p class="descripcion">{{mensaje.cuerpo}}</p>
+                <p class="descripcion mt-0">{{mensaje.cuerpo}}</p>
             </div>
         </div>
         <div class="col-md-3"></div>

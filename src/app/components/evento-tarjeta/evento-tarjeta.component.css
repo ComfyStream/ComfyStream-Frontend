@@ -39,9 +39,10 @@
 }
 
 .card-img-top {
-    cursor: pointer;
-    width: 150px;
+    width: 200px;
     margin-right: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .img-hover-zoom:hover {
