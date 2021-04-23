@@ -20,6 +20,8 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { MisChatsComponent } from './pages/mis-chats/mis-chats.component';
 import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.component';
 import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
+import { ContrasenaComponent } from './pages/contrasena/contrasena.component';
+import { DatosBancariosComponent } from './pages/datos-bancarios/datos-bancarios.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { AsistirComponent } from './pages/asistir/asistir.component';
 import { NgxPayPalModule } from 'ngx-paypal';
@@ -53,6 +55,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ChatComponent,
     MisChatsComponent,
     ChatTarjetaComponent,
+    MiPerfilComponent,
+    ContrasenaComponent,
+    DatosBancariosComponent,
     AsistirComponent,
     BuscadorComponent,
     MiPerfilComponent,

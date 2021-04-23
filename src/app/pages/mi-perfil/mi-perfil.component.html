@@ -17,13 +17,15 @@
                             <small *ngIf="nombreCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
                     </div>
-
-                    <label for="exampleInputEmail1">Email address</label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="ti-email"></i></div>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" formControlName="email" [class.is-invalid]="emailNoValido">
-                        <small *ngIf="emailCampoRequerido" class="text-danger">Campo requerido</small>
-                        <small *ngIf="vvalidarEmail" class="text-danger">Email no valido</small>
+                   
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" formControlName="email" [class.is-invalid]="emailNoValido" >
+                            <small *ngIf="emailCampoRequerido" class="text-danger">Campo requerido</small>
+                            <small *ngIf="vvalidarEmail" class="text-danger">Email no valido</small>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="fecha">Fecha de nacimiento</label>
@@ -67,8 +69,8 @@
                         <i class="fa fa-save"></i>
                         Guardar cambios
                     </button>
+                   
                 </form>
-
             </div>
         </div>
     </div>
@@ -124,15 +126,12 @@
                         <input type="file" class="form-control" id="img" formControlName="img" (change)="cambiarImagen($event)" accept="image/x-png,image/gif,image/jpeg">
                     </div>
 
-
-
-
                     <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                         <i class="fa fa-save"></i>
                         Guardar cambios
                     </button>
+                
                 </form>
-
             </div>
         </div>
     </div>

@@ -22,14 +22,13 @@ export class MiPerfilComponent implements OnInit {
 
   async ngOnInit(){
     if(localStorage.getItem("token")){
-      this.usuario = new Usuario();
       this.usuario = await (this.usuarioService.getUsuarioPorId(localStorage.getItem("usuarioId")));
     
 
      if(this.usuario.profesional){
      this.perfilProfesionalForm = this.fb.group({
       nombre: [ this.usuario.nombre , Validators.required ],
-      email: [ this.usuario.email, [ Validators.required, Validators.email ] ],
+      email: [ this.usuario.email, [ Validators.required,Validators.email ] ],
       fechaNacimiento: [ this.datePipe.transform(this.usuario.fechaNacimiento,'yyyy-MM-dd'), [Validators.required,this.fechaPosteriorAHoy]],
       profesional: [ this.usuario.profesional , Validators.required ],
       sector: [ this.usuario.sector , Validators.required ],
