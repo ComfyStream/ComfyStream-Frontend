@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { tap} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Usuario } from '../models/usuario';
-import { Valoracion } from '../models/valoracion';
 const base_url = environment.apiUrl;
 
 @Injectable({
@@ -224,57 +222,6 @@ export class UsuarioService {
         });
      })
   }
-
-  getValoracionesPorId(id:string):Promise<Valoracion[]>{
-    return new Promise<Valoracion[]>(
-      resolve=> {
-        this.http.get(`${base_url}/valoraciones-recibidas/${id}`).subscribe(data=>{
-          if(data['msg'] == "Exito"){            
-          const valoraciones = data["valoraciones"];
-          resolve(valoraciones);
-        }
-        });
-     })
- }
- puedoValorar(profesionalId:string):Promise<boolean>{
-  return new Promise<boolean>(
-    resolve=> {
-      this.http.get(`${base_url}/puede-valorar/${profesionalId}`,{
-        headers: { 
-          'x-token': this.token
-        }
-      }).subscribe(data=>{
-        console.log(data);
-        const puede = data["puede"];
-        resolve(puede);
-
-      });
-   })
-}
-
-valorar( datos: any):Promise<Valoracion>{
-
-  return new Promise<Valoracion> (resolve=> {
-
-    this.http.post(`${ base_url }/valoracion/nueva`, datos,{
-      headers: { 
-        'x-token': this.token
-      }
-    })
-    .subscribe(data =>{
-      const msg= data["msg"];
-      if(msg == "Valoración creada"){
-        Swal.fire('Guardado', msg , 'success');
-        resolve(data["valoracion"]);
-        this.router.navigateByUrl("/detalles-profesional/"+datos.id)
-      }else{
-        Swal.fire('Algo ha salido mal', 'error');
-        resolve(data["valoracion"]);
-      }
-
-    });
-  } )
-}
 
 confirmarCuenta(urlConfirmacion:string):Promise<string>{
   return new Promise<string>(resolve => {

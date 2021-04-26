@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
-import { EventoService } from '../../services/evento.service';
-import { AsistenciaService } from '../../services/asistencia.service';
 import { Valoracion } from 'src/app/models/valoracion';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValoracionService } from 'src/app/services/valoracion.service';
 
 @Component({
   selector: 'app-valorar-profesional',
@@ -25,8 +24,7 @@ export class ValorarProfesionalComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private usuarioService: UsuarioService,
-    private eventoService : EventoService,
-    private asistenciaService:AsistenciaService,
+    private valoracionService:ValoracionService,
     private fb:FormBuilder,
     private router: Router) { 
 
@@ -39,7 +37,7 @@ export class ValorarProfesionalComponent implements OnInit {
     this.activatedRoute.params.subscribe( params => {
       this.profesionalId = params['id']; 
     });
-    this.puedoValorar = await this.usuarioService.puedoValorar(this.profesionalId);
+    this.puedoValorar = await this.valoracionService.puedoValorar(this.profesionalId);
     this.profesional = await this.usuarioService.getUsuarioPorId(this.profesionalId);
     this.mediaEstrellas = this.profesional.valoracionMedia;
     this.numeroValoraciones = this.profesional.numeroValoraciones;
@@ -66,7 +64,7 @@ export class ValorarProfesionalComponent implements OnInit {
       "id" : this.profesionalId,
       "estrellas" : this.currentRate
   }
-    this.usuarioService.valorar(data);
+    this.valoracionService.valorar(data);
     
   }
 get mensajeRequerido(){

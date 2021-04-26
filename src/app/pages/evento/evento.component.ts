@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { ChatService } from '../../services/chat.service';
 import { Usuario } from '../../models/usuario';
 import { Chat } from 'src/app/models/chat';
+import { ValoracionService } from 'src/app/services/valoracion.service';
 
 @Component({
   selector: 'app-evento',
@@ -43,6 +44,7 @@ export class EventoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private chatService : ChatService,
     private usuarioService: UsuarioService,
+    private valoracionService: ValoracionService,
     private router:Router) {
     }
 
@@ -51,11 +53,15 @@ export class EventoComponent implements OnInit {
       this.eventoId = params['id']; 
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
-    this.puedoValorar = await this.usuarioService.puedoValorar(this.evento.profesional);
+
+    this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
+    this.puedoValorar = await this.valoracionService.puedoValorar(this.evento.profesional);
+    console.log("puedo valorar"  + this.puedoValorar);
+
     this.datosEvento();
     this.eventoAntiguo();
 
-    this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
+    
     
     
     if(localStorage.getItem("token")){

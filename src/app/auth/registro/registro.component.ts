@@ -36,7 +36,8 @@ async subirImagen(){
       password:['', [Validators.required, Validators.minLength(4)]],
       fechaNacimiento:['', [Validators.required, this.fechaAnteriorAHoy]],
       img:[, [Validators.required]],
-      profesional:[false]
+      profesional:[false],
+      terminos:[false, [Validators.required]]
     })
   }
 
@@ -63,6 +64,8 @@ async subirImagen(){
       descripcion:['', [Validators.required]],
       cuentaBancariaIBAN:['', [Validators.required, this.cuentaBancariaValida]],
       titularCuenta:['', [Validators.required]],
+      terminos:[false, [Validators.required]]
+      
     })
   }
 
@@ -125,6 +128,10 @@ async subirImagen(){
 
   get imgCampoRequerido(){
     return this.form.get('img').errors ? this.form.get('img').errors.required && this.form.get('img').touched : null
+  }
+
+  get tycRequerido(){
+    return !this.form.get('terminos').value && this.form.get('img').touched ;
   }
 
 

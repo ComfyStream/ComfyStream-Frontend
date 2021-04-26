@@ -35,6 +35,7 @@ import { DetallesProfesionalComponent } from './pages/detalles-profesional/detal
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValorarProfesionalComponent } from './pages/valorar-profesional/valorar-profesional.component';
 import { ConfirmarComponent } from './auth/confirmar/confirmar.component';
+import { MisValoracionesComponent } from './pages/mis-valoraciones/mis-valoraciones.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { ConfirmarComponent } from './auth/confirmar/confirmar.component';
     EditarEventoComponent,
     DetallesProfesionalComponent,
     ValorarProfesionalComponent,
-    ConfirmarComponent
+    ConfirmarComponent,
+    MisValoracionesComponent
   ],
   imports: [
     BrowserModule,

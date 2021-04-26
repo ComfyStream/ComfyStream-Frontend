@@ -20,6 +20,7 @@ import { EditarEventoComponent } from './editar-evento/editar-evento.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { DetallesProfesionalComponent } from './detalles-profesional/detalles-profesional.component';
 import { ValorarProfesionalComponent } from './valorar-profesional/valorar-profesional.component';
+import { MisValoracionesComponent } from './mis-valoraciones/mis-valoraciones.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
             { path: 'detalles-profesional/:id', component: DetallesProfesionalComponent},
             { path: 'buscador', component: BuscadorComponent},
             { path: 'valorar/:id', component: ValorarProfesionalComponent},
+            { path: 'mis-valoraciones', component: MisValoracionesComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },

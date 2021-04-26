@@ -37,7 +37,7 @@
             <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventosDelProfesional "></app-evento-tarjeta>
         </div>
     </div>
-
+    <a *ngIf="puedoValorar" class="botones" (click)="valorar()">Valorar al profesional</a>
     <div *ngIf="valoraciones.length>0">
         <h3 class="card-title text-center pt-2">Valoraciones del profesional</h3>
         <div class="row m-0">
