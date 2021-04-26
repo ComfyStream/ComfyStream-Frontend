@@ -38,6 +38,12 @@
                         <option value="Entretenimiento">Entretenimiento</option>
                     </select>
             </div>
+            <div class="form-group">
+                <label for="fechaMax">Puntuación media del profesional</label>
+                <div class="espacio">
+                    <ngb-rating [(rate)]="currentRate" [max]="5" [resettable]="true" [readonly]="false" [(ngModel)]="datos.estrellas"></ngb-rating>
+                </div>
+            </div>
             <button class="btn btn-outline-dark btn-block">Buscar</button>
 
         </form>

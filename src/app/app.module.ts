@@ -20,6 +20,8 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { MisChatsComponent } from './pages/mis-chats/mis-chats.component';
 import { ChatTarjetaComponent } from './components/chat-tarjeta/chat-tarjeta.component';
 import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
+import { ContrasenaComponent } from './pages/contrasena/contrasena.component';
+import { DatosBancariosComponent } from './pages/datos-bancarios/datos-bancarios.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { AsistirComponent } from './pages/asistir/asistir.component';
 import { NgxPayPalModule } from 'ngx-paypal';
@@ -31,11 +33,13 @@ import { TerminosUsoComponent } from './pages/terminos-uso/terminos-uso.componen
 import { SoporteComponent } from './pages/soporte/soporte.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { EditarEventoComponent } from './pages/editar-evento/editar-evento.component';
+import { SerProfesionalComponent } from './pages/ser-profesional/ser-profesional.component';
 import { DetallesProfesionalComponent } from './pages/detalles-profesional/detalles-profesional.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValorarProfesionalComponent } from './pages/valorar-profesional/valorar-profesional.component';
 import { ConfirmarComponent } from './auth/confirmar/confirmar.component';
 import { MisValoracionesComponent } from './pages/mis-valoraciones/mis-valoraciones.component';
+
 
 
 @NgModule({
@@ -55,6 +59,9 @@ import { MisValoracionesComponent } from './pages/mis-valoraciones/mis-valoracio
     ChatComponent,
     MisChatsComponent,
     ChatTarjetaComponent,
+    MiPerfilComponent,
+    ContrasenaComponent,
+    DatosBancariosComponent,
     AsistirComponent,
     BuscadorComponent,
     MiPerfilComponent,
@@ -65,10 +72,15 @@ import { MisValoracionesComponent } from './pages/mis-valoraciones/mis-valoracio
     SoporteComponent,
     FooterComponent,
     EditarEventoComponent,
+
     DetallesProfesionalComponent,
     ValorarProfesionalComponent,
     ConfirmarComponent,
-    MisValoracionesComponent
+    MisValoracionesComponent,
+
+    SerProfesionalComponent,
+    DetallesProfesionalComponent
+
   ],
   imports: [
     BrowserModule,
