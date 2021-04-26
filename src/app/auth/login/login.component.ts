@@ -15,7 +15,8 @@ export class LoginComponent {
   loginForm:FormGroup;
   formSubmited:boolean = false;
   public auth2: any;
-  loginIncorrecto:boolean = false
+  loginIncorrecto:boolean = false;
+  public confirmacionIncorrecta: boolean = false;
 
 
   constructor(private router: Router,
@@ -46,6 +47,9 @@ export class LoginComponent {
         }
         else if(msg === 'Password incorrecta'){
           this.passwordIncorrecta = true;
+        }
+        else if(msg === "Debe confirmar su cuenta"){
+          this.confirmacionIncorrecta = true;
         }
         else{
           this.router.navigateByUrl('/');

@@ -1,4 +1,12 @@
-<div class="wrapper" *ngIf="evento && !cargando">
+<div *ngIf="cargando" style="text-align: center; ">
+    <br><br>
+    <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<div class="wrapper" *ngIf="evento && !cargando ">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-2 info" *ngIf="evento.img">
@@ -32,6 +40,7 @@
                 <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'dd/MM/yy HH:mm'}} por un precio de {{evento.precio}} € </h6>
                 <br>
                 <a *ngIf="asistido && activo" class="botones" (click)="entrarEvento()">Entrar al evento</a>
+                <a *ngIf="puedoValorar" class="botones" (click)="valorar()">Valorar al profesional</a>
             </div>
             <div class="asistir" *ngIf="esMio">
                 <h6 class="card-subtitle">Usted es el profesional de este evento </h6><br>

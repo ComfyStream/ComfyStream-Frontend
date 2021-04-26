@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { ChatService } from '../../services/chat.service';
 import { Usuario } from '../../models/usuario';
 import { Chat } from 'src/app/models/chat';
+import { ValoracionService } from 'src/app/services/valoracion.service';
 
 @Component({
   selector: 'app-evento',
@@ -35,12 +36,15 @@ export class EventoComponent implements OnInit {
   public activo= false;
   public asistentes: Usuario[] =[];
   public editable=false;
+  public puedoValorar = false;
+
 
   constructor(private eventoService: EventoService,
     private asistenciaService: AsistenciaService,
     private activatedRoute: ActivatedRoute,
     private chatService : ChatService,
     private usuarioService: UsuarioService,
+    private valoracionService: ValoracionService,
     private router:Router) {
     }
 
@@ -49,10 +53,15 @@ export class EventoComponent implements OnInit {
       this.eventoId = params['id']; 
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
+
+    this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
+    this.puedoValorar = await this.valoracionService.puedoValorar(this.evento.profesional);
+    console.log("puedo valorar"  + this.puedoValorar);
+
     this.datosEvento();
     this.eventoAntiguo();
 
-    this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
+    
     
     
     if(localStorage.getItem("token")){
@@ -144,6 +153,10 @@ export class EventoComponent implements OnInit {
   }
   entrarEvento(){
     window.open(this.urlUsuario);
+  }
+  valorar(){
+    this.router.navigateByUrl("/valorar/"+this.evento.profesional);
+
   }
 
   async iniciarChat(){

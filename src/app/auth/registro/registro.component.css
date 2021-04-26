@@ -9,7 +9,7 @@ body {
 }
 
 .form-registro {
-    max-width: 50%;
+    max-width: 600px;
     padding: 15px 35px 45px;
     margin: 0 auto;
     background-color: #fff;
@@ -48,3 +48,6 @@ input[type="password"] {
     color: black;
 }
 
+.cursor {
+    cursor: pointer;
+}

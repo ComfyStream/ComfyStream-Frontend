@@ -1,0 +1,31 @@
+<br>
+
+<h2 style="text-align: center;">Mis valoraciones </h2>
+<br>
+<div class="col-md-3"></div>
+<div class="row m-0" *ngIf="misValoraciones.length>0; else sinValoraciones">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 " *ngFor="let valoracion of misValoraciones; let i = index">
+        <div class="row">
+            <div class="col-md-8">
+                <h5>Valoración a <a routerLink="/detalles-profesional/{{valoracion.profesional}}">{{valoracion.nombreProfesional}}</a></h5>
+                <div>
+                    {{valoracion.nombreAutor}}
+                    <ngb-rating [max]="5" [(rate)]="valoracion.estrellas" [readonly]="true"></ngb-rating><br> Valorado el : {{valoracion.fecha | date: 'dd/MM/yy HH:mm'}}
+                    <p> {{valoracion.mensaje}}</p>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <a class="botones" (click)="borrarValoracion(valoracion._id)">Borrar valoración</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3"></div>
+</div>
+<ng-template #sinValoraciones>
+
+    <h5 style="text-align: center;">No has Valorado a ningún profesional</h5>
+
+</ng-template>

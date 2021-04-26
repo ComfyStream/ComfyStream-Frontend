@@ -11,7 +11,12 @@
                 <h5 class="card-title">{{evento.titulo}}</h5>
             </div>
             <div class="card-body">
-                <p class="card-text fecha"> <strong>Profesional : {{usuario.nombre}}</strong> </p>
+                <p class="card-text fecha"> <strong>Profesional : {{usuario.nombre}}</strong> &nbsp;
+                    <ngb-rating [max]="5" [(rate)]="usuario.valoracionMedia" [readonly]="true"></ngb-rating> &nbsp;
+                    <span *ngIf="usuario.numeroValoraciones==1">({{usuario.numeroValoraciones}} valoración)</span>
+                    <span *ngIf="usuario.numeroValoraciones>1">({{usuario.numeroValoraciones}} valoraciones)</span>
+                    <span *ngIf="!usuario.numeroValoraciones">(0 valoraciones)</span>
+                </p>
             </div>
             <div class="card-body">
                 <p class="card-text fecha" style="margin-bottom: 10px;"> Categoria : {{evento.categoria}}</p>

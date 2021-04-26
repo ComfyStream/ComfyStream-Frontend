@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -35,7 +36,8 @@ async subirImagen(){
       password:['', [Validators.required, Validators.minLength(4)]],
       fechaNacimiento:['', [Validators.required, this.fechaAnteriorAHoy]],
       img:[, [Validators.required]],
-      profesional:[false]
+      profesional:[false],
+      terminos:[false, [Validators.required]]
     })
   }
 
@@ -62,6 +64,8 @@ async subirImagen(){
       descripcion:['', [Validators.required]],
       cuentaBancariaIBAN:['', [Validators.required, this.cuentaBancariaValida]],
       titularCuenta:['', [Validators.required]],
+      terminos:[false, [Validators.required]]
+      
     })
   }
 
@@ -126,6 +130,10 @@ async subirImagen(){
     return this.form.get('img').errors ? this.form.get('img').errors.required && this.form.get('img').touched : null
   }
 
+  get tycRequerido(){
+    return !this.form.get('terminos').value && this.form.get('img').touched ;
+  }
+
 
   //Validaciones personalizadas
   private fechaAnteriorAHoy(control:FormControl):{[s:string]:boolean}{
@@ -167,20 +175,25 @@ async subirImagen(){
   }
 
   async submit(){
+    Swal.showLoading();
     if(this.form.valid){
       await this.subirImagen();
       const datos = this.form.value;
       delete datos.img;
       const msg = await this.usuarioService.registro(datos, this.urlImagen)
-      
+
       if(msg == "El email ya está en uso"){
+        Swal.close();
         this.emailEnUso = true
       }else if(msg == "Esta cuenta bancaria ya está en uso"){
+        Swal.close();
         this.cuentaBancariaEnUso = true
       }else{
+        Swal.fire('Registro existoso', 'Se ha enviado a su email un correo de confirmación', 'success');
         this.router.navigateByUrl("/login")
       }
     }else{
+      Swal.close();
       this.form.markAllAsTouched()
     }
   }
