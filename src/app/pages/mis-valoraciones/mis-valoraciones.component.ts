@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Valoracion } from 'src/app/models/valoracion';
 import { ValoracionService } from 'src/app/services/valoracion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mis-valoraciones',
@@ -20,7 +21,18 @@ export class MisValoracionesComponent implements OnInit {
   }
 
   borrarValoracion(valoracionId:string){
-    this.valoracionService.borrarValoracion(valoracionId);
+    Swal.fire({
+      icon: 'question' ,
+      title: "¿Estás seguro de que quieres borrar la valoración?",
+      showCancelButton: true,
+      confirmButtonText : "Borrar",
+      cancelButtonText : "Cancelar"
+    }).then((result)=> {
+      if(result.value){
+        this.valoracionService.borrarValoracion(valoracionId);
+      }
+    })
+   
 
   }
 

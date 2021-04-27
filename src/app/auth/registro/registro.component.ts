@@ -37,7 +37,7 @@ async subirImagen(){
       fechaNacimiento:['', [Validators.required, this.fechaAnteriorAHoy]],
       img:[, [Validators.required]],
       profesional:[false],
-      terminos:[false, [Validators.required]]
+      terminos:[false, [Validators.requiredTrue]]
     })
   }
 
@@ -48,7 +48,8 @@ async subirImagen(){
       password:[value['password'], [Validators.required, Validators.minLength(4)]],
       fechaNacimiento:[value['fechaNacimiento'], [Validators.required, this.fechaAnteriorAHoy]],
       img:[, [Validators.required]],
-      profesional:[false]
+      profesional:[false],
+      terminos:[value['terminos'], [Validators.requiredTrue]]
     })
   }
 
@@ -64,7 +65,7 @@ async subirImagen(){
       descripcion:['', [Validators.required]],
       cuentaBancariaIBAN:['', [Validators.required, this.cuentaBancariaValida]],
       titularCuenta:['', [Validators.required]],
-      terminos:[false, [Validators.required]]
+      terminos:[value['terminos'], [Validators.requiredTrue]]
       
     })
   }
@@ -131,7 +132,7 @@ async subirImagen(){
   }
 
   get tycRequerido(){
-    return !this.form.get('terminos').value && this.form.get('img').touched ;
+    return this.form.get('terminos').errors ? this.form.get('terminos').errors.requiredTrue && this.form.get('terminos').touched : null
   }
 
 
