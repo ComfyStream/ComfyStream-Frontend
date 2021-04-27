@@ -2,7 +2,7 @@
     <div class="row">
 
         <div class="col-md-2" *ngIf="usuario && token">
-            <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+            <button (click)="cambiarContrasena()" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                 Cambiar contraseña
             </button>
         </div>
@@ -22,7 +22,7 @@
                 </button>
         </div>
         <div class="col-md-2" *ngIf="usuario.profesional && token">
-            <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+            <button (click)="cambiarDatosBancarios()" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                 Actualizar datos bancarios
             </button>
         </div>
