@@ -1,4 +1,4 @@
-<div class="col mb-4 animated fadeIn tarjeta">
+<!-- <div class="col mb-4 animated fadeIn tarjeta">
     <div class="row ">
         <div class="col-md-3" *ngIf="evento.img">
             <img class="card-img-top " src={{evento.img}} alt="Card image cap">
@@ -46,4 +46,39 @@
             </div>
         </div>
     </div>
+</div> -->
+<div class="col mb-4 animated fadeIn d-none d-xl-block" (click)="mostrarEvento()">
+    <div class="card h-100">
+        <img [src]="evento.img" class="card-img-top">
+    </div>
+    <div class="card-body nombre">
+        <h6 class="card-title">{{evento.titulo }}</h6>
+        <p> <strong>{{usuario.nombre}}</strong> &nbsp;
+            <ngb-rating [max]="5" [(rate)]="usuario.valoracionMedia" [readonly]="true"></ngb-rating> &nbsp;
+            <span *ngIf="usuario.numeroValoraciones==1">({{usuario.numeroValoraciones}} valoración)</span>
+            <span *ngIf="usuario.numeroValoraciones>1">({{usuario.numeroValoraciones}} valoraciones)</span>
+            <span *ngIf="!usuario.numeroValoraciones">(0 valoraciones)</span>
+        </p>
+        <p>Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm'}} - Duración : {{evento.duracion}} minutos</p>
+        <p><strong>{{evento.precio }} € </strong></p>
+    </div>
+
+</div>
+
+<div class="col mb-4 animated fadeIn d-block d-xl-none " (click)="mostrarEvento()">
+    <div class="card h-100">
+        <img [src]="evento.img" class="card-img-movil">
+    </div>
+    <div class="card-body-movil">
+        <h4 class="card-title">{{evento.titulo }}</h4>
+        <p> <strong>{{usuario.nombre}}</strong> &nbsp;
+            <ngb-rating [max]="5" [(rate)]="usuario.valoracionMedia" [readonly]="true"></ngb-rating> &nbsp;
+            <span *ngIf="usuario.numeroValoraciones==1" style="font-size: small;">({{usuario.numeroValoraciones}} valoración)</span>
+            <span *ngIf="usuario.numeroValoraciones>1" style="font-size: small;">({{usuario.numeroValoraciones}} valoraciones)</span>
+            <span *ngIf="!usuario.numeroValoraciones" style="font-size: small;">(0 valoraciones)</span>
+        </p>
+        <p>Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm'}} - Duración : {{evento.duracion}} minutos</p>
+        <p><strong>{{evento.precio }} € </strong></p>
+    </div>
+
 </div>
