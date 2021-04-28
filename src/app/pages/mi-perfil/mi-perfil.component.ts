@@ -17,6 +17,8 @@ export class MiPerfilComponent implements OnInit {
   public perfilForm: FormGroup;
   public imagenSubir: File;
   public urlImagen:string;
+  public formatoNoValido:boolean = false;
+  
   constructor(private usuarioService : UsuarioService,private datePipe: DatePipe,private cargaImagenService:CargaImagenesService,
     private fb:FormBuilder) { }
 
@@ -28,7 +30,7 @@ export class MiPerfilComponent implements OnInit {
      if(this.usuario.profesional){
      this.perfilProfesionalForm = this.fb.group({
       nombre: [ this.usuario.nombre , Validators.required ],
-      email: [ this.usuario.email, [ Validators.required,Validators.email ] ],
+      email: [ this.usuario.email, [ Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')] ],
       fechaNacimiento: [ this.datePipe.transform(this.usuario.fechaNacimiento,'yyyy-MM-dd'), [Validators.required,this.fechaPosteriorAHoy]],
       profesional: [ this.usuario.profesional , Validators.required ],
       sector: [ this.usuario.sector , Validators.required ],
@@ -39,7 +41,7 @@ export class MiPerfilComponent implements OnInit {
   if(!this.usuario.profesional){
     this.perfilForm = this.fb.group({
      nombre: [ this.usuario.nombre , Validators.required ],
-     email: [ this.usuario.email, [ Validators.required, Validators.email ] ],
+     email: [ this.usuario.email, [ Validators.required, Validators.pattern("^[a-z0-9._]+@[a-z0-9.-]+.[a-z]{2,3}$")]],
      fechaNacimiento: [ this.datePipe.transform(this.usuario.fechaNacimiento,'yyyy-MM-dd'), [Validators.required,this.fechaPosteriorAHoy]],
      profesional: [ this.usuario.profesional , Validators.required ],
      img: [],   
@@ -85,7 +87,13 @@ export class MiPerfilComponent implements OnInit {
 
   cambiarImagen( event ) {
     const file = event.target.files[0];
-    this.imagenSubir = file;
+    if(!file.type.includes('image')){
+      this.formatoNoValido = true;
+
+    }else{
+      this.imagenSubir = file;
+      this.formatoNoValido = false;
+    }
   }
 
   async subirImagen(){
@@ -110,7 +118,7 @@ get emailCampoRequerido(){
   return this.perfilProfesionalForm.get('email').errors ? this.perfilProfesionalForm.get('email').errors.required && this.perfilProfesionalForm.get('email').touched : null
 }
 get vvalidarEmail(){
-  return this.perfilProfesionalForm.get('email').errors ? this.perfilProfesionalForm.get('email').errors.email && this.perfilProfesionalForm.get('email').touched : null
+  return this.perfilProfesionalForm.get('email').errors ? this.perfilProfesionalForm.get('email').errors.pattern && this.perfilProfesionalForm.get('email').touched : null
 }
 
 get fechaNoValido(){
@@ -167,7 +175,7 @@ get emailNoProfCampoRequerido(){
   return this.perfilForm.get('email').errors ? this.perfilForm.get('email').errors.required && this.perfilForm.get('email').touched : null
 }
 get vvalidarNoProfEmail(){
-  return this.perfilForm.get('email').errors ? this.perfilForm.get('email').errors.email && this.perfilForm.get('email').touched : null
+  return this.perfilForm.get('email').errors ? this.perfilForm.get('email').errors.pattern && this.perfilForm.get('email').touched : null
 }
 get fechaNoProfNoValido(){
   return this.fechaNoProfCampoRequerido || this.fechaFechaNoProfPosteriorAHoy

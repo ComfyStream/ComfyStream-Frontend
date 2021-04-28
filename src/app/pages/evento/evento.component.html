@@ -26,8 +26,8 @@
             <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
             <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm'}}</h5>
             <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
-            <a *ngIf="!esMio && !yaTengoUnChatConElCreador" class="botones" (click)="iniciarChat()">Contacto</a>
-            <a *ngIf="!esMio && yaTengoUnChatConElCreador" class="botones" (click)="getChatExistente()">Ver chat</a>
+            <a *ngIf="!esMio && !yaTengoUnChatConElCreador" class="botones" (click)="iniciarChat()">Contactar</a>
+            <a *ngIf="!esMio && yaTengoUnChatConElCreador" class="botones" (click)="getChatExistente()">Ver conversación</a>
 
         </div>
         <div class="col-md-1"></div>

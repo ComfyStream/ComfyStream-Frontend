@@ -18,6 +18,7 @@ export class RegistroComponent {
   emailEnUso:boolean = false
   cuentaBancariaEnUso:boolean = false
   public urlImagen:string;
+  public formatoNoValido:boolean = false;
 
   constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private router:Router,private cargaImagenService:CargaImagenesService) {
     this.iniciarForm()
@@ -32,10 +33,10 @@ async subirImagen(){
   iniciarForm(){
     this.form = this.fb.group({
       nombre:['', [Validators.required]],
-      email:['', [Validators.required, Validators.email]],
+      email:['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
       password:['', [Validators.required, Validators.minLength(4)]],
       fechaNacimiento:['', [Validators.required, this.fechaAnteriorAHoy]],
-      img:[, [Validators.required]],
+      img:[],
       profesional:[false],
       terminos:[false, [Validators.requiredTrue]]
     })
@@ -44,10 +45,10 @@ async subirImagen(){
   iniciarFormConValores(value:any){
     this.form = this.fb.group({
       nombre:[value['nombre'], [Validators.required]],
-      email:[value['email'], [Validators.required, Validators.email]],
+      email:[value['email'], [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
       password:[value['password'], [Validators.required, Validators.minLength(4)]],
       fechaNacimiento:[value['fechaNacimiento'], [Validators.required, this.fechaAnteriorAHoy]],
-      img:[, [Validators.required]],
+      img:[],
       profesional:[false],
       terminos:[value['terminos'], [Validators.requiredTrue]]
     })
@@ -56,7 +57,7 @@ async subirImagen(){
   profesionalForm(value:any){
     this.form = this.fb.group({
       nombre:[value['nombre'], [Validators.required]],
-      email:[value['email'], [Validators.required, Validators.email]],
+      email:[value['email'], [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
       password:[value['password'], [Validators.required, Validators.minLength(4)]],
       fechaNacimiento:[value['fechaNacimiento'], [Validators.required, this.fechaAnteriorAHoy]],
       img:[, [Validators.required]],
@@ -82,7 +83,7 @@ async subirImagen(){
     return this.form.get('email').errors ? this.form.get('email').errors.required && this.form.get('email').touched : null
   }
   get emailFormatoNoValido(){
-    return this.form.get('email').errors ? this.form.get('email').errors.email && this.form.get('email').touched : null
+    return this.form.get('email').errors ? this.form.get('email').errors.pattern && this.form.get('email').touched : null
   }
   
   get passwordNoValido(){
@@ -171,8 +172,13 @@ async subirImagen(){
 
   cambiarImagen( event ) {
     const file = event.target.files[0];
-    this.imagenSubir = file;
-    
+    if(!file.type.includes('image')){
+      this.formatoNoValido = true;
+
+    }else{
+      this.imagenSubir = file;
+      this.formatoNoValido = false;
+    }
   }
 
   async submit(){

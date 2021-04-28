@@ -1,31 +1,31 @@
 <div class="wrapper">
-    <div class="row">
-
-        <div class="col-md-2" *ngIf="usuario && token">
+    <div class="row my-5">
+        <div class="col"></div>
+        <div class="col-md-3" *ngIf="usuario && token">
             <button (click)="cambiarContrasena()" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                 Cambiar contraseña
             </button>
         </div>
-        <div class="col-md-2" *ngIf="!usuarioZoom && token">
+        <div class="col-md-3" *ngIf="!usuarioZoom && token">
             <button (click)="enlazarCuenta()" type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                     Enlazar cuenta de Zoom
                 </button>
         </div>
-        <div class="col-md-2" *ngIf="usuarioZoom && token">
+        <div class="col-md-3" *ngIf="usuarioZoom && token">
             <button (click)="borrarCuenta()" type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                     Desvincular cuenta de Zoom
                 </button>
         </div>
-        <div class="col-md-2" *ngIf="!usuario.profesional && token">
+        <div class="col-md-3" *ngIf="!usuario.profesional && token">
             <button routerLink="/ser-profesional/{{usuario._id}}" type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                     Ser un profesional
                 </button>
         </div>
-        <div class="col-md-2" *ngIf="usuario.profesional && token">
+        <div class="col-md-3" *ngIf="usuario.profesional && token">
             <button (click)="cambiarDatosBancarios()" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                 Actualizar datos bancarios
             </button>
         </div>
-
+        <div class="col"></div>
     </div>
 </div>

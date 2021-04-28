@@ -70,6 +70,7 @@
                             <label for="img">Imagen *</label>
                             <input type="file" class="form-control" id="img" formControlName="img" (change)="cambiarImagen($event)" accept="image/x-png,image/gif,image/jpeg" [class.is-invalid]="imgNoValido">
                             <small *ngIf="imgCampoRequerido" class="text-danger">Campo requerido</small>
+                            <small *ngIf="formatoNoValido" class="text-danger">Debe elegir una imagen</small>
                         </div>
                     </div>
                 </div>
