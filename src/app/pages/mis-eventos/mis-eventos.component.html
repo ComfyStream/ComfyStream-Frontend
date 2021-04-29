@@ -1,9 +1,9 @@
-<div class="row centrado">
+<div class="row centrado mt-5">
     <div class="col-md-2"></div>
     <div class="col-md-6">
-        <h1>Mis eventos</h1>
+        <h1 class="mt-5">Mis eventos</h1>
     </div>
-    <div class="col-md-2 centrado" style="text-align: right;">
+    <div class="col-md-2 centrado mt-5" style="text-align: right;">
         <a routerLink="/crear-evento" class="botones">Crear evento</a> <br>
         <div class="row filtro">
             <form [formGroup]="filtro" id="filtroform" class="filtro">
@@ -18,20 +18,34 @@
 </div>
 <hr>
 
-<div class="row centrado" *ngIf="!mostrarActivos">
-    <div class="col-md-2"></div>
+<div class="row centrado " *ngIf="!mostrarActivos">
+    <!-- <div class="col-md-2"></div>
     <div class="col-md-8">
         <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-2"></div> -->
+    <div class="col"></div>
+    <div class="col-md-9">
+        <div class="row row-cols-1 row-cols-md-4 div-inicio" style="padding-bottom: 0px;">
+            <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventos "></app-evento-tarjeta>
+        </div>
+    </div>
+    <div class="col"></div>
 </div>
 
-<div class="row centrado" *ngIf="mostrarActivos">
-    <div class="col-md-2"></div>
+<div class="row centrado " *ngIf="mostrarActivos">
+    <!-- <div class="col-md-2"></div>
     <div class="col-md-8">
         <app-evento-tarjeta [evento]="evento" [misEventos]="soloEventosFuturos" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of soloEventosFuturos "></app-evento-tarjeta>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-2"></div> -->
+    <div class="col"></div>
+    <div class="col-md-9">
+        <div class="row row-cols-1 row-cols-md-4 div-inicio" style="padding-bottom: 0px;">
+            <app-evento-tarjeta [evento]="evento" [misEventos]="soloEventosFuturos" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of soloEventosFuturos "></app-evento-tarjeta>
+        </div>
+    </div>
+    <div class="col"></div>
 </div>
 <div class="col-md-8" *ngIf="eventos.length==0  ">
     <div class="jumbotron">

@@ -1,8 +1,8 @@
-<div class="wrapper" *ngIf="profesional && eventosDelProfesional">
+<div class="wrapper d-none d-lg-block d-xl-block" *ngIf="profesional && eventosDelProfesional">
 
     <div class="row">
 
-        <div class="col-md-2"></div>
+        <div class="col"></div>
 
         <div class="col-md-3 info" *ngIf="profesional.img">
             <img class="card-img-top img-hover-zoom" src={{profesional.img}} alt="Card image cap" width="100%">
@@ -13,7 +13,7 @@
 
         <div class="col-md-1"></div>
         <div class="col-md-4 py-2">
-            <h2 style="text-align: left; padding-top: 50px;">{{profesional.nombre}}</h2>
+            <h2 style="text-align: left;">{{profesional.nombre}}</h2>
             <h5 style="text-align: left;padding-top: 10px;"><strong>Email:</strong> {{profesional.email}}</h5>
             <h5 style="text-align: left;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm'}}</h5>
             <h5 style="text-align: left;"><strong>Sector:</strong> {{profesional.sector}}</h5>
@@ -22,9 +22,11 @@
 
             <ngb-rating [(rate)]="mediaEstrellas" [readonly]="true" [max]="5" style="font-size: large;"></ngb-rating> ( {{numeroValoraciones}} valoraciones )
 
+            <a *ngIf="puedoValorar" class="botones mt-3" (click)="valorar()">Valorar al profesional</a>
+
         </div>
 
-        <div class="col-md-1"></div>
+        <div class="col"></div>
 
     </div>
     <br>
@@ -32,12 +34,85 @@
     <br>
 
     <h3 class="card-title text-center">Eventos disponibles del profesional</h3>
-    <div class="row centrado">
-        <div class="col-md-8 form-div">
-            <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventosDelProfesional "></app-evento-tarjeta>
+
+    <div class="row " style="margin: 0px;">
+        <div class="col"></div>
+        <div class="col-md-9">
+            <div class="row row-cols-1 row-cols-md-4 div-inicio" style="padding-bottom: 0px;">
+                <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventosDelProfesional "></app-evento-tarjeta>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <div *ngIf="valoraciones.length>0">
+        <h3 class="card-title text-center pt-2">Valoraciones del profesional</h3>
+        <div class="row m-0">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" *ngFor="let valoracion of valoraciones; let i = index">
+                <div class="valoracion">
+                    {{valoracion.nombreAutor}}
+                    <ngb-rating [max]="5" [(rate)]="valoracion.estrellas" [readonly]="true"></ngb-rating><br> Valorado el : {{valoracion.fecha | date: 'dd/MM/yy HH:mm'}}
+                    <p> {{valoracion.mensaje}}</p>
+
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
-    <a *ngIf="puedoValorar" class="botones" (click)="valorar()">Valorar al profesional</a>
+    <br>
+</div>
+
+<div class="wrapper d-none d-md-block d-block d-lg-none d-xl-none " *ngIf="profesional && eventosDelProfesional">
+
+    <div class="row">
+
+        <div class="col"></div>
+
+        <div class="col-md-8 info mt-3" *ngIf="profesional.img">
+            <img class="card-img-top img-hover-zoom" src={{profesional.img}} alt="Card image cap" width="100%">
+        </div>
+        <div class="col-md-8 info mt-3" *ngIf="!profesional.img">
+            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
+        </div>
+
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-md-8">
+            <h2 style="text-align: center;">{{profesional.nombre}}</h2>
+            <h5 style="text-align: center;padding-top: 10px;"><strong>Email:</strong> {{profesional.email}}</h5>
+            <h5 style="text-align: center;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm'}}</h5>
+            <h5 style="text-align: center;"><strong>Sector:</strong> {{profesional.sector}}</h5>
+            <h5 style="text-align: center;"><strong>Sobre mí:</strong> {{profesional.descripcion}}</h5>
+
+            <div class="div" style=" text-align: center;">
+                <ngb-rating [(rate)]="mediaEstrellas" [readonly]="true" [max]="5" style="font-size: large;"></ngb-rating> ( {{numeroValoraciones}} valoraciones )
+            </div>
+            <a *ngIf="puedoValorar" class="botones mt-3" (click)="valorar()">Valorar al profesional</a>
+
+        </div>
+
+        <div class="col"></div>
+
+    </div>
+    <br>
+    <hr>
+    <br>
+
+    <h3 class="card-title text-center">Eventos disponibles del profesional</h3>
+
+    <div class="row " style="margin: 0px;">
+        <div class="col"></div>
+        <div class="col-md-8">
+            <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventosDelProfesional "></app-evento-tarjeta>
+
+        </div>
+        <div class="col"></div>
+    </div>
+
     <div *ngIf="valoraciones.length>0">
         <h3 class="card-title text-center pt-2">Valoraciones del profesional</h3>
         <div class="row m-0">

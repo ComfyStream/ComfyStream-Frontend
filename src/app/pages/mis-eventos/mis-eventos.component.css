@@ -53,3 +53,11 @@ a.botones:hover {
 .descripcion-jumbotron {
     font-size: 100%;
 }
+
+.div-inicio {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    margin: auto;
+    width: 100%;
+}

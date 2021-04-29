@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 const base_url = environment.apiUrl;
@@ -24,6 +25,7 @@ export class CrearEventoComponent implements OnInit {
   public urlImagen:string;
   public enlazadoZoom = false;
   public zoom:string;
+  public formatoNoValido:boolean = false;
 
   constructor(private fb:FormBuilder,
     private router: Router,
@@ -37,8 +39,8 @@ export class CrearEventoComponent implements OnInit {
       titulo:['', [Validators.required]],
       descripcion:['', [Validators.required]],
       categoria:['', [ Validators.required] ],
-      subcategoria:[''],
-      esPersonal:[true, [Validators.required]],
+      subCategoria:[''],
+      esPersonal:[false],
       fecha:['', [Validators.required, , this.fechaPosteriorAHoy]],
       precio:['', [Validators.required, this.valorPositivo]],
       duracion:['', [Validators.required, this.valorPositivo]],
@@ -51,9 +53,19 @@ export class CrearEventoComponent implements OnInit {
 
   cambiarImagen( event ) {
     const file = event.target.files[0];
-    this.imagenSubir = file;
+    if(!file.type.includes('image')){
+      this.formatoNoValido = true;
+
+    }else{
+      this.imagenSubir = file;
+      this.formatoNoValido = false;
+    }
+    
+
+    
     
     }
+
     async enlazarCuenta(){
     
       this.router.navigateByUrl('/mi-cuenta');
@@ -61,19 +73,24 @@ export class CrearEventoComponent implements OnInit {
   
     }
   async crearEvento(){
-    if(this.crearEventoForm.invalid){
+    if(this.crearEventoForm.invalid || this.formatoNoValido){
       this.crearEventoForm.markAllAsTouched()
       return;
     }
+    if(this.enlazadoZoom){
 
+    
     await this.subirImagen();
 
     const datos = this.crearEventoForm.value;
     delete datos.img;
+   
 
     const evento =  await this.eventoService.crearEvento(datos, this.urlImagen);
     const room =  await this.eventoService.crearSalaZoom(evento);
-
+  }else{
+    Swal.fire('Error', 'Para crear un evento debe tener enlazado Zoom', 'error');
+  }
   }
   async subirImagen(){
     let nombre = Math.random().toString() + this.imagenSubir.name; 
@@ -161,6 +178,8 @@ export class CrearEventoComponent implements OnInit {
     }
     return null
   }
+
+
 
   
 }

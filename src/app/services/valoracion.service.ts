@@ -38,7 +38,6 @@ export class ValoracionService {
           'x-token': this.token
         }
       }).subscribe(data=>{
-        console.log(data);
         const puede = data["puede"];
         resolve(puede);
 

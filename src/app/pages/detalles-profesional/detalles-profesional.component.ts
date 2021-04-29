@@ -46,7 +46,7 @@ export class DetallesProfesionalComponent implements OnInit {
     }
     this.profesional = await this.usuarioService.getUsuarioPorId(this.usuarioId);
     this.puedoValorar = await this.valoracionService.puedoValorar(this.profesional._id);
-    console.log(this.puedoValorar);
+
     this.numeroValoraciones = this.profesional.numeroValoraciones;
     this.mediaEstrellas = this.profesional.valoracionMedia;
     if(typeof this.numeroValoraciones === 'undefined'){
@@ -62,7 +62,7 @@ export class DetallesProfesionalComponent implements OnInit {
         this.eventosDelProfesional.push(evento);
       }
     }
-    console.log(this.profesional.img)
+
   }
 
   mostrarEvento(id: string){

@@ -1,4 +1,4 @@
-.card-body {
+/* .card-body {
     padding-top: 0px;
     padding-bottom: 0px;
 }
@@ -81,4 +81,47 @@ a.botones:hover {
         display: block;
         margin: 0.2em auto;
     }
+} */
+
+.card-body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.card-text {
+    text-align: center;
+}
+
+.col {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.card-img-top {
+    cursor: pointer;
+    max-height: 20vh;
+}
+
+.descripcion {
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+
+.nombre {
+    text-align: left;
+    font-size: small;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 0px;
+    padding-left: 0px;
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+.card-body-movil {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 15px;
 }

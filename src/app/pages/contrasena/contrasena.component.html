@@ -1,41 +1,43 @@
 <div *ngIf="usuario">
-<div class="col-md-3"></div>
+    <div class="row">
+        <div class="col-md-3"></div>
 
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body formulario">
-                <h4 class="card-title">Cambiar contraseña</h4>
-    <form class="form p-t-20" autocomplete="off" [formGroup]="contrasenaForm" (ngSubmit)="cambiarContrasena()" id="loginform">
-        
-        <div class="form-group">
-            <label for="cuenta">Contraseña actual</label>
-            <div class="input-group">
-        <input type="password" class="form-control"  formControlName="password" />
-    </div> 
-</div>
-<div class="form-group">
-    <label for="cuenta">Nueva contraseña</label>
-    <div class="input-group">
-        <input type="password" class="form-control"  formControlName="nuevaPassword" />
-    </div> 
-</div>
-<div class="form-group">
-    <label for="cuenta">Repetir nueva contraseña</label>
-    <div class="input-group">
-        <input type="password" class="form-control"  formControlName="nuevaPassword2" />
-    </div> 
-</div>
-        <div class="row">
-            <div class="col text-danger">
-                <p *ngIf="contrasenasNoValidas()">*Las contraseñas deben ser iguales</p>
+        <div class="col-md-6">
+            <div class="card" style="margin-top: 40px;">
+                <div class="card-body formulario">
+                    <h4 class="card-title">Cambiar contraseña</h4>
+                    <form class="form p-t-20" autocomplete="off" [formGroup]="contrasenaForm" (ngSubmit)="cambiarContrasena()" id="loginform">
+
+                        <div class="form-group">
+                            <label for="cuenta">Contraseña actual</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" formControlName="password" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cuenta">Nueva contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" formControlName="nuevaPassword" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cuenta">Repetir nueva contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" formControlName="nuevaPassword2" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="contrasenasNoValidas()">*Las contraseñas deben ser iguales</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark btn-block waves-effect waves-light m-r-10" type="submit" [disabled]="contrasenaForm.invalid">Cambiar contraseña</button>
+
+                    </form>
+
+                </div>
             </div>
         </div>
-        <button class="btn btn-success btn-block waves-effect waves-light m-r-10" type="submit" [disabled]="contrasenaForm.invalid">Cambiar contraseña</button>
-
-    </form>
-     
-</div>
-</div>
-</div>
-<div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+    </div>
 </div>

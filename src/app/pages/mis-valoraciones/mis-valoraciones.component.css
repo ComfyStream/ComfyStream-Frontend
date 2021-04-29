@@ -25,5 +25,10 @@ a.botones:hover {
 }
 
 .valoracion {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+.boton {
+    padding-top: 30px;
 }

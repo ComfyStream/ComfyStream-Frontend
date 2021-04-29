@@ -19,7 +19,6 @@ export class CuentaComponent implements OnInit {
   async ngOnInit() {
     this.usuarioZoom = await this.usuarioService.getUsuarioZoom();
     this.usuario = await this.usuarioService.getUsuario();
-    console.log(this.usuario)
   }
 
   async enlazarCuenta(){

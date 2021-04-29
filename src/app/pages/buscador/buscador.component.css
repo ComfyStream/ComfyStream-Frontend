@@ -54,3 +54,27 @@ ngb-rating {
 .espacio {
     margin-top: -10px;
 }
+
+.div-inicio {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    margin: auto;
+    width: 100%;
+}
+
+.filtro-movil {
+    background-color: rgb(240, 240, 240);
+    border: 2px solid rgba(78, 78, 78, 0.1);
+    color: #000000;
+    width: 100%;
+    margin-top: 55px;
+    border-radius: 10px;
+    margin-right: 0px;
+}
+
+.campos-form-movil {
+    border: 3px solid rgba(78, 78, 78, 0.1);
+    width: 60%;
+    float: right;
+}

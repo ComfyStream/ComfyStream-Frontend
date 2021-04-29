@@ -59,7 +59,6 @@ export class UsuarioService {
       }).subscribe(data=>{
         
         const usuario = data["usuario"];
-        console.log("usuario get usuario"+usuario["nombre"])
         resolve(usuario);
 
       });
@@ -155,7 +154,6 @@ export class UsuarioService {
   editarPerfil( datos: any):Promise<Usuario>{
 
     return new Promise<Usuario> (resolve=> {
-      console.log("token:"+this.token)
       this.http.post(`${ base_url }/editar-perfil`,datos,{
         headers: { 
           
@@ -186,9 +184,7 @@ export class UsuarioService {
   editarBanco( formData: any):Promise<Usuario>{
 
 
-    console.log("editaBanco")
     return new Promise<Usuario> (resolve=> {
-      console.log("token:"+this.token)
       this.http.post(`${ base_url }/usuario/cambiar/banco`,formData,{
         headers: { 
           
@@ -196,12 +192,12 @@ export class UsuarioService {
         }
       } )
       .subscribe(data =>{
-        console.log("prueba")
+
         const msg= data["msg"];
         if(msg=="Password incorrecta"){
         Swal.fire('Algo salió mal', msg, 'error');  
         }else{
-          console.log(msg)
+
           const usuario= data["usuario"];
           resolve(usuario);
           Swal.fire('Guardado', msg, 'success');
@@ -216,9 +212,9 @@ export class UsuarioService {
   actualizarContrasena( formData: any):Promise<Usuario>{
 
 
-    console.log("editaPass")
+
     return new Promise<Usuario> (resolve=> {
-      console.log("token:"+this.token)
+
       this.http.post(`${ base_url }/usuario/cambiar/pass`,formData,{
         headers: { 
           
@@ -226,12 +222,12 @@ export class UsuarioService {
         }
       } )
       .subscribe(data =>{
-        console.log("prueba")
+
         const msg= data["msg"];
         if(msg=="Password incorrecta"){
         Swal.fire('Algo salió mal', msg, 'error');  
         }else{
-          console.log(msg)
+
           const usuario= data["usuario"];
           resolve(usuario);
           Swal.fire('Guardado', msg, 'success');
