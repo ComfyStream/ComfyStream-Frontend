@@ -72,7 +72,7 @@ export class ContrasenaComponent implements OnInit {
     }
     
     const datos = this.contrasenaForm.value;
-    console.log(datos);
+
     this.usuario = await this.usuarioService.actualizarContrasena(datos);
     
     

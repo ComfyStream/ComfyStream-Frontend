@@ -18,7 +18,6 @@ export class CargaImagenesService {
     return new Promise<string>(resolve => {
       let url:any;
       this.storage.ref(nombreArchivo).getDownloadURL().subscribe((URL) => {
-        console.log(URL);
          resolve(URL)
       });
       });

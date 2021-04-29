@@ -216,7 +216,6 @@ get imgNoProfCampoRequerido(){
   private fechaPosteriorAHoy(control:FormControl):{[s:string]:boolean}{
     let f = Date.parse(control.value)
     let hoy = new Date().getTime()
-    console.log("llega aqui "+f+" swsdsd"+hoy)
     if(f > hoy){
       return {
         fechaPosteriorAHoy:true

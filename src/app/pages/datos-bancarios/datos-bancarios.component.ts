@@ -30,7 +30,6 @@ export class DatosBancariosComponent implements OnInit {
     }
     
     const datos = this.datosBancariosForm.value;
-    console.log(datos);
     this.usuario = await this.usuarioService.editarBanco(datos);
     
     

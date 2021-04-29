@@ -1,19 +1,41 @@
-<div class="col mb-4 animated fadeIn tarjeta" *ngIf="miUsuario && usuario2 && usuario1">
-    <div class="row ">
-        <div class="col-md-6">
-            <div class="titulo">
+<div class="col mb-4 animated fadeIn tarjeta d-none d-lg-block d-xl-block" *ngIf="miUsuario && usuario2 && usuario1">
+    <div class="row " style="margin-top: 20px;">
+        <div class="col-md-8 ">
+            <div class="titulo ">
                 <h5 class="card-title" *ngIf="!soyUsuario1 && !usuario1.profesional">Chat con el usuario: {{usuario1.nombre}}</h5>
                 <h5 class="card-title" *ngIf="!soyUsuario1 && usuario1.profesional">Chat con el profesional: {{usuario1.nombre}}</h5>
                 <h5 class="card-title" *ngIf="soyUsuario1 && usuario2.profesional">Chat con el profesional: {{usuario2.nombre}}</h5>
                 <h5 class="card-title" *ngIf="soyUsuario1 && !usuario2.profesional">Chat con el usuario: {{usuario2.nombre}}</h5>
             </div>
         </div>
-        <div class="col-md-4 px-0">
-        </div>
-        <div class="col-md-2">
+
+        <div class="ml-auto mr-3">
             <div class="botones-container">
                 <a class="botones" (click)="mostrarChat()">Ver mensajes</a>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div class="col mb-4 animated fadeIn tarjeta d-none d-md-block d-block d-lg-none d-xl-none" *ngIf="miUsuario && usuario2 && usuario1">
+    <div class="pt-1 " style="margin-top: 45px;">
+
+        <div class="titulo">
+            <h5 class="card-title text-center" *ngIf="!soyUsuario1 && !usuario1.profesional">Chat con el usuario: {{usuario1.nombre}}</h5>
+            <h5 class="card-title text-center" *ngIf="!soyUsuario1 && usuario1.profesional">Chat con el profesional: {{usuario1.nombre}}</h5>
+            <h5 class="card-title text-center" *ngIf="soyUsuario1 && usuario2.profesional">Chat con el profesional: {{usuario2.nombre}}</h5>
+            <h5 class="card-title text-center" *ngIf="soyUsuario1 && !usuario2.profesional">Chat con el usuario: {{usuario2.nombre}}</h5>
+        </div>
+
+    </div>
+    <div class="row ">
+        <div class="col"></div>
+        <div class="col-md-8">
+            <div class="botones-container">
+                <a class="botones" (click)="mostrarChat()">Ver mensajes</a>
+            </div>
+        </div>
+        <div class="col"></div>
     </div>
 </div>

@@ -15,7 +15,7 @@ export class MisValoracionesComponent implements OnInit {
 
   async ngOnInit() {
     this.misValoraciones = await this.valoracionService.getMisValoraciones();
-    console.log(this.misValoraciones);
+
 
 
   }

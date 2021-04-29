@@ -60,7 +60,7 @@ export class EditarEventoComponent implements OnInit {
         img:[]
       });
 
-      console.log(this.editable);
+
                
   }
 

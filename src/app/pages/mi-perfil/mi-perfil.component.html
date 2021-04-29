@@ -1,10 +1,10 @@
-<div *ngIf="usuario && usuario['profesional']===true" class="row">
+<div *ngIf="usuario && usuario['profesional']===true" class="row ">
     <div class="col-md-3"></div>
 
     <div class="col-md-6">
-        <div class="card">
+        <div class="card my-4">
             <div class="card-body formulario">
-                <h4 class="card-title">Mi perfil de usuario</h4>
+                <h4 class="card-title">Mi perfil</h4>
 
 
                 <form class="form p-t-20" [formGroup]="perfilProfesionalForm" (submit)="editarPerfilProfesional()">
@@ -77,7 +77,7 @@
     <div class="col-md-3"></div>
 
     <div class="col-md-6">
-        <div class="card">
+        <div class="card my-4">
             <div class="card-body formulario">
                 <h4 class="card-title">Mi perfil</h4>
 

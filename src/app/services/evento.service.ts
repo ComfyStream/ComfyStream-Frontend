@@ -92,7 +92,7 @@ export class EventoService {
     datos.append("titulo", formData.titulo )
     datos.append("descripcion", formData.descripcion )
     datos.append("categoria", formData.categoria )
-    datos.append("subcategoria", formData.subcategoria )
+    datos.append("subCategoria", formData.subCategoria )
     datos.append("esPersonal", formData.esPersonal )
     datos.append("fecha", formData.fecha )
     datos.append("duracion", formData.duracion )
@@ -121,7 +121,7 @@ export class EventoService {
     datos.append("titulo", formData.titulo )
     datos.append("descripcion", formData.descripcion )
     datos.append("categoria", formData.categoria )
-    datos.append("subcategoria", formData.subcategoria )
+    datos.append("subCategoria", formData.subCategoria )
     datos.append("esPersonal", formData.esPersonal )
     datos.append("precio", formData.precio )
 
@@ -138,7 +138,7 @@ export class EventoService {
           Swal.fire('Algo salió mal', data["msg"], 'error');
         }
         const evento= data["evento"];
-        console.log(data["msg"])
+
         Swal.fire('Guardado', 'Evento creado', 'success');
         resolve(evento);
         this.router.navigate(['/evento/'+idEvento])
@@ -150,7 +150,7 @@ export class EventoService {
 
   crearSalaZoom( datos: any):Promise<any>{
 
-    console.log(datos);
+
     return new Promise<any> (resolve=> {
 
       this.http.post(`${ base_url }/zoom/room`, datos,{

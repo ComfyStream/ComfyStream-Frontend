@@ -36,7 +36,7 @@ export class AsistirComponent implements OnInit {
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     const precio = this.evento.precio.toString()
-    console.log(precio);
+
 
     
 }
@@ -85,7 +85,7 @@ export class AsistirComponent implements OnInit {
 
     },
     onClientAuthorization: (data) => {
-      console.log("onClientAuthorization");
+
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         const urlPago: string = data["links"][0]["href"];
         this.comprar(urlPago);
@@ -93,16 +93,16 @@ export class AsistirComponent implements OnInit {
     },
     onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
-        console.log("onCancel");
+
 
     },
     onError: err => {
         console.log('OnError', err);
-        console.log("onError");
+
     },
     onClick: (data, actions) => {
         console.log('onClick', data, actions);
-        console.log("onClick");
+
     },
 };
 }
@@ -135,13 +135,13 @@ export class AsistirComponent implements OnInit {
     if(!localStorage.getItem("token")){
       this.router.navigateByUrl("/login")
     }else{    
-      console.log(this.evento._id);
+
     const data = {
       eventoId: this.evento._id,
       pagoPaypalUrl: pago
     }
     this.asistenciaService.crearAsistencia(data);
-        console.log("asistido");
+
     this.router.navigateByUrl("/mis-asistencias")
 
   }}

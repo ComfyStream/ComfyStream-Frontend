@@ -46,7 +46,7 @@ export class SerProfesionalComponent implements OnInit {
     if(this.profesional){
     const datos = this.perfilProfesionalForm.value;
     this.usuario = await this.usuarioService.editarPerfil(datos);
-    console.log(this.usuarioId)
+
     }
   }
 

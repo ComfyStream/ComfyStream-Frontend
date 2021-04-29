@@ -56,7 +56,7 @@ export class EventoComponent implements OnInit {
 
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     this.puedoValorar = await this.valoracionService.puedoValorar(this.evento.profesional);
-    console.log("puedo valorar"  + this.puedoValorar);
+
 
     this.datosEvento();
     this.eventoAntiguo();
@@ -88,10 +88,7 @@ export class EventoComponent implements OnInit {
     if(!localStorage.getItem("token")){
       this.cargando = false;
     }
-    
-    console.log(this.esMio)
-      console.log(this.asistentes.length == 0);
-      console.log(this.eventoPasado);
+
     
   }
 
