@@ -4,7 +4,7 @@ node_js:
 
 
 script:
-  - npm install --no-optional
+  - npm install 
   # - ng test
   - ng build --prod
 
