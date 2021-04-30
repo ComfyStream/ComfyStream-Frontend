@@ -20,7 +20,6 @@ export class AsistenciasAdminComponent implements OnInit {
      this.administrador = (await this.usuarioService.getUsuario()).admin;
     if(this.administrador){
       this.asistencias = await this.asistenciaService.getTodasAsistencias();
-      console.log(this.asistencias);
     }
     
   }

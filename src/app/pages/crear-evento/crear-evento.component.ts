@@ -41,7 +41,7 @@ export class CrearEventoComponent implements OnInit {
       categoria:['', [ Validators.required] ],
       subCategoria:[''],
       esPersonal:[false],
-      fecha:['', [Validators.required, , this.fechaPosteriorAHoy]],
+      fecha:['', [Validators.required, this.fechaPosteriorAHoy]],
       precio:['', [Validators.required, this.valorPositivo]],
       duracion:['', [Validators.required, this.valorPositivo]],
       img:[,[Validators.required]]
