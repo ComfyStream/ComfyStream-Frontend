@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import Swal from 'sweetalert2';
-import { Valoracion } from '../models/valoracion';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
+import Swal from "sweetalert2";
+import { Valoracion } from "../models/valoracion";
 
 const base_url = environment.apiUrl;
 @Injectable({

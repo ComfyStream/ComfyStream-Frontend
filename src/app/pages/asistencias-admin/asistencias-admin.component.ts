@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AsistenciaService } from 'src/app/services/asistencia.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Component, OnInit } from "@angular/core";
+import { AsistenciaService } from "src/app/services/asistencia.service";
+import { UsuarioService } from "src/app/services/usuario.service";
 
 @Component({
   selector: 'app-asistencias-admin',

@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { EventoService } from 'src/app/services/evento.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { environment } from 'src/environments/environment';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
-import { ActivatedRoute } from '@angular/router';
-import { Evento } from 'src/app/models/evento';
-import { Usuario } from '../../models/usuario';
-import { AsistenciaService } from '../../services/asistencia.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { EventoService } from "src/app/services/evento.service";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { environment } from "src/environments/environment";
+import { CargaImagenesService } from "src/app/services/carga-imagenes.service";
+import { ActivatedRoute } from "@angular/router";
+import { Evento } from "src/app/models/evento";
+import { Usuario } from "../../models/usuario";
+import { AsistenciaService } from "../../services/asistencia.service";
 
 const base_url = environment.apiUrl;
 

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../../services/usuario.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
-import { Evento } from 'src/app/models/evento';
-import { EventoService } from '../../services/evento.service';
-import { AsistenciaService } from '../../services/asistencia.service';
-import { Valoracion } from 'src/app/models/valoracion';
-import { ValoracionService } from 'src/app/services/valoracion.service';
+import { Component, OnInit } from "@angular/core";
+import { UsuarioService } from "../../services/usuario.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Usuario } from "src/app/models/usuario";
+import { Evento } from "src/app/models/evento";
+import { EventoService } from "../../services/evento.service";
+import { AsistenciaService } from "../../services/asistencia.service";
+import { Valoracion } from "src/app/models/valoracion";
+import { ValoracionService } from "src/app/services/valoracion.service";
 
 @Component({
   selector: 'app-detalles-profesional',

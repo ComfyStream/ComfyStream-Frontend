@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { EventoService } from 'src/app/services/evento.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { environment } from 'src/environments/environment';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { EventoService } from "src/app/services/evento.service";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { environment } from "src/environments/environment";
+import { AngularFireStorage } from "@angular/fire/storage";
+import { CargaImagenesService } from "src/app/services/carga-imagenes.service";
+import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 
 const base_url = environment.apiUrl;

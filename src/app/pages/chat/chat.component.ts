@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Mensaje } from 'src/app/models/mensaje';
-import { ChatService } from '../../services/chat.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsuarioService } from '../../services/usuario.service';
-import { Usuario } from '../../models/usuario';
-import { Chat } from 'src/app/models/chat';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Mensaje } from "src/app/models/mensaje";
+import { ChatService } from "../../services/chat.service";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UsuarioService } from "../../services/usuario.service";
+import { Usuario } from "../../models/usuario";
+import { Chat } from "src/app/models/chat";
 
 @Component({
   selector: 'app-chat',

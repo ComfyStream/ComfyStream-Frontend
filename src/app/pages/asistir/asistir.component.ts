@@ -1,15 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Evento } from 'src/app/models/evento';
-import { Usuario } from 'src/app/models/usuario';
-import { AsistenciaService } from 'src/app/services/asistencia.service';
-import { EventoService } from 'src/app/services/evento.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-import { environment } from 'src/environments/environment';
-
-
-
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Evento } from "src/app/models/evento";
+import { Usuario } from "src/app/models/usuario";
+import { AsistenciaService } from "src/app/services/asistencia.service";
+import { EventoService } from "src/app/services/evento.service";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { IPayPalConfig, ICreateOrderRequest } from "ngx-paypal";
 
 @Component({
   selector: 'app-asistir',

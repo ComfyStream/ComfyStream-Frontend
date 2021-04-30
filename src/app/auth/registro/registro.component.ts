@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { UsuarioService } from '../../services/usuario.service';
-import { Router } from '@angular/router';
-import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UsuarioService } from "../../services/usuario.service";
+import { Router } from "@angular/router";
+import { CargaImagenesService } from "src/app/services/carga-imagenes.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-registro',
