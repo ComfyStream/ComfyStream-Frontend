@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Valoracion } from 'src/app/models/valoracion';
-import { ValoracionService } from 'src/app/services/valoracion.service';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { Valoracion } from "src/app/models/valoracion";
+import { ValoracionService } from "src/app/services/valoracion.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-mis-valoraciones',

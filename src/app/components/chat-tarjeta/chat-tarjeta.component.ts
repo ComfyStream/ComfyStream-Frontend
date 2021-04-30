@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Chat } from '../../models/chat';
-import { Usuario } from '../../models/usuario';
-import { UsuarioService } from '../../services/usuario.service';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Chat } from "../../models/chat";
+import { Usuario } from "../../models/usuario";
+import { UsuarioService } from "../../services/usuario.service";
 
 @Component({
   selector: 'app-chat-tarjeta',

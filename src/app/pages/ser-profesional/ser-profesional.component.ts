@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Usuario } from '../../models/usuario';
-import { UsuarioService } from '../../services/usuario.service';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Usuario } from "../../models/usuario";
+import { UsuarioService } from "../../services/usuario.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-ser-profesional',

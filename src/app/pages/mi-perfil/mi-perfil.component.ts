@@ -1,9 +1,9 @@
-import { Component, DebugElement, OnInit } from '@angular/core';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { Usuario} from 'src/app/models/usuario';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DatePipe } from '@angular/common';
-import { CargaImagenesService } from 'src/app/services/carga-imagenes.service';
+import { Component, DebugElement, OnInit } from "@angular/core";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { Usuario} from "src/app/models/usuario";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { DatePipe } from "@angular/common";
+import { CargaImagenesService } from "src/app/services/carga-imagenes.service";
 
 @Component({
   selector: 'app-mi-perfil',

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from 'src/app/models/usuario';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Usuario } from "src/app/models/usuario";
+import { UsuarioService } from "src/app/services/usuario.service";
 
 @Component({
   selector: 'app-datos-bancarios',

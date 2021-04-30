@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Chat } from 'src/app/models/chat';
-import { Router } from '@angular/router';
-import { ChatService } from '../../services/chat.service';
+import { Component, OnInit } from "@angular/core";
+import { Chat } from "src/app/models/chat";
+import { Router } from "@angular/router";
+import { ChatService } from "../../services/chat.service";
 
 @Component({
   selector: 'app-mis-chats',

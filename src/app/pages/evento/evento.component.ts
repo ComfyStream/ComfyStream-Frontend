@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { EventoService } from '../../services/evento.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Evento } from 'src/app/models/evento';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { AsistenciaService } from '../../services/asistencia.service';
-import Swal from 'sweetalert2';
-import { ChatService } from '../../services/chat.service';
-import { Usuario } from '../../models/usuario';
-import { Chat } from 'src/app/models/chat';
-import { ValoracionService } from 'src/app/services/valoracion.service';
+import { Component, OnInit } from "@angular/core";
+import { EventoService } from "../../services/evento.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Evento } from "src/app/models/evento";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { AsistenciaService } from "../../services/asistencia.service";
+import { ChatService } from "../../services/chat.service";
+import { Usuario } from "../../models/usuario";
+import { Chat } from "src/app/models/chat";
+import { ValoracionService } from "src/app/services/valoracion.service";
 
 @Component({
   selector: 'app-evento',

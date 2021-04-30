@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { Evento } from '../../models/evento';
-import { EventoService } from '../../services/evento.service';
-import { AsistenciaService } from '../../services/asistencia.service';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { Evento } from "../../models/evento";
+import { EventoService } from "../../services/evento.service";
+import { AsistenciaService } from "../../services/asistencia.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-buscador',

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Evento } from 'src/app/models/evento';
-import { EventoService } from '../../services/evento.service';
-import { Router } from '@angular/router';
-import { AsistenciaService } from 'src/app/services/asistencia.service';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { Evento } from "src/app/models/evento";
+import { EventoService } from "../../services/evento.service";
+import { Router } from "@angular/router";
+import { AsistenciaService } from "src/app/services/asistencia.service";
+import { FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'app-mis-eventos',

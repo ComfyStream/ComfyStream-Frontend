@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Asistencia } from 'src/app/models/asistencia';
-import { Evento } from 'src/app/models/evento';
-import { AsistenciaService } from 'src/app/services/asistencia.service';
-import { EventoService } from '../../services/evento.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Evento } from "src/app/models/evento";
+import { AsistenciaService } from "src/app/services/asistencia.service";
+import { EventoService } from "../../services/evento.service";
 
 @Component({
   selector: 'app-home',

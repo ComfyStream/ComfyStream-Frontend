@@ -1,8 +1,8 @@
-import { Component} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import Swal from 'sweetalert2';
+import { Component} from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { UsuarioService } from "src/app/services/usuario.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',

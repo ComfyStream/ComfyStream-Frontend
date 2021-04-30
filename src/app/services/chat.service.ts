@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Chat } from '../models/chat';
-import { Mensaje } from '../models/mensaje';
+import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Chat } from "../models/chat";
+import { Mensaje } from "../models/mensaje";
 
 const base_url = environment.apiUrl;
 
