@@ -48,10 +48,10 @@ describe('Mis chats', () => {
 
   it('Obtiene mis chats', () => {
     const chats:Chat[] = [{_id: "123456"},{_id: "654321"}]
-    spyOn(servicio, "getMisChats").and.callFake(()=>Promise.resolve(chats));
+    spyOn(servicio, "getMisChats").and.callFake(() => Promise.resolve(chats));
     component.ngOnInit();
     expect(servicio.getMisChats).toHaveBeenCalled();
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(component.misChats.length).toBe(2)
     })
   });
@@ -61,7 +61,7 @@ describe('Mis chats', () => {
     component.ngOnInit();
     expect(servicio.getMisChats).toHaveBeenCalled();
     component.mostrarChat("123456");
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(location.path()).toBe("/chat/123456")
     })
   });
