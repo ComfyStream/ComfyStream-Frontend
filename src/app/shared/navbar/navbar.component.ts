@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
 
   public usuario = false;
   public profesional: boolean = false;
+  public admin: boolean = false;
 
 
   constructor(private usuarioService:UsuarioService,
@@ -25,6 +26,9 @@ export class NavbarComponent implements OnInit {
 
       if(localStorage.getItem('profesional')=== "true"){
         this.profesional = true;
+      }
+      if((await this.usuarioService.getUsuario()).admin){
+        this.admin = true;
       }
     }
   }

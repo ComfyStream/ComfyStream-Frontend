@@ -24,7 +24,10 @@ import { SerProfesionalComponent } from './ser-profesional/ser-profesional.compo
 import { DetallesProfesionalComponent } from './detalles-profesional/detalles-profesional.component';
 import { ValorarProfesionalComponent } from './valorar-profesional/valorar-profesional.component';
 import { MisValoracionesComponent } from './mis-valoraciones/mis-valoraciones.component';
+import { AsistenciasAdminComponent } from './asistencias-admin/asistencias-admin.component';
 
+//Guards
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
     { 
@@ -54,10 +57,12 @@ const routes: Routes = [
             { path: 'valorar/:id', component: ValorarProfesionalComponent},
             { path: 'mis-valoraciones', component: MisValoracionesComponent},
             { path: 'ser-profesional/:id', component: SerProfesionalComponent},
+            { path: 'asistencias', canActivate: [AdminGuard], component: AsistenciasAdminComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },
 ];
+
 
 @NgModule({
     imports: [ RouterModule.forChild(routes) ],
