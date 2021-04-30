@@ -25,7 +25,7 @@ export class AsistirComponent implements OnInit {
     private eventoService: EventoService) { }
 
   async ngOnInit() {
-    this.activatedRoute.params.subscribe( params => {
+    this.activatedRoute.params.subscribe( (params) => {
       this.eventoId = params['id']; 
     });
     this.initConfig();
@@ -73,7 +73,7 @@ export class AsistirComponent implements OnInit {
     },
     onApprove: (data, actions) => {
         //console.log('onApprove - transaction was approved, but not authorized', data, actions);
-        actions.order.get().then(details => {
+        actions.order.get().then((details) => {
            // console.log('onApprove - you can get full order details inside onApprove: ', details);
             
             
@@ -92,7 +92,7 @@ export class AsistirComponent implements OnInit {
 
 
     },
-    onError: err => {
+    onError: (err) => {
        // console.log('OnError', err);
 
     },

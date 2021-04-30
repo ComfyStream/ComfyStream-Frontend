@@ -67,7 +67,7 @@ export class ChatService {
     const headers = new HttpHeaders({
       'x-token': localStorage.getItem('token')
     });
-    return new Promise<Boolean>(resolve => {
+    return new Promise<Boolean>((resolve) => {
       this.http.post(`${base_url}/chat/existe`, {usuario2ID}, {headers}).subscribe((data) => {
         const encontrado = data['encontrado']
         resolve(encontrado)

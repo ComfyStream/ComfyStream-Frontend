@@ -14,7 +14,7 @@ export class ConfirmarComponent implements OnInit {
 
   ngOnInit() {
     Swal.showLoading();
-    this.activatedRoute.params.subscribe(async params => {
+    this.activatedRoute.params.subscribe(async (params) => {
       const urlConfirmacion = params["urlConfirmacion"];
       const msg = await this.usuarioService.confirmarCuenta(urlConfirmacion);
       if(msg == "Usuario confirmado"){
