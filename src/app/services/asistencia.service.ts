@@ -83,7 +83,20 @@ export class AsistenciaService {
    }
 
 
-
+   getTodasAsistencias(): Promise<any[]>{
+    const headers = new HttpHeaders({
+      'x-token': localStorage.getItem('token')
+    });
+    return new Promise<any[]>(
+      resolve=> {
+        this.http.get(`${base_url}/asistencias/pagos`,{
+          headers
+        }).subscribe(data=>{
+          const asistencias = data["asistencias"];
+          resolve(asistencias);
+        });
+     })
+   }
 
 
 }

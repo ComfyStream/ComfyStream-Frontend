@@ -1,3 +1,7 @@
 .navbar {
-    font-size: large;
+    font-size: medium;
+}
+
+.itemes-menu {
+    padding-right: 0px;
 }

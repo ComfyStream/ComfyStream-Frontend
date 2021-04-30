@@ -10,6 +10,7 @@ export class Usuario{
     titularCuenta?:string;
     valoracionMedia?:number;
     numeroValoraciones?: number;
+    admin?:boolean;
     img?:string;
     _id?:string
 }

@@ -47,9 +47,13 @@
     </div>
     <div class="col"></div>
 </div>
-<div class="col-md-8" *ngIf="eventos.length==0  ">
-    <div class="jumbotron">
-        <h1 class="display-4 titulo-jumbotron">En estos momentos no tiene ningún evento creado</h1>
-        <p class="lead descripcion-jumbotron">Aquí aparecerán sus eventos cuando disponga de ellos.</p>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-md-8" *ngIf="eventos.length==0  ">
+        <div class="jumbotron">
+            <h1 class="display-4 titulo-jumbotron">En estos momentos no tiene ningún evento creado</h1>
+            <p class="lead descripcion-jumbotron">Aquí aparecerán sus eventos cuando disponga de ellos.</p>
+        </div>
     </div>
+    <div class="col"></div>
 </div>

@@ -39,6 +39,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValorarProfesionalComponent } from './pages/valorar-profesional/valorar-profesional.component';
 import { ConfirmarComponent } from './auth/confirmar/confirmar.component';
 import { MisValoracionesComponent } from './pages/mis-valoraciones/mis-valoraciones.component';
+import { AsistenciasAdminComponent } from './pages/asistencias-admin/asistencias-admin.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -79,7 +81,8 @@ import { MisValoracionesComponent } from './pages/mis-valoraciones/mis-valoracio
     MisValoracionesComponent,
 
     SerProfesionalComponent,
-    DetallesProfesionalComponent
+    DetallesProfesionalComponent,
+    AsistenciasAdminComponent
 
   ],
   imports: [
@@ -100,7 +103,9 @@ import { MisValoracionesComponent } from './pages/mis-valoraciones/mis-valoracio
       measurementId: "G-5JFMBYSXEV"
     }),
     AngularFireStorageModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

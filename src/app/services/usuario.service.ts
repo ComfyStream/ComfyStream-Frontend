@@ -49,8 +49,8 @@ export class UsuarioService {
      })
  }
 
- getUsuario():Promise<any>{
-  return new Promise<any>(
+ getUsuario():Promise<Usuario>{
+  return new Promise<Usuario>(
     resolve=> {
       this.http.get(`${base_url}/usuario`,{
         headers: { 
