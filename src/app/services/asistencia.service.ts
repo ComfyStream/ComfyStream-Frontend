@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Evento } from '../models/evento';
-import { Asistencia } from '../models/asistencia';
-import Swal from 'sweetalert2';
+import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Evento } from "../models/evento";
+import { Asistencia } from "../models/asistencia";
+import Swal from "sweetalert2";
 
 const base_url = environment.apiUrl;
 
@@ -38,10 +38,10 @@ export class AsistenciaService {
     'x-token': localStorage.getItem('token')
   });
   return new Promise<Evento[]>(
-    resolve=> {
+    (resolve) => {
       this.http.get(`${base_url}/mis-asistencias`,{
         headers
-      }).subscribe(data=>{
+      }).subscribe((data) => {
         const eventos = data["eventos"];
         resolve(eventos);
       });
@@ -49,12 +49,12 @@ export class AsistenciaService {
  }
 
  crearAsistencia(eventoId:any): Promise<Asistencia>{
-  return new Promise<Asistencia> (resolve=> {
+  return new Promise<Asistencia> ((resolve) => {
     this.http.post(`${ base_url }/asistencia/nuevo`, eventoId, {
       headers: {
       'x-token': this.token
     }})
-    .subscribe(data =>{
+    .subscribe((data) => {
       const asistencia: Asistencia = data["asistencia"]["_id"];
       resolve(asistencia);
       if (data["msg"] == "Exito")
@@ -71,11 +71,11 @@ export class AsistenciaService {
 
   getDatosReunion(eventoId:any): Promise<any>{
     return new Promise<any>(
-      resolve=> {
+      (resolve) => {
         this.http.post(`${base_url}/zoom/datosReunion`,eventoId,{
           headers: {
           'x-token': this.token
-        }}).subscribe(data=>{
+        }}).subscribe((data) => {
           const zoomDatosUsuarios = data["zoomDatosUsuarios"];
           resolve(zoomDatosUsuarios);
         });
@@ -83,7 +83,20 @@ export class AsistenciaService {
    }
 
 
-
+   getTodasAsistencias(): Promise<any[]>{
+    const headers = new HttpHeaders({
+      'x-token': localStorage.getItem('token')
+    });
+    return new Promise<any[]>(
+      (resolve) => {
+        this.http.get(`${base_url}/asistencias/pagos`,{
+          headers
+        }).subscribe((data) => {
+          const asistencias = data["asistencias"];
+          resolve(asistencias);
+        });
+     })
+   }
 
 
 }

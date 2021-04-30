@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { tap} from 'rxjs/operators';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import { Usuario } from '../models/usuario';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
+import { Router } from "@angular/router";
+import Swal from "sweetalert2";
+import { Usuario } from "../models/usuario";
 const base_url = environment.apiUrl;
 
 @Injectable({
@@ -20,8 +19,8 @@ export class UsuarioService {
       return localStorage.getItem('token') || '';
     }
   login( formData: any ): Promise<string> {
-      return new Promise<string>(resolve => {
-        this.http.post(`${base_url}/login`,formData).subscribe(data => {
+      return new Promise<string>((resolve) => {0
+        this.http.post(`${base_url}/login`,formData).subscribe((data) => {
           const msg = data['msg']
           if(msg === 'Login realizado con exito'){
             localStorage.setItem('token', data['token'])
@@ -42,25 +41,24 @@ export class UsuarioService {
 
   getUsuarioPorId(id:string):Promise<any>{
     return new Promise<any>(
-      resolve=> {
-        this.http.get(`${base_url}/usuario/${id}`).subscribe(data=>{
+      (resolve) => {
+        this.http.get(`${base_url}/usuario/${id}`).subscribe((data) => {
           const usuario = data["usuario"];
           resolve(usuario);
         });
      })
  }
 
- getUsuario():Promise<any>{
-  return new Promise<any>(
-    resolve=> {
+ getUsuario():Promise<Usuario>{
+  return new Promise<Usuario>(
+    (resolve) => {
       this.http.get(`${base_url}/usuario`,{
         headers: { 
           'x-token': this.token
         }
-      }).subscribe(data=>{
+      }).subscribe((data) => {
         
         const usuario = data["usuario"];
-        console.log("usuario get usuario"+usuario["nombre"])
         resolve(usuario);
 
       });
@@ -69,12 +67,12 @@ export class UsuarioService {
 
   enlazarZoom():Promise<any>{
     return new Promise<any>(
-      resolve=> {
+      (resolve) => {
         this.http.get(`${base_url}/zoom/token`,{
           headers: { 
             'x-token': this.token
           }
-        }).subscribe(res=>{
+        }).subscribe((res) =>{
           
           const data = res["data"];
           resolve(data);
@@ -85,12 +83,12 @@ export class UsuarioService {
 
 
   almacenarUsuarioZoom( formData: any ): Promise<string> {
-    return new Promise<string>(resolve => {
+    return new Promise<string>((resolve) => {
       this.http.post(`${base_url}/zoom/token`,formData,{
         headers: { 
           'x-token': this.token
         }
-      }).subscribe(res=>{
+      }).subscribe((res) => {
         const data = res["data"];
         Swal.fire('Guardado', 'Cuenta de Zoom vinculada correctamente', 'success');
         resolve(data);
@@ -105,12 +103,12 @@ export class UsuarioService {
 
   getUsuarioZoom( ): Promise<string> {
     return new Promise<any>(
-      resolve=> {
+      (resolve) => {
         this.http.get(`${base_url}/usuarioZoom`,{
           headers: { 
             'x-token': this.token
           }
-        }).subscribe(data=>{
+        }).subscribe((data) => {
           
           const usuarioZoom = data["usuarioZoom"];
           resolve(usuarioZoom);
@@ -120,12 +118,12 @@ export class UsuarioService {
   }
 
   borrarUsuarioZoom(): Promise<string> {
-    return new Promise<string>(resolve => {
+    return new Promise<string>((resolve) => {
       this.http.delete(`${base_url}/zoom/token`,{
         headers: { 
           'x-token': this.token
         }
-      }).subscribe(res=>{
+      }).subscribe((res) => {
         const data = res["data"];
         Swal.fire('Guardado', 'Cuenta de Zoom desvinculada correctamente', 'success');
         resolve(data);
@@ -153,23 +151,24 @@ export class UsuarioService {
   //   })
   // }
  
-  editarPerfil( formData: any):Promise<Usuario>{
+  editarPerfil( datos: any):Promise<Usuario>{
 
-    return new Promise<Usuario> (resolve=> {
-      console.log("token:"+this.token)
-      this.http.post(`${ base_url }/editar-perfil`,formData,{
+    return new Promise<Usuario> ((resolve) => {
+      this.http.post(`${ base_url }/editar-perfil`,datos,{
         headers: { 
           
           'x-token': this.token
         }
       } )
-      .subscribe(data =>{
+      .subscribe((data) => {
         const msg= data["msg"];
         if(msg == "El email ya está en uso"){
           Swal.fire('No es posible actualizar el perfil', msg, 'error');
         }
         else {
-          const usuario= data["usuarioActualizado"];
+          const usuario = data["usuarioActualizado"];
+          const token = data["token"];
+          localStorage.setItem('token', token);
           Swal.fire('Guardado', msg , 'success');
           resolve(usuario);
           this.router.navigate(['/'])
@@ -180,6 +179,65 @@ export class UsuarioService {
       });
     } )
   }
+
+  
+  editarBanco( formData: any):Promise<Usuario>{
+
+
+    return new Promise<Usuario> ((resolve) => {
+      this.http.post(`${ base_url }/usuario/cambiar/banco`,formData,{
+        headers: { 
+          
+          'x-token': this.token
+        }
+      } )
+      .subscribe((data) => {
+
+        const msg= data["msg"];
+        if(msg=="Password incorrecta"){
+        Swal.fire('Algo salió mal', msg, 'error');  
+        }else{
+
+          const usuario= data["usuario"];
+          resolve(usuario);
+          Swal.fire('Guardado', msg, 'success');
+        }
+        
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Algo salió mal', err.error.msg, 'error');
+      });
+    } )
+  }
+  actualizarContrasena( formData: any):Promise<Usuario>{
+
+
+
+    return new Promise<Usuario> ((resolve) => {
+
+      this.http.post(`${ base_url }/usuario/cambiar/pass`,formData,{
+        headers: { 
+          
+          'x-token': this.token
+        }
+      } )
+      .subscribe((data) => {
+
+        const msg= data["msg"];
+        if(msg=="Password incorrecta"){
+        Swal.fire('Algo salió mal', msg, 'error');  
+        }else{
+
+          const usuario= data["usuario"];
+          resolve(usuario);
+          Swal.fire('Guardado', msg, 'success');
+        }
+        
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Algo salió mal', err.error.msg, 'error');
+      });
+    } )}
 
   registro( formData: any, imagen:string):Promise<String>{
 
@@ -198,41 +256,44 @@ export class UsuarioService {
       datos.append("titularCuenta", formData.titularCuenta )
     }
 
-    return new Promise<String> (resolve=> {
+    return new Promise<String> ((resolve) => {
 
       this.http.post(`${ base_url }/registro`, datos)
-      .subscribe(data =>{
+      .subscribe((data) => {
         const msg= data["msg"];
-        if(msg == "El email ya está en uso"){
-          Swal.fire('No es posible crear el usuario', msg, 'error');
           resolve(msg);
-        }else if(msg == "Esta cuenta bancaria ya está en uso"){
-          Swal.fire('No es posible crear el usuario', msg, 'error');
-          resolve(msg);
-        }else{
-          Swal.fire('Guardado', msg , 'success');
-          resolve(msg);
-        }
-
       });
     } )
   }
 
   zoomEnlazado():Promise<boolean>{
     return new Promise<boolean>(
-      resolve=> {
+      (resolve) => {
         this.http.get(`${base_url}/zoom/usuario-enlazado`,{
           headers: { 
             'x-token': this.token
           }
-        }).subscribe(data=>{
+        }).subscribe((data) => {
           
           const encontrado = data["encontrado"];
           resolve(encontrado);
   
         });
      })
+
   }
+
+confirmarCuenta(urlConfirmacion:string):Promise<string>{
+  return new Promise<string>((resolve) => {
+    this.http.put(`${base_url}/confirmar/${urlConfirmacion}`, {}).subscribe((data) => {
+      const msg = data["msg"];
+      resolve(msg);
+    })
+  })
 }
+
+}
+
+
 
 

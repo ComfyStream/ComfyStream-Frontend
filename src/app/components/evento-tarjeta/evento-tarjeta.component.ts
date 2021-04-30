@@ -1,14 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { Router } from '@angular/router';
-import { Evento } from 'src/app/models/evento';
-import Swal from 'sweetalert2';
-import { Asistencia } from '../../models/asistencia';
-import { AsistenciaService } from '../../services/asistencia.service';
-import { EventoService } from '../../services/evento.service';
-import { ChatService } from '../../services/chat.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { Usuario } from '../../models/usuario';
-import { Chat } from 'src/app/models/chat';
+import { Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import { Router } from "@angular/router";
+import { Evento } from "src/app/models/evento";
+import { AsistenciaService } from "../../services/asistencia.service";
+import { ChatService } from "../../services/chat.service";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { Usuario } from "../../models/usuario";
+import { Chat } from "src/app/models/chat";
 
 
 @Component({
@@ -116,12 +113,12 @@ export class EventoTarjetaComponent implements OnInit{
     }
   }
 
-  comenzarEvento(){
-    window.open(this.urlProfesional);
-  }
-  entrarEvento(){
-    window.open(this.urlUsuario);
-  }
+  // comenzarEvento(){
+  //   window.open(this.urlProfesional);
+  // }
+  // entrarEvento(){
+  //   window.open(this.urlUsuario);
+  // }
 
   async iniciarChat(){
     if(!localStorage.getItem("token")){

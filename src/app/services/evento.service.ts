@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Evento } from '../models/evento';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
-import { Usuario } from '../models/usuario';
+import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Evento } from "../models/evento";
+import Swal from "sweetalert2";
+import { Router } from "@angular/router";
+import { Usuario } from "../models/usuario";
 
 const base_url = environment.apiUrl;
 
@@ -24,8 +24,8 @@ export class EventoService {
 
   getEventoPorID(id:string):Promise<Evento>{
     return new Promise<Evento>(
-      resolve=> {
-        this.http.post(`${base_url}/evento`, {_id:id}).subscribe(data=>{
+      (resolve) => {
+        this.http.post(`${base_url}/evento`, {_id:id}).subscribe((data) => {
           const evento = data["evento"];
           resolve(evento);
 
@@ -39,10 +39,10 @@ export class EventoService {
   });
 
   return new Promise<Evento[]>(
-    resolve=> {
+    (resolve) => {
       this.http.get(`${base_url}/mis-eventos`,{
         headers
-      }).subscribe(data=>{
+      }).subscribe((data) => {
         const eventos = data["eventos"];
         resolve(eventos);
       });
@@ -51,9 +51,9 @@ export class EventoService {
 
   getEventos():Promise<Evento[]>{
     return new Promise<Evento[]>(
-      resolve => {
+      (resolve) => {
         this.http.get(`${base_url}/eventos`,{
-        }).subscribe(data=>{
+        }).subscribe((data) => {
           const eventos = data["eventos"];
           resolve(eventos);
         });
@@ -62,9 +62,9 @@ export class EventoService {
 
   getEventosDisponibles():Promise<Evento[]>{
     return new Promise<Evento[]>(
-      resolve => {
+      (resolve) => {
         this.http.get(`${base_url}/evento/disponibles`,{
-        }).subscribe(data=>{
+        }).subscribe((data) => {
           const eventos = data["respuesta"];
           resolve(eventos);
         });
@@ -73,11 +73,11 @@ export class EventoService {
 
   asistentesAlEvento(eventoId:string):Promise<Usuario[]>{
     return new Promise<Usuario[]>(
-      resolve => {
+      (resolve) => {
         this.http.post(`${base_url}/evento/asistentes`, {eventoId:eventoId}, {
           headers: {
           'x-token': this.token
-        }}).subscribe(data=>{
+        }}).subscribe((data) => {
           const asistentes = data["asistentes"];
           resolve(asistentes);
         });
@@ -92,21 +92,21 @@ export class EventoService {
     datos.append("titulo", formData.titulo )
     datos.append("descripcion", formData.descripcion )
     datos.append("categoria", formData.categoria )
-    datos.append("subcategoria", formData.subcategoria )
+    datos.append("subCategoria", formData.subCategoria )
     datos.append("esPersonal", formData.esPersonal )
     datos.append("fecha", formData.fecha )
     datos.append("duracion", formData.duracion )
     datos.append("precio", formData.precio )
 
 
-    return new Promise<Evento> (resolve=> {
+    return new Promise<Evento> ((resolve) => {
 
       this.http.post(`${ base_url }/evento/nuevo`, datos,{
         headers: { 
           'x-token': this.token
         }
       } )
-      .subscribe(data =>{
+      .subscribe((data) => {
         const evento= data["evento"];
         resolve(evento);
       });
@@ -121,24 +121,24 @@ export class EventoService {
     datos.append("titulo", formData.titulo )
     datos.append("descripcion", formData.descripcion )
     datos.append("categoria", formData.categoria )
-    datos.append("subcategoria", formData.subcategoria )
+    datos.append("subCategoria", formData.subCategoria )
     datos.append("esPersonal", formData.esPersonal )
     datos.append("precio", formData.precio )
 
 
-    return new Promise<Evento> (resolve=> {
+    return new Promise<Evento> ((resolve) => {
 
       this.http.post(`${ base_url }/evento/editar`, datos,{
         headers: { 
           'x-token': this.token
         }
       } )
-      .subscribe(data =>{
+      .subscribe((data) => {
         if(data["msg"] == "El evento no es tuyo" ){
           Swal.fire('Algo salió mal', data["msg"], 'error');
         }
         const evento= data["evento"];
-        console.log(data["msg"])
+
         Swal.fire('Guardado', 'Evento creado', 'success');
         resolve(evento);
         this.router.navigate(['/evento/'+idEvento])
@@ -150,15 +150,15 @@ export class EventoService {
 
   crearSalaZoom( datos: any):Promise<any>{
 
-    console.log(datos);
-    return new Promise<any> (resolve=> {
+
+    return new Promise<any> ((resolve) => {
 
       this.http.post(`${ base_url }/zoom/room`, datos,{
         headers: { 
           'x-token': this.token
         }
       } )
-      .subscribe(data =>{
+      .subscribe((data) => {
         const evento= data;
         Swal.fire('Guardado', 'Evento creado', 'success');
         resolve(evento);
@@ -173,9 +173,9 @@ export class EventoService {
 
   buscar(datos:any):Promise<Evento[]>{
     return new Promise<Evento[]>(
-      resolve => {
+      (resolve) => {
         this.http.post(`${base_url}/buscador`,datos,{
-}).subscribe(data=>{
+}).subscribe((data)=> {
           const eventos = data["eventosDisponibles"];
           resolve(eventos);
         });
@@ -184,12 +184,12 @@ export class EventoService {
 
   borrarEvento(idEvento:any):Promise<any>{
     return new Promise<Evento[]>(
-      resolve => {
+      (resolve) => {
         this.http.delete(`${base_url}/evento/eliminar/${idEvento}`,{
           headers: { 
             'x-token': this.token
           }
-        }).subscribe(data=>{
+        }).subscribe((data) => {
           const msg = data["msg"];
           if(msg == "Borrado con éxito"){
             Swal.fire('Evento borrado', 'Borrado con éxito', 'success');

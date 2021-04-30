@@ -6,23 +6,39 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" *ngIf="profesional">
-                <a *ngIf="usuario" class="nav-link" routerLink="/buscador">Buscador</a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/buscador">Buscador</a>
             </li>
-
-            <li class="nav-item" *ngIf="profesional">
+            <li class="nav-item dropdown" *ngIf="usuario">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Mi actividad
+          </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a *ngIf="profesional" class="dropdown-item" routerLink="/mis-eventos">Mis eventos</a>
+                    <a *ngIf="usuario" class="dropdown-item" routerLink="/mis-asistencias">Mis asistencias</a>
+                    <a *ngIf="usuario" class="dropdown-item" routerLink="/mis-chats">Mis mensajes</a>
+                    <a *ngIf="usuario" class="dropdown-item" routerLink="/mis-valoraciones">Mis valoraciones</a>
+                    <a *ngIf="admin" class="dropdown-item" routerLink="/asistencias">Asistencais</a>
+                </div>
+            </li>
+            <!-- <li class="nav-item" *ngIf="profesional">
                 <a *ngIf="usuario" class="nav-link" routerLink="/mis-eventos">Mis eventos</a>
             </li>
 
             <li class="nav-item" *ngIf="profesional || usuario">
-                <a *ngIf="usuario" class="nav-link" routerLink="/mis-asistencias">Mis asistencias</a>
+                <a *ngIf="usuario" class="nav-link " routerLink="/mis-asistencias">Mis asistencias</a>
             </li>
 
             <li class="nav-item" *ngIf="profesional || usuario">
-                <a *ngIf="usuario" class="nav-link" routerLink="/mis-chats">Mis chats</a>
+                <a *ngIf="usuario" class="nav-link" routerLink="/mis-chats">Mis mensajes</a>
             </li>
 
-            <li class="nav-item" *ngIf="usuario">
+            <li class="nav-item">
+                <a *ngIf="usuario" class="nav-link" routerLink="/mis-valoraciones">Mis valoraciones</a>
+            </li> -->
+            <li class="nav-item">
+                <a *ngIf="admin" class="nav-link" routerLink="/asistencias">Asistencias</a>
+            </li>
 
         </ul>
         <ul class="nav navbar-nav navbar-right">

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Mensaje } from 'src/app/models/mensaje';
-import { ChatService } from '../../services/chat.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsuarioService } from '../../services/usuario.service';
-import { Usuario } from '../../models/usuario';
-import { Chat } from 'src/app/models/chat';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Mensaje } from "src/app/models/mensaje";
+import { ChatService } from "../../services/chat.service";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UsuarioService } from "../../services/usuario.service";
+import { Usuario } from "../../models/usuario";
+import { Chat } from "src/app/models/chat";
 
 @Component({
   selector: 'app-chat',
@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
     private chatService: ChatService) { }
 
   async ngOnInit() {
-    this.activatedRoute.params.subscribe( params => {
+    this.activatedRoute.params.subscribe( (params) => {
       this.chatId = params['id']; 
     });
     
@@ -42,7 +42,7 @@ export class ChatComponent implements OnInit {
     });
 
     this.cargarUsuarios()
-    .then(()=>{
+    .then(() => {
       for(let i = 0; i< this.mensajes.length; i++){
         if(this.mensajes[i].autor === this.usuario1._id){
           document.getElementById('autor'+i).innerHTML = "Autor: "+this.usuario1.nombre;

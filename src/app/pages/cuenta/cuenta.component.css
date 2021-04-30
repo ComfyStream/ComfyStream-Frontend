@@ -1,8 +1,4 @@
-.card {
-    width: 18rem;
-    text-align: center;
-    color: #000;
-    background: rgb(223, 223, 223);
-    margin-left: 5%;
-    cursor: pointer;
+.row {
+    padding: 15px;
+    padding-top: 30px;
 }

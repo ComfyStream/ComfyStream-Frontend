@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { Chat } from '../../models/chat';
-import { ChatService } from '../../services/chat.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { ChatService } from "../../services/chat.service";
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +12,7 @@ export class NavbarComponent implements OnInit {
 
   public usuario = false;
   public profesional: boolean = false;
+  public admin: boolean = false;
 
 
   constructor(private usuarioService:UsuarioService,
@@ -25,6 +25,9 @@ export class NavbarComponent implements OnInit {
 
       if(localStorage.getItem('profesional')=== "true"){
         this.profesional = true;
+      }
+      if((await this.usuarioService.getUsuario()).admin){
+        this.admin = true;
       }
     }
   }

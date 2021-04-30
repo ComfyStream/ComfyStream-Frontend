@@ -47,10 +47,10 @@ describe('Mis asistencias', () => {
   });
   it('Obtiene asistencias', () => {
     const asistencias:Asistencia[] = [{_id: "123456", eventoId:"1123344", asistenteId:"31313131"},{_id: "654321", eventoId:"21212121", asistenteId:"33221133"}]
-    spyOn(servicio, "getMisAsistencias").and.callFake(()=>Promise.resolve(asistencias));
+    spyOn(servicio, "getMisAsistencias").and.callFake(() => Promise.resolve(asistencias));
     component.ngOnInit();
     expect(servicio.getMisAsistencias).toHaveBeenCalled();
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(component.eventos.length).toBe(2)
     })
  
@@ -61,7 +61,7 @@ describe('Mis asistencias', () => {
     component.ngOnInit();
     expect(servicio.getMisAsistencias).toHaveBeenCalled();
     component.mostrarEvento("123456");
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(location.path()).toBe("/evento/123456")
     })
  

@@ -48,10 +48,10 @@ describe('Pagina de inicio', () => {
 
   it('Obtiene eventos', () => {
     const eventos:Evento[] = [{_id: "123456", titulo:"test1"},{_id: "654321", titulo:"test2"}]
-    spyOn(servicio, "getEventos").and.callFake(()=>Promise.resolve(eventos));
+    spyOn(servicio, "getEventos").and.callFake(() => Promise.resolve(eventos));
     component.ngOnInit();
     expect(servicio.getEventos).toHaveBeenCalled();
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(component.eventos.length).toBe(2)
     })
  
@@ -62,7 +62,7 @@ describe('Pagina de inicio', () => {
     component.ngOnInit();
     expect(servicio.getEventos).toHaveBeenCalled();
     component.mostrarEvento("123456");
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(location.path()).toBe("/evento/123456")
     })
  

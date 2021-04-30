@@ -37,8 +37,8 @@
                             <small *ngIf="categoriaCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
                         <div class="form-group">
-                            <label for="subcategoria">Subcategoría</label>
-                            <input type="text" class="form-control" id="subcategoria" formControlName="subCategoria">
+                            <label for="subCategoria">Subcategoría</label>
+                            <input type="text" class="form-control" id="subCategoria" formControlName="subCategoria">
                         </div>
                         <div class="form-group">
                             Evento para un único asistente &nbsp; <input type="checkbox" formControlName="esPersonal">
@@ -70,6 +70,7 @@
                             <label for="img">Imagen *</label>
                             <input type="file" class="form-control" id="img" formControlName="img" (change)="cambiarImagen($event)" accept="image/x-png,image/gif,image/jpeg" [class.is-invalid]="imgNoValido">
                             <small *ngIf="imgCampoRequerido" class="text-danger">Campo requerido</small>
+                            <small *ngIf="formatoNoValido" class="text-danger">Debe elegir una imagen</small>
                         </div>
                     </div>
                 </div>

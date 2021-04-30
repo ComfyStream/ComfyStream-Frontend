@@ -64,10 +64,10 @@ describe('Mis eventos', () => {
   });
   it('Obtener el evento por id', () => {
     const evento:Evento = {_id: "123456", titulo:"test1"}
-    spyOn(servicio, "getEventoPorID").withArgs("123456").and.callFake(()=>Promise.resolve(evento));
+    spyOn(servicio, "getEventoPorID").withArgs("123456").and.callFake(() => Promise.resolve(evento));
     component.ngOnInit();
     expect(servicio.getEventoPorID).toHaveBeenCalled();
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(component.evento.titulo).toMatch("test1")
     })
  
@@ -89,7 +89,7 @@ describe('Mis eventos', () => {
     spyOn(asistenciaServicio, "crearAsistencia");
     component.asistir();
     expect(asistenciaServicio.crearAsistencia).not.toHaveBeenCalled();
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(location.path()).toBe("/login")
     })
 

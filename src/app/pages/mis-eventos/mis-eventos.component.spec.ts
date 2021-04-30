@@ -64,10 +64,10 @@ describe('Mis eventos', () => {
     expect(localStorage.setItem('profesional', 'true'));
     expect(localStorage.getItem('profesional')).toBe('true');
     const eventos:Evento[] = [{_id: "123456", titulo:"test1"},{_id: "654321", titulo:"test2"}]
-    spyOn(servicio, "getMisEventos").and.callFake(()=>Promise.resolve(eventos));
+    spyOn(servicio, "getMisEventos").and.callFake(() => Promise.resolve(eventos));
     component.ngOnInit();
     expect(servicio.getMisEventos).toHaveBeenCalled();
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(component.misEventos.length).toBe(2)
     })
  
@@ -80,7 +80,7 @@ describe('Mis eventos', () => {
     component.ngOnInit();
     expect(servicio.getMisEventos).toHaveBeenCalled();
     component.mostrarEvento("123456");
-    fixture.whenStable().then(()=>{
+    fixture.whenStable().then(() => {
         expect(location.path()).toBe("/evento/123456")
     })
  

@@ -39,7 +39,8 @@
         <div class="form-group">
             <label for="img">Foto de usuario</label>
             <input type="file" class="form-control" id="img" name="img" formControlName="img" accept="image/x-png,image/jpeg" [class.is-invalid]="imgCampoRequerido" (change)="cambiarImagen($event)">
-            <small *ngIf="imgCampoRequerido" class="text-danger">Foto de usuario requerida</small>
+            <small *ngIf="imgCampoRequerido" class="text-danger">Foto de usuario obligatoria como profesional</small>
+            <small *ngIf="formatoNoValido" class="text-danger">Debe elegir una imagen</small>
         </div>
 
         <div class="form-group">
@@ -76,18 +77,21 @@
             </div>
 
         </div>
-
+        <div class="form-group">
+            <input type="checkbox" name="terminos" id="terminos" formControlName="terminos"> Aceptar los <a routerLink="/ToS" class="text-primary m-l-5 cursor">Términos y condiciones</a><br>
+            <small *ngIf="tycRequerido" style="color: red;">Debe aceptar los términos y condiciones</small>
+        </div>
         <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Registrarse</button>
 
         <div class="form-group m-b-0">
             <div class="col-sm-12 text-center">
-                <a routerLink="/login" class="text-primary m-l-5"><b>¿Ya tienes cuenta? Inicia sesión aquí</b></a>
+                <a routerLink="/login" class="text-primary m-l-5 cursor"><b>¿Ya tienes cuenta? Inicia sesión aquí</b></a>
             </div>
         </div>
 
         <div class="form-group m-b-0">
             <div class="col-sm-12 text-center">
-                <a routerLink="/" class="text-primary m-l-5"><b>Volver a la web</b></a>
+                <a routerLink="/" class="text-primary m-l-5 cursor"><b>Volver a la web</b></a>
             </div>
         </div>
 

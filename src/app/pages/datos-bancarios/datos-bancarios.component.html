@@ -1,0 +1,53 @@
+<div *ngIf="usuario">
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6 ">
+            <div class="card" style="margin-top: 40px;">
+                <div class="card-body formulario">
+                    <h4 class="card-title">Datos Bancarios</h4>
+
+
+                    <form class="form p-t-20" [formGroup]="datosBancariosForm" (submit)="editarDatosBancarios()">
+
+                        <div class="form-group">
+                            <label for="cuenta">Cuenta Bancaria</label>
+                            <div class="input-group">
+
+                                <input type="text" class="form-control" id="cuenta" formControlName="cuenta">
+                                <small *ngIf="cuentaCampoRequerido" class="text-danger">Campo requerido</small>
+                                <small *ngIf="validarCuentaM" class="text-danger">IBAN demasiado largo</small>
+                                <small *ngIf="validarCuentaMin" class="text-danger">IBAN demasiado corto</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="titular">Titular</label>
+                            <div class="input-group">
+
+                                <input type="text" class="form-control" id="titular" formControlName="titular">
+                                <small *ngIf="titularCampoRequerido" class="text-danger">Campo requerido</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contrasena">Contraseña</label>
+                            <div class="input-group">
+
+                                <input type="password" class="form-control" id="contrasena" formControlName="contrasena">
+                                <small *ngIf="contrasenaCampoRequerido" class="text-danger">Campo requerido</small>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Guardar cambios
+                    </button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

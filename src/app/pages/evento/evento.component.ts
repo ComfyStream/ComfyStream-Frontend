@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { EventoService } from '../../services/evento.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Evento } from 'src/app/models/evento';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { AsistenciaService } from '../../services/asistencia.service';
-import Swal from 'sweetalert2';
-import { ChatService } from '../../services/chat.service';
-import { Usuario } from '../../models/usuario';
-import { Chat } from 'src/app/models/chat';
+import { Component, OnInit } from "@angular/core";
+import { EventoService } from "../../services/evento.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Evento } from "src/app/models/evento";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { AsistenciaService } from "../../services/asistencia.service";
+import { ChatService } from "../../services/chat.service";
+import { Usuario } from "../../models/usuario";
+import { Chat } from "src/app/models/chat";
+import { ValoracionService } from "src/app/services/valoracion.service";
 
 @Component({
   selector: 'app-evento',
@@ -35,24 +35,32 @@ export class EventoComponent implements OnInit {
   public activo= false;
   public asistentes: Usuario[] =[];
   public editable=false;
+  public puedoValorar = false;
+
 
   constructor(private eventoService: EventoService,
     private asistenciaService: AsistenciaService,
     private activatedRoute: ActivatedRoute,
     private chatService : ChatService,
     private usuarioService: UsuarioService,
+    private valoracionService: ValoracionService,
     private router:Router) {
     }
 
   async ngOnInit() {
-    this.activatedRoute.params.subscribe( params => {
+    this.activatedRoute.params.subscribe( (params) => {
       this.eventoId = params['id']; 
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
+
+    this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
+    this.puedoValorar = await this.valoracionService.puedoValorar(this.evento.profesional);
+
+
     this.datosEvento();
     this.eventoAntiguo();
 
-    this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
+    
     
     
     if(localStorage.getItem("token")){
@@ -79,10 +87,7 @@ export class EventoComponent implements OnInit {
     if(!localStorage.getItem("token")){
       this.cargando = false;
     }
-    
-    console.log(this.esMio)
-      console.log(this.asistentes.length == 0);
-      console.log(this.eventoPasado);
+
     
   }
 
@@ -144,6 +149,10 @@ export class EventoComponent implements OnInit {
   }
   entrarEvento(){
     window.open(this.urlUsuario);
+  }
+  valorar(){
+    this.router.navigateByUrl("/valorar/"+this.evento.profesional);
+
   }
 
   async iniciarChat(){

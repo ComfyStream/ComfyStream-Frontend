@@ -1,15 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Evento } from 'src/app/models/evento';
-import { Usuario } from 'src/app/models/usuario';
-import { AsistenciaService } from 'src/app/services/asistencia.service';
-import { EventoService } from 'src/app/services/evento.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-import { environment } from 'src/environments/environment';
-
-
-
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Evento } from "src/app/models/evento";
+import { Usuario } from "src/app/models/usuario";
+import { AsistenciaService } from "src/app/services/asistencia.service";
+import { EventoService } from "src/app/services/evento.service";
+import { UsuarioService } from "src/app/services/usuario.service";
+import { IPayPalConfig, ICreateOrderRequest } from "ngx-paypal";
 
 @Component({
   selector: 'app-asistir',
@@ -29,14 +25,14 @@ export class AsistirComponent implements OnInit {
     private eventoService: EventoService) { }
 
   async ngOnInit() {
-    this.activatedRoute.params.subscribe( params => {
+    this.activatedRoute.params.subscribe( (params) => {
       this.eventoId = params['id']; 
     });
     this.initConfig();
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     const precio = this.evento.precio.toString()
-    console.log(precio);
+
 
     
 }
@@ -76,33 +72,33 @@ export class AsistirComponent implements OnInit {
         layout: 'vertical'
     },
     onApprove: (data, actions) => {
-        console.log('onApprove - transaction was approved, but not authorized', data, actions);
-        actions.order.get().then(details => {
-            console.log('onApprove - you can get full order details inside onApprove: ', details);
+        //console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then((details) => {
+           // console.log('onApprove - you can get full order details inside onApprove: ', details);
             
             
         });
 
     },
     onClientAuthorization: (data) => {
-      console.log("onClientAuthorization");
-        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+
+        //console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         const urlPago: string = data["links"][0]["href"];
         this.comprar(urlPago);
         
     },
     onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
-        console.log("onCancel");
+        //console.log('OnCancel', data, actions);
+
 
     },
-    onError: err => {
-        console.log('OnError', err);
-        console.log("onError");
+    onError: (err) => {
+       // console.log('OnError', err);
+
     },
     onClick: (data, actions) => {
-        console.log('onClick', data, actions);
-        console.log("onClick");
+        //console.log('onClick', data, actions);
+
     },
 };
 }
@@ -135,13 +131,13 @@ export class AsistirComponent implements OnInit {
     if(!localStorage.getItem("token")){
       this.router.navigateByUrl("/login")
     }else{    
-      console.log(this.evento._id);
+
     const data = {
       eventoId: this.evento._id,
       pagoPaypalUrl: pago
     }
     this.asistenciaService.crearAsistencia(data);
-        console.log("asistido");
+
     this.router.navigateByUrl("/mis-asistencias")
 
   }}

@@ -14,7 +14,7 @@
 .descripcion-container {
     border: 1px solid rgb(156, 156, 156);
     text-align: center;
-    margin: 1%;
+    margin-left: 1%;
 }
 
 .descripcion-titulo {
@@ -53,7 +53,7 @@ a.botones:hover {
     }
 }
 
-.asistir {
+.div-derecha {
     margin-right: 1%;
     background-color: rgb(52, 58, 64);
     padding-top: 20px;
@@ -66,6 +66,10 @@ a.botones:hover {
 .asistentes {
     text-align: center;
     margin-top: 20px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 

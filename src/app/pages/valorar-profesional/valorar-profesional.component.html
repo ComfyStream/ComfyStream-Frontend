@@ -1,0 +1,53 @@
+<div class="wrapper" *ngIf="puedoValorar && profesional">
+
+    <div class="row">
+
+        <div class="col-md-2"></div>
+
+        <div class="col-md-3 info" *ngIf="profesional.img">
+            <img class="card-img-top img-hover-zoom" src={{profesional.img}} alt="Card image cap" width="100%">
+        </div>
+        <div class="col-md-3 info" *ngIf="!profesional.img">
+            <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
+        </div>
+
+        <div class="col-md-1"></div>
+        <div class="col-md-4 py-2">
+            <h2 style="text-align: left; padding-top: 50px;">{{profesional.nombre}}</h2>
+            <h5 style="text-align: left;padding-top: 10px;"><strong>Email:</strong> {{profesional.email}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm'}}</h5>
+            <h5 style="text-align: left;"><strong>Sector:</strong> {{profesional.sector}}</h5>
+            <h5 style="text-align: left;"><strong>Sobre mí:</strong> {{profesional.descripcion}}</h5>
+
+
+
+
+            <ngb-rating [(rate)]="mediaEstrellas" [readonly]="true" [max]="5"></ngb-rating> ( {{numeroValoraciones}} valoraciones )
+
+        </div>
+
+        <div class="col-md-1"></div>
+
+    </div><br><br>
+
+    <form class="valorarForm" autocomplete="off" [formGroup]="valorarForm" (ngSubmit)="submit()" id="valorarForm" style="font-size: 25px;">
+        <h2 class="form-signin-heading" style="text-align: center;">Valorar al profesional</h2>
+        <hr>
+
+
+        <label>Puntuar al profesional </label> &nbsp;
+        <ngb-rating [(rate)]="currentRate" [max]="5" [resettable]="true"></ngb-rating>
+        <div class="form-group">
+            <label for="mensaje">Comentar</label>
+            <textarea type="text" rows="4" class="form-control" name="mensaje" id="mensaje" formControlName="mensaje" [class.is-invalid]="mensajeRequerido"></textarea>
+            <small *ngIf="mensajeRequerido" style="color: red; font-size: 15px;">Comentario requerido</small>
+        </div>
+
+
+
+
+        <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Enviar valoración</button>
+
+
+    </form>
+</div>

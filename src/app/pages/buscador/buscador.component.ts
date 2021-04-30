@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { Evento } from '../../models/evento';
-import { EventoService } from '../../services/evento.service';
-import { AsistenciaService } from '../../services/asistencia.service';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { Evento } from "../../models/evento";
+import { EventoService } from "../../services/evento.service";
+import { AsistenciaService } from "../../services/asistencia.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-buscador',
@@ -11,14 +11,18 @@ import { Router } from '@angular/router';
 })
 export class BuscadorComponent{
 
+  currentRate = 0;
+
   datos:any = {
     titulo:"",
     categoria:"",
     precioMin:"",
     precioMax:"",
     fechaMin:"",
-    fechaMax:""
+    fechaMax:"",
+    estrellas: ""
   }
+  
   precioMinError:boolean = false
   precioMaxError:boolean = false
   
@@ -48,7 +52,7 @@ export class BuscadorComponent{
   }
 
   async buscar(){
-    console.log(this.datos)
+    this.datos["estrellas"] = this.currentRate;
     this.eventos = await this.eventoService.buscar(this.datos)
   }
 

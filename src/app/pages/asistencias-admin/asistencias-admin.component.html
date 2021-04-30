@@ -1,0 +1,76 @@
+<div *ngIf="administrador">
+    <div class="row m-0">
+        <div class="col"></div>
+        <div class="col-md-8 text-center mt-5">
+            <h1>Lista de todas las asistencias</h1>
+        </div>
+        <div class="col"></div>
+    </div>
+    <br>
+    <div class="mb-5 d-none d-lg-block d-xl-block">
+        <div class="row m-0">
+            <div class="col"></div>
+            <div class="col-md-6">
+                <div *ngFor="let asistencia of asistencias | paginate: { itemsPerPage: 9, currentPage: p }">
+                    <div class="asistencia  mb-5">
+                        <div class="row m-0 ">
+                            <h5 class="m-auto py-2">{{asistencia.titulo_evento}}</h5>
+                        </div>
+                        <div class="row m-0 ">
+                            <div class="col-md-5 ml-2 my-3 ">
+                                <h6>Asistente: {{asistencia.asistente}}</h6>
+                                <h6>Profesional: {{asistencia.profesional}}</h6>
+                            </div>
+                            <div class="ml-auto mr-5 my-3">
+                                <h6>Fecha de compra : {{asistencia.fecha_compra | date: 'dd/MM/yy HH:mm'}}</h6>
+                                <h6>Precio del evento: {{asistencia.precio_evento}}€</h6>
+                            </div>
+                        </div>
+                        <div class="row m-0 ">
+                            <h6 class="m-auto pb-2">Registro de Paypal: {{asistencia.paypalId}}</h6>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="col"></div>
+        </div>
+    </div>
+    <div class="d-none d-md-block d-block d-lg-none d-xl-none text-center">
+        <div class="row m-0">
+            <div class="col"></div>
+            <div class="col-md-10">
+                <div *ngFor="let asistencia of asistencias | paginate: { itemsPerPage: 9, currentPage: p }">
+
+
+                    <div class="asistencia mb-3 py-3 d-none d-md-block d-block d-lg-none d-xl-none ">
+                        <div class=" text-center">
+
+                            <h5 class="m-auto py-2">{{asistencia.titulo_evento}}</h5>
+                            <h6>Asistente: {{asistencia.asistente}}</h6>
+                            <h6>Profesional: {{asistencia.profesional}}</h6>
+
+                            <h6>Fecha de compra : {{asistencia.fecha_compra | date: 'dd/MM/yy HH:mm'}}</h6>
+                            <h6>Precio del evento: {{asistencia.precio_evento}}€</h6>
+
+                            <h6 class="m-auto py-2">Registro de Paypal: {{asistencia.paypalId}}</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col"></div>
+        </div>
+
+
+
+    </div>
+
+    <div style="text-align: center;">
+        <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </div>
+</div>

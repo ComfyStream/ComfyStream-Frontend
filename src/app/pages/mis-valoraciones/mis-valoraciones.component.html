@@ -1,0 +1,64 @@
+<br>
+<div class="d-none d-lg-block d-xl-block">
+    <h2 style="text-align: center; margin-top: 40px;">Mis valoraciones </h2>
+    <br>
+    <div class="col"></div>
+    <div class="row m-0" *ngIf="misValoraciones.length>0; else sinValoraciones">
+        <div class="col"></div>
+        <div class="col-md-6 ">
+            <div class="row mb-3 valoracion" *ngFor="let valoracion of misValoraciones; let i = index">
+                <div class="col-md-8 ">
+                    <h5 class="mt-3">Valoración a <a routerLink="/detalles-profesional/{{valoracion.profesional}}">{{valoracion.nombreProfesional}}</a></h5>
+                    <div>
+                        {{valoracion.nombreAutor}}
+                        <ngb-rating [max]="5" [(rate)]="valoracion.estrellas" [readonly]="true"></ngb-rating><br> Valorado el : {{valoracion.fecha | date: 'dd/MM/yy HH:mm'}}
+
+                    </div>
+                </div>
+                <div class="col-md-4 boton">
+                    <a class="botones" (click)="borrarValoracion(valoracion._id)">Borrar valoración</a>
+                </div>
+                <p style="font-size: large; padding-left: 15px; padding-right: 15px;"> {{valoracion.mensaje}}</p>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <ng-template #sinValoraciones>
+
+        <h5 style="text-align: center;">No has Valorado a ningún profesional</h5>
+
+    </ng-template>
+</div>
+
+<div class="d-none d-md-block d-block d-lg-none d-xl-none ">
+    <h2 style="text-align: center; margin-top: 40px;">Mis valoraciones </h2>
+    <br>
+    <div class="col"></div>
+    <div class="row m-0" *ngIf="misValoraciones.length>0; else sinValoraciones">
+        <div class="col"></div>
+        <div class="col-md-8 ">
+            <div class="row mb-3 valoracion" *ngFor="let valoracion of misValoraciones; let i = index">
+                <div class="col ">
+                    <h5 class="mt-3 text-center">Valoración a <a routerLink="/detalles-profesional/{{valoracion.profesional}}">{{valoracion.nombreProfesional}}</a></h5>
+                    <div class="text-center">
+                        {{valoracion.nombreAutor}}
+                        <ngb-rating [max]="5" [(rate)]="valoracion.estrellas" [readonly]="true"></ngb-rating><br> Valorado el : {{valoracion.fecha | date: 'dd/MM/yy HH:mm'}}
+                        <p> {{valoracion.mensaje}}</p>
+                    </div>
+                </div>
+
+
+
+                <a class="botones w-100" (click)="borrarValoracion(valoracion._id)">Borrar valoración</a>
+
+            </div>
+
+        </div>
+        <div class="col"></div>
+    </div>
+    <ng-template #sinValoraciones>
+
+        <h5 style="text-align: center;">No has Valorado a ningún profesional</h5>
+
+    </ng-template>
+</div>

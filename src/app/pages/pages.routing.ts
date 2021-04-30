@@ -12,13 +12,22 @@ import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 import { ChatComponent } from './chat/chat.component';
 import { MisChatsComponent } from './mis-chats/mis-chats.component';
 import { MiPerfilComponent} from './mi-perfil/mi-perfil.component';
+import { ContrasenaComponent} from './contrasena/contrasena.component';
+import { DatosBancariosComponent} from './datos-bancarios/datos-bancarios.component';
 import { AsistirComponent } from './asistir/asistir.component';
 import { PoliticaPrivacidadComponent } from './politica-privacidad/politica-privacidad.component';
 import { TerminosUsoComponent } from './terminos-uso/terminos-uso.component';
 import { SoporteComponent } from './soporte/soporte.component';
 import { EditarEventoComponent } from './editar-evento/editar-evento.component';
 import { BuscadorComponent } from './buscador/buscador.component';
+import { SerProfesionalComponent } from './ser-profesional/ser-profesional.component';
+import { DetallesProfesionalComponent } from './detalles-profesional/detalles-profesional.component';
+import { ValorarProfesionalComponent } from './valorar-profesional/valorar-profesional.component';
+import { MisValoracionesComponent } from './mis-valoraciones/mis-valoraciones.component';
+import { AsistenciasAdminComponent } from './asistencias-admin/asistencias-admin.component';
 
+//Guards
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
     { 
@@ -37,15 +46,23 @@ const routes: Routes = [
             { path: 'mi-cuenta', component: CuentaComponent},
             { path: 'crear-evento', component: CrearEventoComponent},
             { path: 'mi-perfil', component: MiPerfilComponent},
+            { path: 'contrasena', component: ContrasenaComponent},
+            { path: 'datos-bancarios', component: DatosBancariosComponent},
             { path: 'asistir/:id', component: AsistirComponent},
             { path: 'policy', component: PoliticaPrivacidadComponent},
             { path: 'ToS', component: TerminosUsoComponent},
             { path: 'support', component: SoporteComponent},
+            { path: 'detalles-profesional/:id', component: DetallesProfesionalComponent},
             { path: 'buscador', component: BuscadorComponent},
+            { path: 'valorar/:id', component: ValorarProfesionalComponent},
+            { path: 'mis-valoraciones', component: MisValoracionesComponent},
+            { path: 'ser-profesional/:id', component: SerProfesionalComponent},
+            { path: 'asistencias', canActivate: [AdminGuard], component: AsistenciasAdminComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },
 ];
+
 
 @NgModule({
     imports: [ RouterModule.forChild(routes) ],
