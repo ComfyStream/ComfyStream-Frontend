@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
     private chatService: ChatService) { }
 
   async ngOnInit() {
-    this.activatedRoute.params.subscribe( params => {
+    this.activatedRoute.params.subscribe( (params) => {
       this.chatId = params['id']; 
     });
     
@@ -42,7 +42,7 @@ export class ChatComponent implements OnInit {
     });
 
     this.cargarUsuarios()
-    .then(()=>{
+    .then(() => {
       for(let i = 0; i< this.mensajes.length; i++){
         if(this.mensajes[i].autor === this.usuario1._id){
           document.getElementById('autor'+i).innerHTML = "Autor: "+this.usuario1.nombre;

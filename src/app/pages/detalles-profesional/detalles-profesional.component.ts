@@ -34,7 +34,7 @@ export class DetallesProfesionalComponent implements OnInit {
     private router: Router) { }
 
   async ngOnInit() {
-    this.activatedRoute.params.subscribe( params => {
+    this.activatedRoute.params.subscribe( (params) => {
       this.usuarioId = params['id']; 
     });
     

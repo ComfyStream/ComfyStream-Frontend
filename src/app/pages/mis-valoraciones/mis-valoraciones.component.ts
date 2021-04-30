@@ -27,7 +27,7 @@ export class MisValoracionesComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText : "Borrar",
       cancelButtonText : "Cancelar"
-    }).then((result)=> {
+    }).then((result) => {
       if(result.value){
         this.valoracionService.borrarValoracion(valoracionId);
       }

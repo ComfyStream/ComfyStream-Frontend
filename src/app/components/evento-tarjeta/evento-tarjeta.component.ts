@@ -116,12 +116,12 @@ export class EventoTarjetaComponent implements OnInit{
     }
   }
 
-  comenzarEvento(){
-    window.open(this.urlProfesional);
-  }
-  entrarEvento(){
-    window.open(this.urlUsuario);
-  }
+  // comenzarEvento(){
+  //   window.open(this.urlProfesional);
+  // }
+  // entrarEvento(){
+  //   window.open(this.urlUsuario);
+  // }
 
   async iniciarChat(){
     if(!localStorage.getItem("token")){

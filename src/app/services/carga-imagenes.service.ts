@@ -15,7 +15,7 @@ export class CargaImagenesService {
 
   referenciaCloudStorage(nombreArchivo: string):Promise<string>{
     
-    return new Promise<string>(resolve => {
+    return new Promise<string>((resolve) => {
       let url:any;
       this.storage.ref(nombreArchivo).getDownloadURL().subscribe((URL) => {
          resolve(URL)

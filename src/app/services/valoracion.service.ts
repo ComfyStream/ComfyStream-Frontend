@@ -21,8 +21,8 @@ export class ValoracionService {
 
   getValoracionesPorId(id:string):Promise<Valoracion[]>{
     return new Promise<Valoracion[]>(
-      resolve=> {
-        this.http.get(`${base_url}/valoraciones-recibidas/${id}`).subscribe(data=>{
+      (resolve) => {
+        this.http.get(`${base_url}/valoraciones-recibidas/${id}`).subscribe((data) => {
           if(data['msg'] == "Exito"){            
           const valoraciones = data["valoraciones"];
           resolve(valoraciones);
@@ -32,12 +32,12 @@ export class ValoracionService {
  }
  puedoValorar(profesionalId:string):Promise<boolean>{
   return new Promise<boolean>(
-    resolve=> {
+    (resolve) => {
       this.http.get(`${base_url}/puede-valorar/${profesionalId}`,{
         headers: { 
           'x-token': this.token
         }
-      }).subscribe(data=>{
+      }).subscribe((data) => {
         const puede = data["puede"];
         resolve(puede);
 
@@ -47,14 +47,14 @@ export class ValoracionService {
 
 valorar( datos: any):Promise<Valoracion>{
 
-  return new Promise<Valoracion> (resolve=> {
+  return new Promise<Valoracion> ((resolve) => {
 
     this.http.post(`${ base_url }/valoracion/nueva`, datos,{
       headers: { 
         'x-token': this.token
       }
     })
-    .subscribe(data =>{
+    .subscribe((data) => {
       const msg= data["msg"];
       if(msg == "Valoración creada"){
         Swal.fire('Guardado', msg , 'success');
@@ -70,12 +70,12 @@ valorar( datos: any):Promise<Valoracion>{
 }
 
 borrarValoracion(id:string): Promise<string> {
-  return new Promise<string>(resolve => {
+  return new Promise<string>((resolve) => {
     this.http.delete(`${base_url}/valoracion/eliminar/${id}`,{
       headers: { 
         'x-token': this.token
       }
-    }).subscribe(res=>{
+    }).subscribe((res) => {
       const data = res["msg"];
       if(data == "Valoración eliminada"){
         Swal.fire('Borrado', 'Valoración borrada correctamente', 'success');
@@ -92,12 +92,12 @@ borrarValoracion(id:string): Promise<string> {
 
 getMisValoraciones():Promise<Valoracion[]>{
   return new Promise<Valoracion[]>(
-    resolve=> {
+    (resolve) => {
       this.http.get(`${base_url}/mis-valoraciones`,{
         headers: { 
           'x-token': this.token
         }
-      }).subscribe(data=>{
+      }).subscribe((data) => {
         const valoraciones = data["valoraciones"];
         resolve(valoraciones);
 
