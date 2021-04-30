@@ -20,10 +20,10 @@ export class ChatService {
       'x-token': localStorage.getItem('token')
     });
     return new Promise<Chat[]>(
-      resolve=> {
+      (resolve) => {
         this.http.get(`${base_url}/mis-chats`,{
           headers
-        }).subscribe(data=>{
+        }).subscribe((data) => {
           const chats = data["chats"];
           resolve(chats);
         });
@@ -31,8 +31,8 @@ export class ChatService {
   }
 
   getMensajesDelChat(chatId:string):Promise<Mensaje[]>{
-    return new Promise<Mensaje[]>(resolve => {
-      this.http.get(`${base_url}/chat/${chatId}`).subscribe(data => {
+    return new Promise<Mensaje[]>((resolve) => {
+      this.http.get(`${base_url}/chat/${chatId}`).subscribe((data) => {
         const mensajes = data['mensajes']
         resolve(mensajes)
       })
@@ -43,8 +43,8 @@ export class ChatService {
     const headers = new HttpHeaders({
       'x-token': localStorage.getItem('token')
     });
-    return new Promise<Chat>(resolve => {
-      this.http.post(`${base_url}/chat/nuevo`, {usuario2ID}, {headers}).subscribe(data => {
+    return new Promise<Chat>((resolve) => {
+      this.http.post(`${base_url}/chat/nuevo`, {usuario2ID}, {headers}).subscribe((data) => {
         const chat = data['chat']
         resolve(chat)
       })
@@ -55,8 +55,8 @@ export class ChatService {
     const headers = new HttpHeaders({
       'x-token': localStorage.getItem('token')
     });
-    return new Promise<Mensaje>(resolve => {
-      this.http.post(`${base_url}/mensaje/nuevo`, datos, {headers}).subscribe(data => {
+    return new Promise<Mensaje>((resolve) => {
+      this.http.post(`${base_url}/mensaje/nuevo`, datos, {headers}).subscribe((data) => {
         const mensaje = data['mensaje']
         resolve(mensaje)
       })
@@ -68,7 +68,7 @@ export class ChatService {
       'x-token': localStorage.getItem('token')
     });
     return new Promise<Boolean>(resolve => {
-      this.http.post(`${base_url}/chat/existe`, {usuario2ID}, {headers}).subscribe(data => {
+      this.http.post(`${base_url}/chat/existe`, {usuario2ID}, {headers}).subscribe((data) => {
         const encontrado = data['encontrado']
         resolve(encontrado)
       })

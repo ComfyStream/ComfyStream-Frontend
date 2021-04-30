@@ -49,7 +49,7 @@ export class EventoComponent implements OnInit {
     }
 
   async ngOnInit() {
-    this.activatedRoute.params.subscribe( params => {
+    this.activatedRoute.params.subscribe( (params) => {
       this.eventoId = params['id']; 
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);

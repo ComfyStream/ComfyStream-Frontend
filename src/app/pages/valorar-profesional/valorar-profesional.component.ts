@@ -34,7 +34,7 @@ export class ValorarProfesionalComponent implements OnInit {
     }
 
   async ngOnInit() {
-    this.activatedRoute.params.subscribe( params => {
+    this.activatedRoute.params.subscribe( (params) => {
       this.profesionalId = params['id']; 
     });
     this.puedoValorar = await this.valoracionService.puedoValorar(this.profesionalId);

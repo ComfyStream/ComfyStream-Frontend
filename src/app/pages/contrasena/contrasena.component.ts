@@ -39,7 +39,7 @@ export class ContrasenaComponent implements OnInit {
   }
 
   passwordsIguales(passName1:string, passName2:string){
-    return(formGroup : FormGroup) =>{
+    return(formGroup : FormGroup) => {
 
     const pass1Control = formGroup.get(passName1);
     const pass2Control = formGroup.get(passName2);

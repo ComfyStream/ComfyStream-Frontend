@@ -20,7 +20,7 @@ export class SerProfesionalComponent implements OnInit {
   async ngOnInit(){
     
     if(localStorage.getItem("token")){
-      this.activatedRoute.params.subscribe( params => {
+      this.activatedRoute.params.subscribe( (params) => {
         this.usuarioId = params['id']; 
       });
       this.usuario = await (this.usuarioService.getUsuarioPorId(localStorage.getItem("usuarioId")));
