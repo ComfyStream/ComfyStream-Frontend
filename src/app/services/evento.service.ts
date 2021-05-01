@@ -165,7 +165,7 @@ export class EventoService {
         this.router.navigate(['/mis-eventos'])
       }, (err) => {
         console.log(err)
-        Swal.fire('Algo salió mal', err.error.msg, 'error');
+        Swal.fire('Error de Zoom',"Vuelva a enlazar la cuenta de Zoom y borre el evento creado", 'error');
       });
     })
   }

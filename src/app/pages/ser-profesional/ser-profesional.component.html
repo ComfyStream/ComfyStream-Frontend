@@ -34,6 +34,8 @@
                         <div class="input-group">
                             <input type="text" class="form-control" id="cuentaBancariaIBAN" formControlName="cuentaBancariaIBAN" [class.is-invalid]="ibanNoValido">
                             <small *ngIf="ibanCampoRequerido" class="text-danger">IBAN requerido</small>
+                            <small *ngIf="validarCuentaM" class="text-danger">IBAN debe tener 24 caracteres sin espacios</small>
+                            <small *ngIf="validarCuentaMin" class="text-danger">IBAN debe tener 24 caracteres sin espacios</small>
                         </div>
                     </div>
 
