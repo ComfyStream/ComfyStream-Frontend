@@ -16,8 +16,8 @@
 
                                 <input type="text" class="form-control" id="cuenta" formControlName="cuenta">
                                 <small *ngIf="cuentaCampoRequerido" class="text-danger">Campo requerido</small>
-                                <small *ngIf="validarCuentaM" class="text-danger">IBAN demasiado largo</small>
-                                <small *ngIf="validarCuentaMin" class="text-danger">IBAN demasiado corto</small>
+                                <small *ngIf="validarCuentaM" class="text-danger">IBAN debe tener 24 caracteres sin espacios</small>
+                                <small *ngIf="validarCuentaMin" class="text-danger">IBAN debe tener 24 caracteres sin espacios</small>
                             </div>
                         </div>
 
