@@ -22,7 +22,7 @@
                 <p class="card-text fecha" style="margin-bottom: 10px;"> Categoria : {{evento.categoria}}</p>
             </div>
             <div class="card-body">
-                <p class="card-text fecha" style="margin-bottom: 10px;"> Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm'}} - Duración : {{evento.duracion}} minutos</p>
+                <p class="card-text fecha" style="margin-bottom: 10px;"> Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}} - Duración : {{evento.duracion}} minutos</p>
             </div>
 
 
@@ -59,7 +59,7 @@
             <span *ngIf="usuario.numeroValoraciones>1">({{usuario.numeroValoraciones}} valoraciones)</span>
             <span *ngIf="!usuario.numeroValoraciones">(0 valoraciones)</span>
         </p>
-        <p>Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm'}} - Duración : {{evento.duracion}} minutos</p>
+        <p>Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}} - Duración : {{evento.duracion}} minutos</p>
         <p><strong>{{evento.precio }} € </strong></p>
     </div>
 
@@ -77,7 +77,7 @@
             <span *ngIf="usuario.numeroValoraciones>1" style="font-size: small;">({{usuario.numeroValoraciones}} valoraciones)</span>
             <span *ngIf="!usuario.numeroValoraciones" style="font-size: small;">(0 valoraciones)</span>
         </p>
-        <p>Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm'}} - Duración : {{evento.duracion}} minutos</p>
+        <p>Fecha : {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}} - Duración : {{evento.duracion}} minutos</p>
         <p><strong>{{evento.precio }} € </strong></p>
     </div>
 

@@ -133,12 +133,15 @@ export class EventoComponent implements OnInit {
     const datosReunion = await this.asistenciaService.getDatosReunion(eventoId);
     if(datosReunion!=null){
       const usuarioId = localStorage.getItem("usuarioId");
+      this.urlUsuario = datosReunion.join_url;
+      console.log(this.urlUsuario);
       if( usuarioId == datosReunion.userId ){
         this.urlProfesional = datosReunion.start_url;
       }
       const horaComienzo = new Date (datosReunion.start_time);
       const hoy = new Date();
-      if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime())/36e5)<=1){
+
+      if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime() )/36e5)<=1){
           this.activo= true;
       }
     } 
@@ -149,6 +152,7 @@ export class EventoComponent implements OnInit {
   }
   entrarEvento(){
     window.open(this.urlUsuario);
+    console.log(this.urlUsuario);
   }
   valorar(){
     this.router.navigateByUrl("/valorar/"+this.evento.profesional);
@@ -184,7 +188,7 @@ export class EventoComponent implements OnInit {
 
   eventoAntiguo(){
     let hoy = new Date().getTime();
-    let fecha = new Date(this.evento.fecha).getTime();
+    let fecha = new Date(this.evento.fecha).getTime()- (2*60*60*1000);
     if(fecha < hoy){
       this.eventoPasado = true;
     }

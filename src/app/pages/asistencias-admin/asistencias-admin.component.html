@@ -7,6 +7,12 @@
         <div class="col"></div>
     </div>
     <br>
+    <div *ngIf="asistencias.length ==0" style="text-align: center; ">
+        <br><br>
+        <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <div class="mb-5 d-none d-lg-block d-xl-block">
         <div class="row m-0">
             <div class="col"></div>
@@ -22,7 +28,7 @@
                                 <h6>Profesional: {{asistencia.profesional}}</h6>
                             </div>
                             <div class="ml-auto mr-5 my-3">
-                                <h6>Fecha de compra : {{asistencia.fecha_compra | date: 'dd/MM/yy HH:mm'}}</h6>
+                                <h6>Fecha de compra : {{asistencia.fecha_compra | date: 'dd/MM/yy HH:mm':'+0000'}}</h6>
                                 <h6>Precio del evento: {{asistencia.precio_evento}}€</h6>
                             </div>
                         </div>
@@ -54,7 +60,7 @@
                             <h6>Asistente: {{asistencia.asistente}}</h6>
                             <h6>Profesional: {{asistencia.profesional}}</h6>
 
-                            <h6>Fecha de compra : {{asistencia.fecha_compra | date: 'dd/MM/yy HH:mm'}}</h6>
+                            <h6>Fecha de compra : {{asistencia.fecha_compra | date: 'dd/MM/yy HH:mm':'+0000'}}</h6>
                             <h6>Precio del evento: {{asistencia.precio_evento}}€</h6>
 
                             <h6 class="m-auto py-2">Registro de Paypal: {{asistencia.paypalId}}</h6>

@@ -133,7 +133,7 @@ async subirImagen(){
   }
 
   get tycRequerido(){
-    return this.form.get('terminos').errors ? this.form.get('terminos').errors.requiredTrue && this.form.get('terminos').touched : null
+    return !this.form.get('terminos').value && this.form && this.form.get('img').touched;
   }
 
 
@@ -184,7 +184,10 @@ async subirImagen(){
   async submit(){
     Swal.showLoading();
     if(this.form.valid){
-      await this.subirImagen();
+      if(this.form.value.img){
+        await this.subirImagen();
+      }
+      
       const datos = this.form.value;
       delete datos.img;
       const msg = await this.usuarioService.registro(datos, this.urlImagen)

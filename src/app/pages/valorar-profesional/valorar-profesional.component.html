@@ -1,6 +1,7 @@
+<br><br>
 <div class="wrapper" *ngIf="puedoValorar && profesional">
 
-    <div class="row">
+    <div class="row mr-0">
 
         <div class="col-md-2"></div>
 
@@ -15,7 +16,7 @@
         <div class="col-md-4 py-2">
             <h2 style="text-align: left; padding-top: 50px;">{{profesional.nombre}}</h2>
             <h5 style="text-align: left;padding-top: 10px;"><strong>Email:</strong> {{profesional.email}}</h5>
-            <h5 style="text-align: left;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm'}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm':'+0000'}}</h5>
             <h5 style="text-align: left;"><strong>Sector:</strong> {{profesional.sector}}</h5>
             <h5 style="text-align: left;"><strong>Sobre mí:</strong> {{profesional.descripcion}}</h5>
 
@@ -50,4 +51,5 @@
 
 
     </form>
+    <br><br>
 </div>

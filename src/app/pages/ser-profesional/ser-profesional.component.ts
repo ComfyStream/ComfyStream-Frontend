@@ -29,7 +29,7 @@ export class SerProfesionalComponent implements OnInit {
         this.perfilProfesionalForm = this.fb.group({
          sector: [ "", Validators.required ],
          descripcion: [ "", Validators.required],
-         cuentaBancariaIBAN: [ "", Validators.required],
+         cuentaBancariaIBAN: [ "", [ Validators.required,Validators.maxLength(24),Validators.minLength(24)]],
          titularCuenta: [ "", Validators.required ],
          profesional: [ this.profesional , Validators.required ],
        });
@@ -64,7 +64,7 @@ export class SerProfesionalComponent implements OnInit {
     return this.perfilProfesionalForm.get('descripcion').errors ? this.perfilProfesionalForm.get('descripcion').errors.required && this.perfilProfesionalForm.get('descripcion').touched : null
   }
   get ibanNoValido(){
-    return this.ibanCampoRequerido
+    return this.ibanCampoRequerido || this.validarCuentaM || this.validarCuentaMin
   }
   get ibanCampoRequerido(){
     return this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors ? this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors.required && this.perfilProfesionalForm.get('cuentaBancariaIBAN').touched : null
@@ -75,7 +75,12 @@ export class SerProfesionalComponent implements OnInit {
   get titularCampoRequerido(){
     return this.perfilProfesionalForm.get('titularCuenta').errors ? this.perfilProfesionalForm.get('titularCuenta').errors.required && this.perfilProfesionalForm.get('titularCuenta').touched : null
   }
-
+  get validarCuentaM(){
+    return this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors ? this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors.maxlength && this.perfilProfesionalForm.get('cuentaBancariaIBAN').touched : null
+  }
+  get validarCuentaMin(){
+    return this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors ? this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors.minlength && this.perfilProfesionalForm.get('cuentaBancariaIBAN').touched : null
+  }
 
 }
 

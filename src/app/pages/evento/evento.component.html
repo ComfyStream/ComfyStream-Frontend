@@ -24,7 +24,7 @@
             </h5>
             <h5 style="text-align: left;"><strong>Categoría: </strong> {{evento.categoria}}</h5>
             <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
-            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm'}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}}</h5>
             <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
 
         </div>
@@ -32,11 +32,11 @@
         <div class="col-md-3 " style="padding-right: 5%;">
             <div class="div-derecha">
                 <div *ngIf="!asistido && !esMio">
-                    <strong>{{evento.titulo}}</strong> <br> Por: {{usuario.nombre}} <br> Dia: {{evento.fecha | date: 'dd/MM/yy HH:mm'}}<br> {{evento.precio}} € <br>
-                    <a class="botones" (click)="asistir()">Asistir</a>
+                    <strong>{{evento.titulo}}</strong> <br> Por: {{usuario.nombre}} <br> Dia: {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}}<br> {{evento.precio}} € <br>
+                    <a *ngIf="!eventoPasado" class="botones" (click)="asistir()">Asistir</a>
                 </div>
                 <div *ngIf="asistido && !esMio">
-                    <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'dd/MM/yy HH:mm'}} por un precio de {{evento.precio}} € </h6>
+                    <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}} por un precio de {{evento.precio}} € </h6>
                     <br>
                     <a *ngIf="asistido && activo" class="botones mt-2" (click)="entrarEvento()">Entrar al evento</a>
                     <a *ngIf="puedoValorar" class="botones mt-2" (click)="valorar()">Valorar al profesional</a>
@@ -96,7 +96,7 @@
             </h5>
             <h5 style="text-align: center;"><strong>Categoría: </strong> {{evento.categoria}}</h5>
             <h5 *ngIf="evento.subCategoria" style="text-align: center;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
-            <h5 style="text-align: center;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm'}}</h5>
+            <h5 style="text-align: center;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}}</h5>
             <h5 style="text-align: center;"><strong>Precio: </strong> {{evento.precio}} €</h5>
 
         </div>
@@ -115,11 +115,11 @@
         <div class="col-md-8 p-0 ">
             <div class="div-derecha">
                 <div *ngIf="!asistido && !esMio">
-                    <strong>{{evento.titulo}}</strong> <br> Por: {{usuario.nombre}} <br> Dia: {{evento.fecha | date: 'dd/MM/yy HH:mm'}}<br> {{evento.precio}} € <br>
+                    <strong>{{evento.titulo}}</strong> <br> Por: {{usuario.nombre}} <br> Dia: {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}}<br> {{evento.precio}} € <br>
                     <a class="botones" (click)="asistir()">Asistir</a>
                 </div>
                 <div *ngIf="asistido && !esMio">
-                    <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'dd/MM/yy HH:mm'}} por un precio de {{evento.precio}} € </h6>
+                    <h6 class="card-subtitle">Asistes a este evento el {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}} por un precio de {{evento.precio}} € </h6>
                     <br>
                     <a *ngIf="asistido && activo" class="botones mt-2" (click)="entrarEvento()">Entrar al evento</a>
                     <a *ngIf="puedoValorar" class="botones mt-2" (click)="valorar()">Valorar al profesional</a>
