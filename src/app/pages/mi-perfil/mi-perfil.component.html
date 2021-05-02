@@ -48,9 +48,13 @@
                         <small *ngIf="descripcionCampoRequerido" class="text-danger">Campo requerido</small>
                     </div>
 
-                    <div class="col-md-4 info">
+                    <div class="col-md-4 info" *ngIf="usuario.img != 'undefined'">
                         <label for="subcategoria">Imagen actual: </label>
                         <img class="card-img-top img-hover-zoom" src={{usuario.img}} alt="Card image cap" width="100%">
+                    </div>
+                    <div class="col-md-4 info " *ngIf="usuario.img == 'undefined'">
+                        <label for="subcategoria">Imagen actual: </label>
+                        <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
                     </div>
                     <br>
                     <div class="form-group">
@@ -112,9 +116,13 @@
                     </div>
 
 
-                    <div class="col-md-4 info">
+                    <div class="col-md-4 info" *ngIf="usuario.img != 'undefined'">
                         <label for="subcategoria">Imagen actual: </label>
                         <img class="card-img-top img-hover-zoom" src={{usuario.img}} alt="Card image cap" width="100%">
+                    </div>
+                    <div class="col-md-4 info " *ngIf="usuario.img == 'undefined'">
+                        <label for="subcategoria">Imagen actual: </label>
+                        <img class="card-img-top img-hover-zoom" src="/assets/images/no_image.jpg" alt="Card image cap" width="100%">
                     </div>
                     <br>
                     <div class="form-group">

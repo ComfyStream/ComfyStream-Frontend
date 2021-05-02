@@ -25,7 +25,7 @@ export class MiPerfilComponent implements OnInit {
   async ngOnInit(){
     if(localStorage.getItem("token")){
       this.usuario = await (this.usuarioService.getUsuarioPorId(localStorage.getItem("usuarioId")));
-    
+    console.log(this.usuario);
 
      if(this.usuario.profesional){
      this.perfilProfesionalForm = this.fb.group({
