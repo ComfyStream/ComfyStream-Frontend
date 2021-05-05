@@ -125,16 +125,18 @@ export class EventoService {
     datos.append("esPersonal", formData.esPersonal )
     datos.append("precio", formData.precio )
 
-
+    
     return new Promise<Evento> ((resolve) => {
 
       this.http.post(`${ base_url }/evento/editar`, datos,{
+        
         headers: { 
           'x-token': this.token
         }
       } )
       .subscribe((data) => {
         if(data["msg"] == "El evento no es tuyo" ){
+          console.log(datos);
           Swal.fire('Algo salió mal', data["msg"], 'error');
         }
         const evento= data["evento"];
