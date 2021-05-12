@@ -79,19 +79,24 @@ export class CrearEventoComponent implements OnInit {
     }
     if(this.enlazadoZoom){
 
+      Swal.showLoading();
     
-    await this.subirImagen();
+      await this.subirImagen();
 
-    const datos = this.crearEventoForm.value;
-    delete datos.img;
-   
+      const datos = this.crearEventoForm.value;
+      delete datos.img;
+    
 
-    const evento =  await this.eventoService.crearEvento(datos, this.urlImagen);
-    const room =  await this.eventoService.crearSalaZoom(evento);
-  }else{
-    Swal.fire('Error', 'Para crear un evento debe tener enlazado Zoom', 'error');
+      const evento =  await this.eventoService.crearEvento(datos, this.urlImagen);
+      await this.eventoService.crearSalaZoom(evento);
+
+      Swal.fire('Evento creado con éxito', '', 'success');
+      this.router.navigate(['/mis-eventos']);
+    }else{
+      Swal.fire('Error', 'Para crear un evento debe tener enlazado Zoom', 'error');
+    }
   }
-  }
+
   async subirImagen(){
     let nombre = Math.random().toString() + this.imagenSubir.name; 
     await this.cargaImagenService.subirCloudStorage(nombre, this.imagenSubir);

@@ -11,6 +11,7 @@ const routes: Routes = [
 
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
+    { path: 'invitacion/:idReferido', component: RegistroComponent },
     { path: 'confirmar/:urlConfirmacion', component: ConfirmarComponent },
 
 ];

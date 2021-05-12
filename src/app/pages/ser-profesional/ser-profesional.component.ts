@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Usuario } from "../../models/usuario";
 import { UsuarioService } from "../../services/usuario.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ser-profesional',
@@ -15,7 +15,7 @@ export class SerProfesionalComponent implements OnInit {
   public usuarioId: string;
   public profesional:boolean = false;
 
-  constructor(private fb:FormBuilder, private usuarioService : UsuarioService, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb:FormBuilder, private usuarioService : UsuarioService, private activatedRoute: ActivatedRoute, private router:Router) { }
 
   async ngOnInit(){
     
@@ -44,9 +44,10 @@ export class SerProfesionalComponent implements OnInit {
       return;
     }
     if(this.profesional){
-    const datos = this.perfilProfesionalForm.value;
-    this.usuario = await this.usuarioService.editarPerfil(datos);
-
+      const datos = this.perfilProfesionalForm.value;
+      this.usuario = await this.usuarioService.editarPerfil(datos);
+      localStorage.setItem("profesional", "true");
+      window.location.replace("/")
     }
   }
 

@@ -13,9 +13,9 @@
             <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'short'}}</h5>
             <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
         </div>
-        <div class="col-md-3" style="padding-top: 20px;">
-            <!-- <div #paypal> 
-                  </div>-->
+        <div class="col-md-3" style="padding-top: 20px; text-align: center;">
+
+            <a *ngIf="!bonoAplicado && usuarioLogado.bonos > 0" class="botones mb-2" (click)="aplicarBono()">Aplicar bono de descuento</a>
             <ngx-paypal [config]="payPalConfig"></ngx-paypal>
 
         </div>

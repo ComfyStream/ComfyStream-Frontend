@@ -106,7 +106,7 @@ export class EventoComponent implements OnInit {
 
   esAsistencia(){
     for(let evento of this.misAsistencias){
-      if(evento._id === this.evento._id){//yo asisto a este evento
+      if(evento && evento._id === this.evento._id){//yo asisto a este evento
         this.asistido = true;
         break;
       }

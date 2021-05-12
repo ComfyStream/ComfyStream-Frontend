@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { UsuarioService } from "../../services/usuario.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 import { CargaImagenesService } from "src/app/services/carga-imagenes.service";
 import Swal from "sweetalert2";
 
@@ -20,8 +20,12 @@ export class RegistroComponent {
   public urlImagen:string;
   public formatoNoValido:boolean = false;
 
-  constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private router:Router,private cargaImagenService:CargaImagenesService) {
+  constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private router:Router,private cargaImagenService:CargaImagenesService, private activatedRoute:ActivatedRoute) {
     this.iniciarForm()
+    const idReferido = this.activatedRoute.paramMap["destination"].value["idReferido"]
+    if(idReferido){
+      localStorage.setItem("idReferido", idReferido)
+    }
    }
 
 async subirImagen(){
@@ -187,7 +191,6 @@ async subirImagen(){
       if(this.form.value.img){
         await this.subirImagen();
       }
-      
       const datos = this.form.value;
       delete datos.img;
       const msg = await this.usuarioService.registro(datos, this.urlImagen)
@@ -200,6 +203,13 @@ async subirImagen(){
         this.cuentaBancariaEnUso = true
       }else{
         Swal.fire('Registro existoso', 'Se ha enviado a su email un correo de confirmación', 'success');
+        
+        const idReferido = localStorage.getItem("idReferido")
+        if(idReferido){
+          await this.usuarioService.sumarBono(idReferido)
+          localStorage.removeItem("idReferido")
+        }
+
         this.router.navigateByUrl("/login")
       }
     }else{

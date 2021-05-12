@@ -34,6 +34,7 @@ export class UsuarioService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('usuarioId');
     localStorage.removeItem('profesional');
 
     this.router.navigateByUrl('/login');
@@ -286,6 +287,15 @@ export class UsuarioService {
 confirmarCuenta(urlConfirmacion:string):Promise<string>{
   return new Promise<string>((resolve) => {
     this.http.put(`${base_url}/confirmar/${urlConfirmacion}`, {}).subscribe((data) => {
+      const msg = data["msg"];
+      resolve(msg);
+    })
+  })
+}
+
+sumarBono(idReferido:string):Promise<string>{
+  return new Promise<string>((resolve) => {
+    this.http.put(`${base_url}/sumar-bono/${idReferido}`, {}).subscribe((data) => {
       const msg = data["msg"];
       resolve(msg);
     })

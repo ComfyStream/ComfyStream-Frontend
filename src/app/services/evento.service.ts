@@ -127,7 +127,6 @@ export class EventoService {
 
 
     return new Promise<Evento> ((resolve) => {
-
       this.http.post(`${ base_url }/evento/editar`, datos,{
         headers: { 
           'x-token': this.token
@@ -139,10 +138,7 @@ export class EventoService {
         }
         const evento= data["evento"];
 
-        Swal.fire('Guardado', 'Evento creado', 'success');
         resolve(evento);
-        this.router.navigate(['/evento/'+idEvento])
-
       });
     } )
   }
@@ -160,9 +156,7 @@ export class EventoService {
       } )
       .subscribe((data) => {
         const evento= data;
-        Swal.fire('Guardado', 'Evento creado', 'success');
         resolve(evento);
-        this.router.navigate(['/mis-eventos'])
       }, (err) => {
         console.log(err)
         Swal.fire('Error de Zoom',"Vuelva a enlazar la cuenta de Zoom y borre el evento creado", 'error');

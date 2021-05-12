@@ -29,6 +29,7 @@ export class MisAsistenciasComponent implements OnInit {
     private router: Router) { }
 
   async ngOnInit() {
+    debugger
     if(localStorage.getItem("profesional") == "true"){
       this.misEventos = await (this.eventoService.getMisEventos());
     }

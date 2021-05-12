@@ -6,6 +6,7 @@ import { AsistenciaService } from "src/app/services/asistencia.service";
 import { EventoService } from "src/app/services/evento.service";
 import { UsuarioService } from "src/app/services/usuario.service";
 import { IPayPalConfig, ICreateOrderRequest } from "ngx-paypal";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-asistir',
@@ -17,6 +18,8 @@ export class AsistirComponent implements OnInit {
   public evento: Evento;
   public eventoId: string;
   public usuario: Usuario;
+  public bonoAplicado:Boolean = false
+  public usuarioLogado:Usuario;
 
   constructor(private router:Router,
     private asistenciaService: AsistenciaService,
@@ -31,9 +34,9 @@ export class AsistirComponent implements OnInit {
     this.initConfig();
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
-    const precio = this.evento.precio.toString()
+    this.usuarioLogado = await this.usuarioService.getUsuario()
 
-
+    console.log(this.usuarioLogado)
     
 }
   private initConfig(): void{
@@ -134,7 +137,8 @@ export class AsistirComponent implements OnInit {
 
     const data = {
       eventoId: this.evento._id,
-      pagoPaypalUrl: pago
+      pagoPaypalUrl: pago,
+      bonoAplicado:this.bonoAplicado
     }
     this.asistenciaService.crearAsistencia(data);
 
@@ -142,7 +146,14 @@ export class AsistirComponent implements OnInit {
 
   }}
 
-
+    aplicarBono(){
+      Swal.showLoading()
+      setTimeout(() => {
+        Swal.close()
+        this.evento.precio-=5;
+        this.bonoAplicado = true;
+      }, 500);
+    }
 
   }
 
