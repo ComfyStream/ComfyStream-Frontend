@@ -64,9 +64,9 @@
 
             <div class="form-group">
                 <label for="cuentaBancariaIBAN">Cuenta bancaria</label>
-                <input type="text" (keyup)="cuentaBancariaEnUso = false" placeholder="Ejemplo: ES141111222233334444" class="form-control" name="cuentaBancariaIBAN" id="cuentaBancariaIBAN" formControlName="cuentaBancariaIBAN" [class.is-invalid]="cuentaBancariaIbanNoValido">
+                <input type="text" (keyup)="cuentaBancariaEnUso = false" placeholder="Ejemplo: ES1411112222333344445555 (formado de España)" class="form-control" name="cuentaBancariaIBAN" id="cuentaBancariaIBAN" formControlName="cuentaBancariaIBAN" [class.is-invalid]="cuentaBancariaIbanNoValido">
                 <small *ngIf="cuentaBancariaIBANRequerido" style="color: red;">Cuenta bancaria requerida. </small>
-                <small *ngIf="cuentaBancariaFormato" style="color: red;">Formato incorrecto</small>
+                <small *ngIf="cuentaBancariaFormato" style="color: red;">Formato incorrecto. Ej: ES1411112222333344445555 (formado de España)</small>
                 <small *ngIf="cuentaBancariaEnUso" style="color: red;">Cuenta bancaria en uso</small>
             </div>
 

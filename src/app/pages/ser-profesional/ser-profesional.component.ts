@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Usuario } from "../../models/usuario";
 import { UsuarioService } from "../../services/usuario.service";
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,7 +29,7 @@ export class SerProfesionalComponent implements OnInit {
         this.perfilProfesionalForm = this.fb.group({
          sector: [ "", Validators.required ],
          descripcion: [ "", Validators.required],
-         cuentaBancariaIBAN: [ "", [ Validators.required,Validators.maxLength(24),Validators.minLength(24)]],
+         cuentaBancariaIBAN: [ "", [ Validators.required,this.cuentaBancariaValida]],
          titularCuenta: [ "", Validators.required ],
          profesional: [ this.profesional , Validators.required ],
        });
@@ -58,29 +58,39 @@ export class SerProfesionalComponent implements OnInit {
   get sectorCampoRequerido(){
     return this.perfilProfesionalForm.get('sector').errors ? this.perfilProfesionalForm.get('sector').errors.required && this.perfilProfesionalForm.get('sector').touched : null
   }
+
   get descripcionNoValido(){
     return this.descripcionCampoRequerido
   }
   get descripcionCampoRequerido(){
     return this.perfilProfesionalForm.get('descripcion').errors ? this.perfilProfesionalForm.get('descripcion').errors.required && this.perfilProfesionalForm.get('descripcion').touched : null
   }
+
   get ibanNoValido(){
-    return this.ibanCampoRequerido || this.validarCuentaM || this.validarCuentaMin
+    return this.ibanCampoRequerido || this.cuentaBancariaFormato
   }
   get ibanCampoRequerido(){
     return this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors ? this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors.required && this.perfilProfesionalForm.get('cuentaBancariaIBAN').touched : null
   }
+  get cuentaBancariaFormato(){
+    return this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors ? this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors.cuentaBancariaFormatoNoValido && this.perfilProfesionalForm.get('cuentaBancariaIBAN').touched : null
+  }
+
   get titularNoValido(){
     return this.titularCampoRequerido
   }
   get titularCampoRequerido(){
     return this.perfilProfesionalForm.get('titularCuenta').errors ? this.perfilProfesionalForm.get('titularCuenta').errors.required && this.perfilProfesionalForm.get('titularCuenta').touched : null
   }
-  get validarCuentaM(){
-    return this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors ? this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors.maxlength && this.perfilProfesionalForm.get('cuentaBancariaIBAN').touched : null
-  }
-  get validarCuentaMin(){
-    return this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors ? this.perfilProfesionalForm.get('cuentaBancariaIBAN').errors.minlength && this.perfilProfesionalForm.get('cuentaBancariaIBAN').touched : null
+
+  private cuentaBancariaValida(control:FormControl):{[s:string]:boolean}{
+    const pattern = "^ES[0-9]{22}$"
+    if(!control.value.match(pattern)){
+      return {
+        cuentaBancariaFormatoNoValido:true
+      }
+    }
+    return null
   }
 
 }

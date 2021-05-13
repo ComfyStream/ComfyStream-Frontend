@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-3" style="padding-top: 20px; text-align: center;">
 
-            <a *ngIf="!bonoAplicado && usuarioLogado.bonos > 0" class="botones mb-2" (click)="aplicarBono()">Aplicar bono de descuento</a>
+            <a *ngIf="!bonoAplicado && usuarioLogado.bonos && usuarioLogado.bonos > 0" class="botones mb-2" (click)="aplicarBono()">Aplicar bono de descuento ({{bonosRestantes}})</a>
             <ngx-paypal [config]="payPalConfig"></ngx-paypal>
 
         </div>

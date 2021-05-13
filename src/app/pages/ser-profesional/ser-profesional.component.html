@@ -15,36 +15,27 @@
 
                     <div class="form-group" [hidden]="!profesional">
                         <label for="nombre">Sector</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="sector" formControlName="sector" [class.is-invalid]="sectorNoValido">
-                            <small *ngIf="sectorCampoRequerido" class="text-danger">Sector requerido</small>
-                        </div>
+                        <input type="text" class="form-control" id="sector" formControlName="sector" [class.is-invalid]="sectorNoValido">
+                        <small *ngIf="sectorCampoRequerido" class="text-danger">Sector requerido</small>
                     </div>
 
                     <div class="form-group" [hidden]="!profesional">
                         <label for="nombre">Descripción</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="descripcion" formControlName="descripcion" [class.is-invalid]="descripcionNoValido">
-                            <small *ngIf="descripcionCampoRequerido" class="text-danger">Descripcion requerido</small>
-                        </div>
+                        <input type="text" class="form-control" id="descripcion" formControlName="descripcion" [class.is-invalid]="descripcionNoValido">
+                        <small *ngIf="descripcionCampoRequerido" class="text-danger">Descripcion requerido</small>
                     </div>
 
                     <div class="form-group" [hidden]="!profesional">
-                        <label for="nombre">IBAN</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="cuentaBancariaIBAN" formControlName="cuentaBancariaIBAN" [class.is-invalid]="ibanNoValido">
-                            <small *ngIf="ibanCampoRequerido" class="text-danger">IBAN requerido</small>
-                            <small *ngIf="validarCuentaM" class="text-danger">IBAN debe tener 24 caracteres sin espacios</small>
-                            <small *ngIf="validarCuentaMin" class="text-danger">IBAN debe tener 24 caracteres sin espacios</small>
-                        </div>
+                        <label for="nombre">Cuenta bancaria</label>
+                        <input type="text" placeholder="Ej: ES1411112222333344445555 (formado de España)" class="form-control" id="cuentaBancariaIBAN" formControlName="cuentaBancariaIBAN" [class.is-invalid]="ibanNoValido">
+                        <small *ngIf="ibanCampoRequerido" class="text-danger">Cuenta bancaria requerida. </small>
+                        <small *ngIf="cuentaBancariaFormato" class="text-danger">Formato no válido. Ej: ES1411112222333344445555 (formado de España)</small>
                     </div>
 
                     <div class="form-group" [hidden]="!profesional">
                         <label for="nombre">Titular de cuenta</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="titularCuenta" formControlName="titularCuenta" [class.is-invalid]="titularNoValido">
-                            <small *ngIf="titularCampoRequerido" class="text-danger">Titular de cuenta requerido</small>
-                        </div>
+                        <input type="text" class="form-control" id="titularCuenta" formControlName="titularCuenta" [class.is-invalid]="titularNoValido">
+                        <small *ngIf="titularCampoRequerido" class="text-danger">Titular de cuenta requerido</small>
                     </div>
 
                     <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">

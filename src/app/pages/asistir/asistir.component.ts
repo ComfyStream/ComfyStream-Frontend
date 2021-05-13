@@ -20,6 +20,7 @@ export class AsistirComponent implements OnInit {
   public usuario: Usuario;
   public bonoAplicado:Boolean = false
   public usuarioLogado:Usuario;
+  public bonosRestantes:string
 
   constructor(private router:Router,
     private asistenciaService: AsistenciaService,
@@ -36,7 +37,7 @@ export class AsistirComponent implements OnInit {
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     this.usuarioLogado = await this.usuarioService.getUsuario()
 
-    console.log(this.usuarioLogado)
+    this.bonosRestantes = this.usuarioLogado.bonos > 1 ? `${this.usuarioLogado.bonos} bonos restantes` : "1 bono restante";
     
 }
   private initConfig(): void{

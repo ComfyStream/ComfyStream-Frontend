@@ -154,7 +154,7 @@ async subirImagen(){
   }
 
   private cuentaBancariaValida(control:FormControl):{[s:string]:boolean}{
-    const pattern = "^[A-Z]{2}[0-9]{18}$"
+    const pattern = "^ES[0-9]{22}$"
     if(!control.value.match(pattern)){
       return {
         cuentaBancariaFormatoNoValido:true
