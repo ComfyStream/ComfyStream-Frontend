@@ -10,7 +10,7 @@
             <h5 style="text-align: left;"><strong>Profesional : </strong> {{usuario.nombre}}</h5>
             <h5 style="text-align: left;"><strong>Categoría : </strong> {{evento.categoria}}</h5>
             <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
-            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'short'}}</h5>
+            <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}}</h5>
             <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
         </div>
         <div class="col-md-3" style="padding-top: 20px; text-align: center;">
