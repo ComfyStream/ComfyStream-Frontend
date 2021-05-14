@@ -52,6 +52,7 @@ export class EventoComponent implements OnInit {
       this.eventoId = params['id']; 
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
+    this.evento.descripcion = this.evento.descripcion.replace(/(?:\r\n|\r|\n)/g, '\n');
 
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     this.puedoValorar = await this.valoracionService.puedoValorar(this.evento.profesional);

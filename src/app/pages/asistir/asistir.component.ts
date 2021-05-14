@@ -34,6 +34,7 @@ export class AsistirComponent implements OnInit {
     });
     this.initConfig();
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
+    this.evento.descripcion = this.evento.descripcion.replace(/(?:\r\n|\r|\n)/g, '\n');
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     this.usuarioLogado = await this.usuarioService.getUsuario()
 
@@ -73,7 +74,7 @@ export class AsistirComponent implements OnInit {
     },
     style: {
         label: 'paypal',
-        layout: 'vertical'
+        layout: 'horizontal'
     },
     onApprove: (data, actions) => {
         //console.log('onApprove - transaction was approved, but not authorized', data, actions);
