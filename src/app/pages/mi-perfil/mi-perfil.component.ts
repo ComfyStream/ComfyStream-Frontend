@@ -35,6 +35,7 @@ export class MiPerfilComponent implements OnInit {
       profesional: [ this.usuario.profesional , Validators.required ],
       sector: [ this.usuario.sector , Validators.required ],
       descripcion: [ this.usuario.descripcion , Validators.required ],
+      precioSuscripcion:[this.usuario.precioSuscripcion, [Validators.required, this.valorPositivo]],
       img: [],
     });
   }
@@ -157,6 +158,16 @@ get imgCampoRequerido(){
   return this.perfilProfesionalForm.get('img').errors ? this.perfilProfesionalForm.get('img').errors.required && this.perfilProfesionalForm.get('img').touched : null
 }
 
+get precioSuscripcionNoValido(){
+  return this.precioSuscripcionRequerido || this.precioSuscripcionPositivo
+}
+get precioSuscripcionRequerido(){
+  return this.perfilProfesionalForm.get('precioSuscripcion').errors ? this.perfilProfesionalForm.get('precioSuscripcion').errors.required && this.perfilProfesionalForm.get('precioSuscripcion').touched : null
+}
+get precioSuscripcionPositivo(){
+  return this.perfilProfesionalForm.get('precioSuscripcion').errors ? this.perfilProfesionalForm.get('precioSuscripcion').errors.valorPositivo && this.perfilProfesionalForm.get('precioSuscripcion').touched : null
+}
+
 
 
 // Validaciones perfil
@@ -227,6 +238,13 @@ get imgNoProfCampoRequerido(){
     return null
   }
  
-
+  private valorPositivo(control:FormControl):{[s:string]:boolean}{
+    if(control.value < 1){
+      return {
+        valorPositivo:true
+      }
+    }
+    return null
+  }
 
 }

@@ -70,6 +70,7 @@ async subirImagen(){
       descripcion:['', [Validators.required]],
       cuentaBancariaIBAN:['', [Validators.required, this.cuentaBancariaValida]],
       titularCuenta:['', [Validators.required]],
+      precioSuscripcion:['', [Validators.required, this.valorPositivo]],
       terminos:[value['terminos'], [Validators.requiredTrue]]
       
     })
@@ -132,6 +133,16 @@ async subirImagen(){
     return this.form.get('titularCuenta').errors ? this.form.get('titularCuenta').errors.required && this.form.get('titularCuenta').touched : null
   }
 
+  get precioSuscripcionNoValido(){
+    return this.precioSuscripcionRequerido || this.precioSuscripcionPositivo
+  }
+  get precioSuscripcionRequerido(){
+    return this.form.get('precioSuscripcion').errors ? this.form.get('precioSuscripcion').errors.required && this.form.get('precioSuscripcion').touched : null
+  }
+  get precioSuscripcionPositivo(){
+    return this.form.get('precioSuscripcion').errors ? this.form.get('precioSuscripcion').errors.valorPositivo && this.form.get('precioSuscripcion').touched : null
+  }
+
   get imgCampoRequerido(){
     return this.form.get('img').errors ? this.form.get('img').errors.required && this.form.get('img').touched : null
   }
@@ -158,6 +169,15 @@ async subirImagen(){
     if(!control.value.match(pattern)){
       return {
         cuentaBancariaFormatoNoValido:true
+      }
+    }
+    return null
+  }
+
+  private valorPositivo(control:FormControl):{[s:string]:boolean}{
+    if(control.value < 1){
+      return {
+        valorPositivo:true
       }
     }
     return null
