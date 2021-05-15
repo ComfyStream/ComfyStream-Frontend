@@ -28,6 +28,8 @@ import { AsistenciasAdminComponent } from './asistencias-admin/asistencias-admin
 
 //Guards
 import { AdminGuard } from '../guards/admin.guard';
+import { SuscriptoresComponent } from './suscriptores/suscriptores.component';
+import { SuscripcionesComponent } from './suscripciones/suscripciones.component';
 
 const routes: Routes = [
     { 
@@ -58,6 +60,8 @@ const routes: Routes = [
             { path: 'mis-valoraciones', component: MisValoracionesComponent},
             { path: 'ser-profesional/:id', component: SerProfesionalComponent},
             { path: 'asistencias', canActivate: [AdminGuard], component: AsistenciasAdminComponent},
+            { path: 'suscriptores', component: SuscriptoresComponent},
+            { path: 'suscripciones', component: SuscripcionesComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },

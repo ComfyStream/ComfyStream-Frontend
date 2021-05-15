@@ -259,6 +259,7 @@ export class UsuarioService {
       datos.append("descripcion", formData.descripcion )
       datos.append("cuentaBancariaIBAN", formData.cuentaBancariaIBAN )
       datos.append("titularCuenta", formData.titularCuenta )
+      datos.append("precioSuscripcion", formData.precioSuscripcion )
     }
 
     return new Promise<String> ((resolve) => {
@@ -302,6 +303,15 @@ sumarBono(idReferido:string):Promise<string>{
     this.http.put(`${base_url}/sumar-bono/${idReferido}`, {}).subscribe((data) => {
       const msg = data["msg"];
       resolve(msg);
+    })
+  })
+}
+
+recuperarPassword(email:string):Promise<string>{
+  return new Promise<string>((resolve) => {
+    this.http.put(`${base_url}/recuperar-password`, {email}).subscribe((data) => {
+      const nuevaPassword = data["nuevaPassword"];
+      resolve(nuevaPassword);
     })
   })
 }

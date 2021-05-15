@@ -41,6 +41,8 @@ import { ConfirmarComponent } from "./auth/confirmar/confirmar.component";
 import { MisValoracionesComponent } from "./pages/mis-valoraciones/mis-valoraciones.component";
 import { AsistenciasAdminComponent } from "./pages/asistencias-admin/asistencias-admin.component";
 import {NgxPaginationModule} from "ngx-pagination";
+import { SuscripcionesComponent } from './pages/suscripciones/suscripciones.component';
+import { SuscriptoresComponent } from './pages/suscriptores/suscriptores.component';
 
 
 
@@ -82,7 +84,9 @@ import {NgxPaginationModule} from "ngx-pagination";
 
     SerProfesionalComponent,
     DetallesProfesionalComponent,
-    AsistenciasAdminComponent
+    AsistenciasAdminComponent,
+    SuscripcionesComponent,
+    SuscriptoresComponent
 
   ],
   imports: [

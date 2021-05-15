@@ -32,6 +32,7 @@ export class MisAsistenciasComponent implements OnInit {
   ngOnInit() {
     Swal.showLoading();
     setTimeout(async () => {
+      debugger
       if(localStorage.getItem("profesional") == "true"){
         this.misEventos = await (this.eventoService.getMisEventos());
       }

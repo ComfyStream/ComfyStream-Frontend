@@ -14,7 +14,6 @@
         <div class="col-md-1"></div>
         <div class="col-md-4 py-2">
             <h2 style="text-align: left;">{{profesional.nombre}}</h2>
-            <h5 style="text-align: left;padding-top: 10px;"><strong>Email:</strong> {{profesional.email}}</h5>
             <h5 style="text-align: left;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm'}}</h5>
             <h5 style="text-align: left;"><strong>Sector:</strong> {{profesional.sector}}</h5>
             <h5 style="text-align: left;"><strong>Sobre mí:</strong> {{profesional.descripcion}}</h5>
@@ -22,7 +21,15 @@
 
             <ngb-rating [(rate)]="mediaEstrellas" [readonly]="true" [max]="5" style="font-size: large;"></ngb-rating> ( {{numeroValoraciones}} valoraciones )
 
-            <a *ngIf="puedoValorar" class="botones mt-3" (click)="valorar()">Valorar al profesional</a>
+            <a *ngIf="puedoValorar" class="botones mt-3 mb-2" (click)="valorar()">Valorar al profesional</a>
+
+            <div class="mt-2" *ngIf="!suscrito && profesional.precioSuscripcion">
+                <h5 style="text-align: left;">Suscripción de un mes para asistir gratis a los eventos: {{profesional.precioSuscripcion}} €</h5>
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
+            <div class="mt-2" *ngIf="suscrito">
+                <h5 style="text-align: left;">Suscripción activa hasta {{ suscripcionActiva.fecha_expiracion | date: 'dd/MM/yyyy HH:mm':'+0000' }}</h5>
+            </div>
 
         </div>
 
@@ -91,26 +98,34 @@
             <div class="div" style=" text-align: center;">
                 <ngb-rating [(rate)]="mediaEstrellas" [readonly]="true" [max]="5" style="font-size: large;"></ngb-rating> ( {{numeroValoraciones}} valoraciones )
             </div>
-            <a *ngIf="puedoValorar" class="botones mt-3" (click)="valorar()">Valorar al profesional</a>
+            <a *ngIf="puedoValorar" class="botones mt-3 mb-2" (click)="valorar()">Valorar al profesional</a>
+
+            <div class="mt-2" *ngIf="!suscrito && profesional.precioSuscripcion">
+                <h5 style="text-align: left; ">Suscripción de un mes para asistir gratis a los eventos: {{profesional.precioSuscripcion}} €</h5>
+                <ngx-paypal [config]="payPalConfig "></ngx-paypal>
+            </div>
+            <div class="mt-2 " *ngIf="suscrito ">
+                <h5 style="text-align: left; ">Suscripción activa hasta {{ suscripcionActiva.fecha_expiracion | date: 'dd/MM/yyyy HH:mm':'+0000' }}</h5>
+            </div>
 
         </div>
 
-        <div class="col"></div>
+        <div class="col "></div>
 
     </div>
     <br>
     <hr>
     <br>
 
-    <h3 class="card-title text-center">Eventos disponibles del profesional</h3>
+    <h3 class="card-title text-center ">Eventos disponibles del profesional</h3>
 
-    <div class="row " style="margin: 0px;">
-        <div class="col"></div>
-        <div class="col-md-8">
-            <app-evento-tarjeta [evento]="evento" [misEventos]="misEventos" [misAsistencias]="misAsistencias" (eventoSeleccionado)="mostrarEvento($event)" *ngFor="let evento of eventosDelProfesional "></app-evento-tarjeta>
+    <div class="row " style="margin: 0px; ">
+        <div class="col "></div>
+        <div class="col-md-8 ">
+            <app-evento-tarjeta [evento]="evento " [misEventos]="misEventos " [misAsistencias]="misAsistencias " (eventoSeleccionado)="mostrarEvento($event) " *ngFor="let evento of eventosDelProfesional "></app-evento-tarjeta>
 
         </div>
-        <div class="col"></div>
+        <div class="col "></div>
     </div>
 
     <div *ngIf="valoraciones.length>0">

@@ -31,6 +31,7 @@ export class SerProfesionalComponent implements OnInit {
          descripcion: [ "", Validators.required],
          cuentaBancariaIBAN: [ "", [ Validators.required,this.cuentaBancariaValida]],
          titularCuenta: [ "", Validators.required ],
+         precioSuscripcion:['', [Validators.required, this.valorPositivo]],
          profesional: [ this.profesional , Validators.required ],
        });
       }
@@ -83,11 +84,30 @@ export class SerProfesionalComponent implements OnInit {
     return this.perfilProfesionalForm.get('titularCuenta').errors ? this.perfilProfesionalForm.get('titularCuenta').errors.required && this.perfilProfesionalForm.get('titularCuenta').touched : null
   }
 
+  get precioSuscripcionNoValido(){
+    return this.precioSuscripcionRequerido || this.precioSuscripcionPositivo
+  }
+  get precioSuscripcionRequerido(){
+    return this.perfilProfesionalForm.get('precioSuscripcion').errors ? this.perfilProfesionalForm.get('precioSuscripcion').errors.required && this.perfilProfesionalForm.get('precioSuscripcion').touched : null
+  }
+  get precioSuscripcionPositivo(){
+    return this.perfilProfesionalForm.get('precioSuscripcion').errors ? this.perfilProfesionalForm.get('precioSuscripcion').errors.valorPositivo && this.perfilProfesionalForm.get('precioSuscripcion').touched : null
+  }
+
   private cuentaBancariaValida(control:FormControl):{[s:string]:boolean}{
     const pattern = "^ES[0-9]{22}$"
     if(!control.value.match(pattern)){
       return {
         cuentaBancariaFormatoNoValido:true
+      }
+    }
+    return null
+  }
+
+  private valorPositivo(control:FormControl):{[s:string]:boolean}{
+    if(control.value < 1){
+      return {
+        valorPositivo:true
       }
     }
     return null
