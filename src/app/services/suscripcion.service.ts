@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Suscripcion } from '../models/suscripcion';
+import { UsuarioSuscripcion } from '../models/usuario-suscripcion';
 
 const base_url = environment.apiUrl;
 
@@ -47,6 +48,30 @@ export class SuscripcionService {
       .subscribe((data) => {
         const suscripcion = data["suscripcion"];
         resolve(suscripcion);
+      });
+    }) 
+  }
+
+  suscriptores(): Promise<UsuarioSuscripcion[]>{
+    return new Promise<UsuarioSuscripcion[]> ((resolve) => {
+      this.http.get(`${ base_url }/suscriptores`, {
+        headers: {
+        'x-token': localStorage.getItem("token")
+      }}).subscribe((data) => {
+        const suscriptores = data["suscriptores"];
+        resolve(suscriptores);
+      });
+    }) 
+  }
+
+  suscripciones(): Promise<UsuarioSuscripcion[]>{
+    return new Promise<UsuarioSuscripcion[]> ((resolve) => {
+      this.http.get(`${ base_url }/suscripciones`, {
+        headers: {
+        'x-token': localStorage.getItem("token")
+      }}).subscribe((data) => {
+        const profesionales = data["profesionales"];
+        resolve(profesionales);
       });
     }) 
   }
