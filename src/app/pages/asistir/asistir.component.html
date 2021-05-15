@@ -11,12 +11,17 @@
             <h5 style="text-align: left;"><strong>Categoría : </strong> {{evento.categoria}}</h5>
             <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
             <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}}</h5>
-            <h5 style="text-align: left;"><strong>Precio: </strong> {{evento.precio}} €</h5>
+            <h5 *ngIf="!suscrito" style="text-align: left;"><strong>Precio: </strong>{{evento.precio}} €</h5>
         </div>
         <div class="col-md-3" style="padding-top: 20px; text-align: center;">
 
-            <a *ngIf="!bonoAplicado && usuarioLogado.bonos && usuarioLogado.bonos > 0" class="botones mb-2" (click)="aplicarBono()">Aplicar bono de descuento ({{bonosRestantes}})</a>
-            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            <div *ngIf="!suscrito">
+                <a *ngIf="!bonoAplicado && usuarioLogado.bonos && usuarioLogado.bonos > 0" class="botones mb-2" (click)="aplicarBono()">Aplicar bono de descuento ({{bonosRestantes}})</a>
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
+            <div *ngIf="suscrito">
+                <a class="botones mb-2" (click)="asistir()">Asistir gratis (suscrito)</a>
+            </div>
 
         </div>
     </div>

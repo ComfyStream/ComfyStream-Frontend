@@ -57,7 +57,9 @@ export class AsistenciaService {
     .subscribe((data) => {
       const asistencia: Asistencia = data["asistencia"]["_id"];
       const tokenActualizado = data["tokenActualizado"];
-      localStorage.setItem("token", tokenActualizado);
+      if(tokenActualizado){
+        localStorage.setItem("token", tokenActualizado);
+      }
       resolve(asistencia);
       if (data["msg"] == "Exito")
       Swal.fire('Guardado', 'Asistencia confirmada', 'success');
@@ -66,6 +68,7 @@ export class AsistenciaService {
     });
   } ) 
  }
+ 
 
 /* crearAsistencia(eventoId:string) {
     this.http.post(`${ base_url }/asistencia/nueva`,eventoId,this.headers );
