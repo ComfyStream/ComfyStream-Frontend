@@ -17,6 +17,7 @@ export class LoginComponent {
   public auth2: any;
   loginIncorrecto:boolean = false;
   public confirmacionIncorrecta: boolean = false;
+  debeIntroducirEmail:boolean = false;
 
 
   constructor(private router: Router,
@@ -58,6 +59,18 @@ export class LoginComponent {
       }
       else{
         this.loginForm.markAllAsTouched();
+      }
+    }
+
+    async recuperarPassword(){
+      const email = this.loginForm.value.email
+      if(email){
+        Swal.showLoading()
+        this.debeIntroducirEmail = false;
+        await this.usuarioService.recuperarPassword(email);
+        Swal.fire("Recuperar contraseña","Se ha enviado su nueva contraseña a su email","success");
+      }else{
+        this.debeIntroducirEmail = true;
       }
     }
 

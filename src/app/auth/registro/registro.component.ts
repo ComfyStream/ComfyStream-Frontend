@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { UsuarioService } from "../../services/usuario.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 import { CargaImagenesService } from "src/app/services/carga-imagenes.service";
 import Swal from "sweetalert2";
 
@@ -20,8 +20,12 @@ export class RegistroComponent {
   public urlImagen:string;
   public formatoNoValido:boolean = false;
 
-  constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private router:Router,private cargaImagenService:CargaImagenesService) {
+  constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private router:Router,private cargaImagenService:CargaImagenesService, private activatedRoute:ActivatedRoute) {
     this.iniciarForm()
+    const idReferido = this.activatedRoute.paramMap["destination"].value["idReferido"]
+    if(idReferido){
+      localStorage.setItem("idReferido", idReferido)
+    }
    }
 
 async subirImagen(){
@@ -62,10 +66,11 @@ async subirImagen(){
       fechaNacimiento:[value['fechaNacimiento'], [Validators.required, this.fechaAnteriorAHoy]],
       img:[, [Validators.required]],
       profesional:[true],
-      sector:['', [Validators.required]],
+      sector:['', [this.sectorNoValido]],
       descripcion:['', [Validators.required]],
       cuentaBancariaIBAN:['', [Validators.required, this.cuentaBancariaValida]],
       titularCuenta:['', [Validators.required]],
+      precioSuscripcion:['', [Validators.required, this.valorPositivo]],
       terminos:[value['terminos'], [Validators.requiredTrue]]
       
     })
@@ -107,7 +112,7 @@ async subirImagen(){
   }
 
   get sectorRequerido(){
-    return this.form.get('sector').errors ? this.form.get('sector').errors.required && this.form.get('sector').touched : null
+    return this.form.get('sector').errors ? this.form.get('sector').errors.sectorFormatoNoValido && this.form.get('sector').touched : null
   }
 
   get descripcionRequerido(){
@@ -128,6 +133,16 @@ async subirImagen(){
     return this.form.get('titularCuenta').errors ? this.form.get('titularCuenta').errors.required && this.form.get('titularCuenta').touched : null
   }
 
+  get precioSuscripcionNoValido(){
+    return this.precioSuscripcionRequerido || this.precioSuscripcionPositivo
+  }
+  get precioSuscripcionRequerido(){
+    return this.form.get('precioSuscripcion').errors ? this.form.get('precioSuscripcion').errors.required && this.form.get('precioSuscripcion').touched : null
+  }
+  get precioSuscripcionPositivo(){
+    return this.form.get('precioSuscripcion').errors ? this.form.get('precioSuscripcion').errors.valorPositivo && this.form.get('precioSuscripcion').touched : null
+  }
+
   get imgCampoRequerido(){
     return this.form.get('img').errors ? this.form.get('img').errors.required && this.form.get('img').touched : null
   }
@@ -139,8 +154,8 @@ async subirImagen(){
 
   //Validaciones personalizadas
   private fechaAnteriorAHoy(control:FormControl):{[s:string]:boolean}{
-    let f = Date.parse(control.value)
-    let hoy = new Date().getTime()
+    let f = new Date(control.value).getFullYear() ;
+    let hoy = new Date().getFullYear() - 13  ;
     if(f > hoy){
       return {
         fechaAnteriorAHoy:true
@@ -150,10 +165,29 @@ async subirImagen(){
   }
 
   private cuentaBancariaValida(control:FormControl):{[s:string]:boolean}{
-    const pattern = "^[A-Z]{2}[0-9]{18}$"
+    const pattern = "^ES[0-9]{22}$"
     if(!control.value.match(pattern)){
       return {
         cuentaBancariaFormatoNoValido:true
+      }
+    }
+    return null
+  }
+
+  private valorPositivo(control:FormControl):{[s:string]:boolean}{
+    if(control.value < 1){
+      return {
+        valorPositivo:true
+      }
+    }
+    return null
+  }
+
+  private sectorNoValido(control:FormControl):{[s:string]:boolean}{
+    
+    if(control.value == ""){
+      return {
+        sectorFormatoNoValido:true
       }
     }
     return null
@@ -187,7 +221,6 @@ async subirImagen(){
       if(this.form.value.img){
         await this.subirImagen();
       }
-      
       const datos = this.form.value;
       delete datos.img;
       const msg = await this.usuarioService.registro(datos, this.urlImagen)
@@ -200,6 +233,13 @@ async subirImagen(){
         this.cuentaBancariaEnUso = true
       }else{
         Swal.fire('Registro existoso', 'Se ha enviado a su email un correo de confirmación', 'success');
+        
+        const idReferido = localStorage.getItem("idReferido")
+        if(idReferido){
+          await this.usuarioService.sumarBono(idReferido)
+          localStorage.removeItem("idReferido")
+        }
+
         this.router.navigateByUrl("/login")
       }
     }else{

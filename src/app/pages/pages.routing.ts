@@ -28,6 +28,10 @@ import { AsistenciasAdminComponent } from './asistencias-admin/asistencias-admin
 
 //Guards
 import { AdminGuard } from '../guards/admin.guard';
+import { AuthGuard } from '../guards/auth.guard';
+import { ProfesionalGuard } from '../guards/profesional.guard';
+import { SuscriptoresComponent } from './suscriptores/suscriptores.component';
+import { SuscripcionesComponent } from './suscripciones/suscripciones.component';
 
 const routes: Routes = [
     { 
@@ -36,28 +40,30 @@ const routes: Routes = [
         children: [
             { path: '', component: HomeComponent},
             { path: 'evento/:id', component: EventoComponent},
-            { path: 'mis-chats', component: MisChatsComponent},
-            { path: 'chat/:id', component: ChatComponent},
-            { path: 'mis-eventos', component: MisEventosComponent},
-            { path: 'mis-asistencias', component: MisAsistenciasComponent},
+            { path: 'mis-chats',canActivate: [AuthGuard], component: MisChatsComponent},
+            { path: 'chat/:id', canActivate: [AuthGuard], component: ChatComponent},
+            { path: 'mis-eventos',canActivate: [ProfesionalGuard], component: MisEventosComponent},
+            { path: 'mis-asistencias',canActivate: [AuthGuard], component: MisAsistenciasComponent},
             { path: 'home', component: HomeComponent},
             { path: 'landing', component: LandingComponent},
-            { path: 'editar-evento/:id', component: EditarEventoComponent},
-            { path: 'mi-cuenta', component: CuentaComponent},
-            { path: 'crear-evento', component: CrearEventoComponent},
-            { path: 'mi-perfil', component: MiPerfilComponent},
-            { path: 'contrasena', component: ContrasenaComponent},
-            { path: 'datos-bancarios', component: DatosBancariosComponent},
-            { path: 'asistir/:id', component: AsistirComponent},
+            { path: 'editar-evento/:id',canActivate: [ProfesionalGuard], component: EditarEventoComponent},
+            { path: 'mi-cuenta',canActivate: [AuthGuard], component: CuentaComponent},
+            { path: 'crear-evento',canActivate: [ProfesionalGuard], component: CrearEventoComponent},
+            { path: 'mi-perfil',canActivate: [AuthGuard], component: MiPerfilComponent},
+            { path: 'contrasena',canActivate: [AuthGuard], component: ContrasenaComponent},
+            { path: 'datos-bancarios',canActivate: [ProfesionalGuard], component: DatosBancariosComponent},
+            { path: 'asistir/:id',canActivate: [AuthGuard], component: AsistirComponent},
             { path: 'policy', component: PoliticaPrivacidadComponent},
             { path: 'ToS', component: TerminosUsoComponent},
             { path: 'support', component: SoporteComponent},
             { path: 'detalles-profesional/:id', component: DetallesProfesionalComponent},
             { path: 'buscador', component: BuscadorComponent},
-            { path: 'valorar/:id', component: ValorarProfesionalComponent},
-            { path: 'mis-valoraciones', component: MisValoracionesComponent},
-            { path: 'ser-profesional/:id', component: SerProfesionalComponent},
+            { path: 'valorar/:id',canActivate: [AuthGuard], component: ValorarProfesionalComponent},
+            { path: 'mis-valoraciones',canActivate: [AuthGuard], component: MisValoracionesComponent},
+            { path: 'ser-profesional/:id',canActivate: [AuthGuard], component: SerProfesionalComponent},
             { path: 'asistencias', canActivate: [AdminGuard], component: AsistenciasAdminComponent},
+            { path: 'suscriptores',canActivate: [ProfesionalGuard], component: SuscriptoresComponent},
+            { path: 'suscripciones',canActivate: [AuthGuard], component: SuscripcionesComponent},
             { path: '**', pathMatch: 'full', redirectTo: ''},
         ]
     },

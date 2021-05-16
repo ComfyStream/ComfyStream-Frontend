@@ -34,6 +34,7 @@ export class UsuarioService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('usuarioId');
     localStorage.removeItem('profesional');
 
     this.router.navigateByUrl('/login');
@@ -162,10 +163,11 @@ export class UsuarioService {
       } )
       .subscribe((data) => {
         const msg= data["msg"];
-        if(msg == "El email ya está en uso"){
+        if ( msg == "El email ya está en uso"){
           Swal.fire('No es posible actualizar el perfil', msg, 'error');
-        }
-        else {
+        } else if(  msg == "Esta cuenta bancaria ya está en uso"){
+          Swal.fire('No es posible actualizar el perfil', msg, 'error');
+        } else {
           const usuario = data["usuarioActualizado"];
           const token = data["token"];
           localStorage.setItem('token', token);
@@ -196,15 +198,18 @@ export class UsuarioService {
         const msg= data["msg"];
         if(msg=="Password incorrecta"){
         Swal.fire('Algo salió mal', msg, 'error');  
+        }else if(msg=="Cuenta en uso"){
+          Swal.fire('Algo salió mal', 'Cuenta bancaria en uso', 'error');  
         }else{
 
           const usuario= data["usuario"];
+          const tokenActualizado = data["tokenActualizado"]
+          localStorage.setItem("token", tokenActualizado);
           resolve(usuario);
           Swal.fire('Guardado', msg, 'success');
         }
         
       }, (err) => {
-        console.log(err)
         Swal.fire('Algo salió mal', err.error.msg, 'error');
       });
     } )
@@ -254,6 +259,7 @@ export class UsuarioService {
       datos.append("descripcion", formData.descripcion )
       datos.append("cuentaBancariaIBAN", formData.cuentaBancariaIBAN )
       datos.append("titularCuenta", formData.titularCuenta )
+      datos.append("precioSuscripcion", formData.precioSuscripcion )
     }
 
     return new Promise<String> ((resolve) => {
@@ -288,6 +294,24 @@ confirmarCuenta(urlConfirmacion:string):Promise<string>{
     this.http.put(`${base_url}/confirmar/${urlConfirmacion}`, {}).subscribe((data) => {
       const msg = data["msg"];
       resolve(msg);
+    })
+  })
+}
+
+sumarBono(idReferido:string):Promise<string>{
+  return new Promise<string>((resolve) => {
+    this.http.put(`${base_url}/sumar-bono/${idReferido}`, {}).subscribe((data) => {
+      const msg = data["msg"];
+      resolve(msg);
+    })
+  })
+}
+
+recuperarPassword(email:string):Promise<string>{
+  return new Promise<string>((resolve) => {
+    this.http.put(`${base_url}/recuperar-password`, {email}).subscribe((data) => {
+      const nuevaPassword = data["nuevaPassword"];
+      resolve(nuevaPassword);
     })
   })
 }

@@ -33,8 +33,9 @@ export class MiPerfilComponent implements OnInit {
       email: [ this.usuario.email, [ Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')] ],
       fechaNacimiento: [ this.datePipe.transform(this.usuario.fechaNacimiento,'yyyy-MM-dd'), [Validators.required,this.fechaPosteriorAHoy]],
       profesional: [ this.usuario.profesional , Validators.required ],
-      sector: [ this.usuario.sector , Validators.required ],
+      sector: [ this.usuario.sector , this.sectorNoValido],
       descripcion: [ this.usuario.descripcion , Validators.required ],
+      precioSuscripcion:[this.usuario.precioSuscripcion, [Validators.required, this.valorPositivo]],
       img: [],
     });
   }
@@ -137,11 +138,8 @@ get profesionalNoValido(){
 get profesionalCampoRequerido(){
   return this.perfilProfesionalForm.get('profesional').errors ? this.perfilProfesionalForm.get('profesional').errors.required && this.perfilProfesionalForm.get('profesional').touched : null
 }
-get sectorNoValido(){
-  return this.sectorCampoRequerido
-}
-get sectorCampoRequerido(){
-  return this.perfilProfesionalForm.get('sector').errors ? this.perfilProfesionalForm.get('sector').errors.required && this.perfilProfesionalForm.get('sector').touched : null
+get sectorRequerido(){
+  return this.perfilProfesionalForm.get('sector').errors ? this.perfilProfesionalForm.get('sector').errors.sectorFormatoNoValido && this.perfilProfesionalForm.get('sector').touched : null
 }
 
 get descripcionNoValido(){
@@ -155,6 +153,16 @@ get imgNoValido(){
 }
 get imgCampoRequerido(){
   return this.perfilProfesionalForm.get('img').errors ? this.perfilProfesionalForm.get('img').errors.required && this.perfilProfesionalForm.get('img').touched : null
+}
+
+get precioSuscripcionNoValido(){
+  return this.precioSuscripcionRequerido || this.precioSuscripcionPositivo
+}
+get precioSuscripcionRequerido(){
+  return this.perfilProfesionalForm.get('precioSuscripcion').errors ? this.perfilProfesionalForm.get('precioSuscripcion').errors.required && this.perfilProfesionalForm.get('precioSuscripcion').touched : null
+}
+get precioSuscripcionPositivo(){
+  return this.perfilProfesionalForm.get('precioSuscripcion').errors ? this.perfilProfesionalForm.get('precioSuscripcion').errors.valorPositivo && this.perfilProfesionalForm.get('precioSuscripcion').touched : null
 }
 
 
@@ -214,8 +222,8 @@ get imgNoProfCampoRequerido(){
   return this.perfilForm.get('img').errors ? this.perfilForm.get('img').errors.required && this.perfilForm.get('img').touched : null
 }
   private fechaPosteriorAHoy(control:FormControl):{[s:string]:boolean}{
-    let f = Date.parse(control.value)
-    let hoy = new Date().getTime()
+    let f = new Date(control.value).getFullYear() ;
+    let hoy = new Date().getFullYear() - 13  ;
     if(f > hoy){
       return {
         fechaPosteriorAHoy:true
@@ -227,6 +235,24 @@ get imgNoProfCampoRequerido(){
     return null
   }
  
+  private valorPositivo(control:FormControl):{[s:string]:boolean}{
+    if(control.value < 1){
+      return {
+        valorPositivo:true
+      }
+    }
+    return null
+  }
+
+  private sectorNoValido(control:FormControl):{[s:string]:boolean}{
+    
+    if(control.value == ""){
+      return {
+        sectorFormatoNoValido:true
+      }
+    }
+    return null
+  }
 
 
 }

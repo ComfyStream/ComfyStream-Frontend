@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción *</label>
-                            <input type="text" class="form-control" id="descripcion" placeholder="Descripción" formControlName="descripcion" [class.is-invalid]="descripcionNoValido">
+                            <textarea rows="3" type="text" class="form-control" id="descripcion" placeholder="Descripción" formControlName="descripcion" [class.is-invalid]="descripcionNoValido"></textarea>
                             <small *ngIf="descripcionCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
                         <div class="form-group">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="subcategoria">Fecha del evento: <strong>{{evento.fecha | date: 'dd/MM/yy HH:mm'}}</strong></label>
+                            <label for="subcategoria">Fecha del evento: <strong>{{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}}</strong></label>
                         </div>
                         <div class="form-group">
                             <label for="subcategoria">Duración: <strong>{{evento.duracion}} minutos</strong></label>

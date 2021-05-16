@@ -6,6 +6,8 @@ import { AsistenciaService } from "src/app/services/asistencia.service";
 import { EventoService } from "src/app/services/evento.service";
 import { UsuarioService } from "src/app/services/usuario.service";
 import { IPayPalConfig, ICreateOrderRequest } from "ngx-paypal";
+import Swal from 'sweetalert2';
+import { SuscripcionService } from '../../services/suscripcion.service';
 
 @Component({
   selector: 'app-asistir',
@@ -17,12 +19,17 @@ export class AsistirComponent implements OnInit {
   public evento: Evento;
   public eventoId: string;
   public usuario: Usuario;
+  public bonoAplicado:Boolean = false
+  public usuarioLogado:Usuario;
+  public bonosRestantes:string;
+  public suscrito:Boolean;
 
   constructor(private router:Router,
     private asistenciaService: AsistenciaService,
     private activatedRoute: ActivatedRoute,
     private usuarioService: UsuarioService,
-    private eventoService: EventoService) { }
+    private eventoService: EventoService,
+    private suscripcionService:SuscripcionService) { }
 
   async ngOnInit() {
     this.activatedRoute.params.subscribe( (params) => {
@@ -30,10 +37,12 @@ export class AsistirComponent implements OnInit {
     });
     this.initConfig();
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
+    this.evento.descripcion = this.evento.descripcion.replace(/(?:\r\n|\r|\n)/g, '\n');
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
-    const precio = this.evento.precio.toString()
+    this.usuarioLogado = await this.usuarioService.getUsuario()
 
-
+    this.bonosRestantes = this.usuarioLogado.bonos > 1 ? `${this.usuarioLogado.bonos} bonos restantes` : "1 bono restante";
+    this.suscrito = await this.suscripcionService.estaSuscrito(this.usuario._id);
     
 }
   private initConfig(): void{
@@ -69,7 +78,7 @@ export class AsistirComponent implements OnInit {
     },
     style: {
         label: 'paypal',
-        layout: 'vertical'
+        layout: 'horizontal'
     },
     onApprove: (data, actions) => {
         //console.log('onApprove - transaction was approved, but not authorized', data, actions);
@@ -127,23 +136,40 @@ export class AsistirComponent implements OnInit {
     //   }).render(this.paypalElement.nativeElement);
 
 
-  comprar(pago:string){
-    if(!localStorage.getItem("token")){
-      this.router.navigateByUrl("/login")
-    }else{    
+    comprar(pago:string){
+      if(!localStorage.getItem("token")){
+        this.router.navigateByUrl("/login")
+      }else{    
 
-    const data = {
-      eventoId: this.evento._id,
-      pagoPaypalUrl: pago
+      const data = {
+        eventoId: this.evento._id,
+        pagoPaypalUrl: pago,
+        bonoAplicado:this.bonoAplicado
+      }
+      this.asistenciaService.crearAsistencia(data);
+
+      this.router.navigateByUrl("/mis-asistencias")
+
+    }}
+
+    aplicarBono(){
+      Swal.showLoading()
+      setTimeout(() => {
+        Swal.close()
+        this.evento.precio-=5;
+        this.bonoAplicado = true;
+      }, 500);
     }
-    this.asistenciaService.crearAsistencia(data);
 
-    this.router.navigateByUrl("/mis-asistencias")
-
-  }}
-
-
-
-  }
+    asistir(){
+      const data = {
+        eventoId: this.evento._id,
+        idProfesional:this.evento.profesional
+      }
+      Swal.showLoading()
+      this.asistenciaService.crearAsistencia(data);
+      this.router.navigateByUrl("/mis-asistencias")
+    }
+}
 
 

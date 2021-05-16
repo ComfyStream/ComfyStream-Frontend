@@ -11,13 +11,22 @@
             </li>
             <li class="nav-item dropdown" *ngIf="usuario">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Mi actividad
-          </a>
+                    Mi actividad
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a *ngIf="profesional" class="dropdown-item" routerLink="/mis-eventos">Mis eventos</a>
                     <a *ngIf="usuario" class="dropdown-item" routerLink="/mis-asistencias">Mis asistencias</a>
                     <a *ngIf="usuario" class="dropdown-item" routerLink="/mis-chats">Mis mensajes</a>
                     <a *ngIf="usuario" class="dropdown-item" routerLink="/mis-valoraciones">Mis valoraciones</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" *ngIf="usuario">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Suscripciones
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/suscripciones">Mis suscripciones</a>
+                    <a class="dropdown-item" routerLink="/suscriptores">Mis suscriptores</a>
                 </div>
             </li>
             <li class="nav-item dropdown" *ngIf="admin">
@@ -50,7 +59,7 @@
                 <a *ngIf="usuario" class="nav-link" routerLink="/mi-cuenta">Mi cuenta</a>
             </li>
             <li class="nav-item " *ngIf="usuario">
-                <a *ngIf="usuario" class="nav-link" routerLink="/mi-perfil">Mi perfil</a>
+                <a *ngIf="usuario" class="nav-link" routerLink="/mi-perfil">{{usuarioNombre}}</a>
             </li>
             <li class="nav-item">
                 <a *ngIf="!usuario" class="nav-link" (click)="registro()">Registrar</a>
