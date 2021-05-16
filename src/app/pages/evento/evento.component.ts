@@ -141,7 +141,9 @@ export class EventoComponent implements OnInit {
       }
       const horaComienzo = new Date (datosReunion.start_time);
       const hoy = new Date();
-
+      console.log(horaComienzo);
+      console.log(hoy);
+      
       if((horaComienzo.getTime() <= hoy.getTime()) && (horaComienzo.getTime() + (datosReunion.duration *60000) >= hoy.getTime()) ){
           this.activo= true;
       }

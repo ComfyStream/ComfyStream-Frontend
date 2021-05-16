@@ -7,16 +7,18 @@
         <div class="col-md-1"></div>
         <div class="col-md-4 py-2">
             <h2 style="text-align: left;">{{evento.titulo}}</h2>
-            <h5 style="text-align: left;"><strong>Profesional : </strong> {{usuario.nombre}}</h5>
+            <h5 style="text-align: left;"><strong>Profesional:</strong>
+                <a routerLink="/detalles-profesional/{{evento.profesional}}"> {{ usuario.nombre}} </a>
+            </h5>
             <h5 style="text-align: left;"><strong>Categoría : </strong> {{evento.categoria}}</h5>
             <h5 *ngIf="evento.subCategoria" style="text-align: left;"><strong>Subcategoría: </strong> {{evento.subCategoria}}</h5>
             <h5 style="text-align: left;"><strong>Fecha: </strong> {{evento.fecha | date: 'dd/MM/yy HH:mm':'+0000'}}</h5>
             <h5 *ngIf="!suscrito" style="text-align: left;"><strong>Precio: </strong>{{evento.precio}} €</h5>
         </div>
         <div class="col-md-3" style="padding-top: 20px; text-align: center;">
-
+            <h5>Comprar entrada al evento</h5><br>
             <div *ngIf="!suscrito">
-                <a *ngIf="!bonoAplicado && usuarioLogado.bonos && usuarioLogado.bonos > 0" class="botones mb-2" (click)="aplicarBono()">Aplicar bono de descuento ({{bonosRestantes}})</a>
+                <a *ngIf="!bonoAplicado && usuarioLogado.bonos && usuarioLogado.bonos > 0" class="botones mb-3 w-100" (click)="aplicarBono()" style="border-radius: 4px;">Aplicar bono de descuento ({{bonosRestantes}})</a>
                 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
             </div>
             <div *ngIf="suscrito">

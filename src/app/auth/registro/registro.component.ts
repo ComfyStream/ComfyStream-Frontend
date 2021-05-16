@@ -66,7 +66,7 @@ async subirImagen(){
       fechaNacimiento:[value['fechaNacimiento'], [Validators.required, this.fechaAnteriorAHoy]],
       img:[, [Validators.required]],
       profesional:[true],
-      sector:['', [Validators.required]],
+      sector:['', [this.sectorNoValido]],
       descripcion:['', [Validators.required]],
       cuentaBancariaIBAN:['', [Validators.required, this.cuentaBancariaValida]],
       titularCuenta:['', [Validators.required]],
@@ -112,7 +112,7 @@ async subirImagen(){
   }
 
   get sectorRequerido(){
-    return this.form.get('sector').errors ? this.form.get('sector').errors.required && this.form.get('sector').touched : null
+    return this.form.get('sector').errors ? this.form.get('sector').errors.sectorFormatoNoValido && this.form.get('sector').touched : null
   }
 
   get descripcionRequerido(){
@@ -154,8 +154,8 @@ async subirImagen(){
 
   //Validaciones personalizadas
   private fechaAnteriorAHoy(control:FormControl):{[s:string]:boolean}{
-    let f = Date.parse(control.value)
-    let hoy = new Date().getTime()
+    let f = new Date(control.value).getFullYear() ;
+    let hoy = new Date().getFullYear() - 13  ;
     if(f > hoy){
       return {
         fechaAnteriorAHoy:true
@@ -178,6 +178,16 @@ async subirImagen(){
     if(control.value < 1){
       return {
         valorPositivo:true
+      }
+    }
+    return null
+  }
+
+  private sectorNoValido(control:FormControl):{[s:string]:boolean}{
+    
+    if(control.value == ""){
+      return {
+        sectorFormatoNoValido:true
       }
     }
     return null

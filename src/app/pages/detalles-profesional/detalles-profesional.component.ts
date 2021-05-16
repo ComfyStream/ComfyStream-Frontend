@@ -53,6 +53,7 @@ export class DetallesProfesionalComponent implements OnInit {
       this.misAsistencias = await (this.asistenciaService.getMisAsistencias());
     }
     this.profesional = await this.usuarioService.getUsuarioPorId(this.usuarioId);
+    this.profesional.descripcion = this.profesional.descripcion.replace(/(?:\r\n|\r|\n)/g, '\n');
     this.puedoValorar = await this.valoracionService.puedoValorar(this.profesional._id);
     
     this.numeroValoraciones = this.profesional.numeroValoraciones;

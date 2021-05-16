@@ -16,7 +16,7 @@
             <h2 style="text-align: left;">{{profesional.nombre}}</h2>
             <h5 style="text-align: left;"><strong>Fecha de nacimiento:</strong> {{profesional.fechaNacimiento | date: 'dd/MM/yy HH:mm'}}</h5>
             <h5 style="text-align: left;"><strong>Sector:</strong> {{profesional.sector}}</h5>
-            <h5 style="text-align: left;"><strong>Sobre mí:</strong> {{profesional.descripcion}}</h5>
+            <p style="text-align: left; font-size: large;"><strong>Sobre mí:</strong> {{profesional.descripcion}}</p>
 
 
             <ngb-rating [(rate)]="mediaEstrellas" [readonly]="true" [max]="5" style="font-size: large;"></ngb-rating> ( {{numeroValoraciones}} valoraciones )

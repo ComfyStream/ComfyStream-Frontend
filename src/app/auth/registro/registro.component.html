@@ -33,7 +33,7 @@
         <div class="form-group">
             <label for="fechaNacimiento">Fecha de nacimiento</label>
             <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento" formControlName="fechaNacimiento" [class.is-invalid]="fechaNoValido">
-            <small *ngIf="fechaFechaAnteriorAHoy" class="text-danger">La fecha debe ser anterior a hoy</small>
+            <small *ngIf="fechaFechaAnteriorAHoy" class="text-danger">Debes ser del 2008 o menos</small>
         </div>
 
         <div class="form-group">
@@ -50,9 +50,22 @@
 
         <div *ngIf="form.controls.profesional.value">
 
+
             <div class="form-group">
-                <label for="sector">Sector</label>
-                <input type="text" class="form-control" name="sector" id="sector" formControlName="sector" [class.is-invalid]="sectorRequerido">
+                <label for="categoria">Sector</label>
+                <select class="form-control" id="sector" name="sector" formControlName="sector" [class.is-invalid]="sectorRequerido" style="height: 50px;">
+                        <option value=""></option>
+                        <option value="Arte y cultura">Arte y cultura</option>
+                        <option value="Deporte">Deporte</option>
+                        <option value="Economía">Economía</option>
+                        <option value="Educación">Educación</option>
+                        <option value="Entretenimiento">Entretenimiento</option>
+                        <option value="Física">Física</option>
+                        <option value="Gastronomía">Gastronomía</option>
+                        <option value="Medicina">Medicina</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Otro">Otro</option>
+                    </select>
                 <small *ngIf="sectorRequerido" style="color: red;">Sector requerido</small>
             </div>
 
@@ -64,9 +77,9 @@
 
             <div class="form-group">
                 <label for="cuentaBancariaIBAN">Cuenta bancaria</label>
-                <input type="text" (keyup)="cuentaBancariaEnUso = false" placeholder="Ejemplo: ES1411112222333344445555 (formado de España)" class="form-control" name="cuentaBancariaIBAN" id="cuentaBancariaIBAN" formControlName="cuentaBancariaIBAN" [class.is-invalid]="cuentaBancariaIbanNoValido">
+                <input type="text" (keyup)="cuentaBancariaEnUso = false" placeholder="Ejemplo: ES1234567890123456789012 (formado de España)" class="form-control" name="cuentaBancariaIBAN" id="cuentaBancariaIBAN" formControlName="cuentaBancariaIBAN" [class.is-invalid]="cuentaBancariaIbanNoValido">
                 <small *ngIf="cuentaBancariaIBANRequerido" style="color: red;">Cuenta bancaria requerida. </small>
-                <small *ngIf="cuentaBancariaFormato" style="color: red;">Formato incorrecto. Ej: ES1411112222333344445555 (formado de España)</small>
+                <small *ngIf="cuentaBancariaFormato" style="color: red;">Formato incorrecto. Ej: ES1234567890123456789012 (formado de España)</small>
                 <small *ngIf="cuentaBancariaEnUso" style="color: red;">Cuenta bancaria en uso</small>
             </div>
 

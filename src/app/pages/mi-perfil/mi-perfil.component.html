@@ -32,19 +32,33 @@
 
                         <input type="date" class="form-control" id="fecha" placeholder="2000-10-05" formControlName="fechaNacimiento" [class.is-invalid]="fechaNoValido">
                         <small *ngIf="fechaCampoRequerido" class="text-danger">Campo requerido</small>
-                        <small *ngIf="fechaFechaPosteriorAHoy" class="text-danger">La fecha debe ser anterior a hoy</small>
+                        <small *ngIf="fechaFechaPosteriorAHoy" class="text-danger">Debes ser del 2008 o menos</small>
                     </div>
-                    <label for="sector">Sector</label>
 
+                    <div class="form-group">
+                        <label for="categoria">Sector</label>
+                        <select class="form-control" id="sector" name="sector" formControlName="sector" [class.is-invalid]="sectorRequerido" style="height: 50px;">
+                                <option value=""></option>
+                                <option value="Arte y cultura">Arte y cultura</option>
+                                <option value="Deporte">Deporte</option>
+                                <option value="Economía">Economía</option>
+                                <option value="Educación">Educación</option>
+                                <option value="Entretenimiento">Entretenimiento</option>
+                                <option value="Física">Física</option>
+                                <option value="Gastronomía">Gastronomía</option>
+                                <option value="Medicina">Medicina</option>
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        <small *ngIf="sectorRequerido" style="color: red;">Sector requerido</small>
+                    </div>
 
-                    <input type="text" class="form-control" id="sector" formControlName="sector" [class.is-invalid]="sectorNoValido">
-                    <small *ngIf="sectorCampoRequerido" class="text-danger">Campo requerido</small>
 
                     <div class="form-group">
                         <label for="descripcion">Descripción</label>
 
 
-                        <input type="text" class="form-control" id="descripcion" formControlName="descripcion" [class.is-invalid]="descripcionNoValido">
+                        <textarea rows="4" type="text" class="form-control" id="descripcion" formControlName="descripcion" [class.is-invalid]="descripcionNoValido"></textarea>
                         <small *ngIf="descripcionCampoRequerido" class="text-danger">Campo requerido</small>
                     </div>
 

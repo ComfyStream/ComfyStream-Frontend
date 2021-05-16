@@ -41,7 +41,7 @@ export class CuentaComponent implements OnInit {
   }
 
   generarInvitacion(){
-    Swal.fire('Enlace de invitación', `http://localhost:4200/invitacion/${this.usuario._id}`, 'success');
+    Swal.fire('Enlace de invitación', `https://comfystream-ppl.web.app/invitacion/${this.usuario._id}`, 'success');
   }
 
 

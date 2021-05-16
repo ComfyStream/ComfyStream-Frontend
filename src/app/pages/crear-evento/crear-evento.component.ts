@@ -86,9 +86,27 @@ export class CrearEventoComponent implements OnInit {
       const datos = this.crearEventoForm.value;
       delete datos.img;
     
+      console.log(datos);
+      const resultado = await this.eventoService.crearSalaZoom(datos);
+      if(resultado != "error"){
+         const evento =  await this.eventoService.crearEvento(datos, this.urlImagen);
+         const data = {
+           idReunion : resultado,
+           eventoId : evento._id
+         }
+        const añadido = await this.eventoService.añadirIdEvento(data);
+        if(añadido != "200 Ok"){
+          Swal.fire('Error ',añadido, 'error')
+        }
 
-      const evento =  await this.eventoService.crearEvento(datos, this.urlImagen);
-      await this.eventoService.crearSalaZoom(evento);
+      }else{
+        
+        Swal.fire('Error de Zoom',"Desvincule y vuelva a vincular su cuenta de Zoom", 'error');
+        this.router.navigateByUrl("/mi-cuenta")
+        return;
+      }
+     
+      
 
       Swal.fire('Evento creado con éxito', '', 'success');
       this.router.navigate(['/mis-eventos']);

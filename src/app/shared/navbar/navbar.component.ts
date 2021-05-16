@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Usuario } from "src/app/models/usuario";
 import { UsuarioService } from "src/app/services/usuario.service";
 import { ChatService } from "../../services/chat.service";
 
@@ -13,6 +14,7 @@ export class NavbarComponent implements OnInit {
   public usuario = false;
   public profesional: boolean = false;
   public admin: boolean = false;
+  public usuarioNombre :string;
 
 
   constructor(private usuarioService:UsuarioService,
@@ -22,6 +24,7 @@ export class NavbarComponent implements OnInit {
   async ngOnInit(){
     if(localStorage.getItem("token")){
       this.usuario = true;
+      this.usuarioNombre = (await this.usuarioService.getUsuario()).nombre;
 
       if(localStorage.getItem('profesional')=== "true"){
         this.profesional = true;
