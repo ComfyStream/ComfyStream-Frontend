@@ -79,19 +79,42 @@ export class CrearEventoComponent implements OnInit {
     }
     if(this.enlazadoZoom){
 
+      Swal.showLoading();
     
-    await this.subirImagen();
+      await this.subirImagen();
 
-    const datos = this.crearEventoForm.value;
-    delete datos.img;
-   
+      const datos = this.crearEventoForm.value;
+      delete datos.img;
+    
+      console.log(datos);
+      const resultado = await this.eventoService.crearSalaZoom(datos);
+      if(resultado != "error"){
+         const evento =  await this.eventoService.crearEvento(datos, this.urlImagen);
+         const data = {
+           idReunion : resultado,
+           eventoId : evento._id
+         }
+        const añadido = await this.eventoService.añadirIdEvento(data);
+        if(añadido != "200 Ok"){
+          Swal.fire('Error ',añadido, 'error')
+        }
 
-    const evento =  await this.eventoService.crearEvento(datos, this.urlImagen);
-    const room =  await this.eventoService.crearSalaZoom(evento);
-  }else{
-    Swal.fire('Error', 'Para crear un evento debe tener enlazado Zoom', 'error');
+      }else{
+        
+        Swal.fire('Error de Zoom',"Desvincule y vuelva a vincular su cuenta de Zoom", 'error');
+        this.router.navigateByUrl("/mi-cuenta")
+        return;
+      }
+     
+      
+
+      Swal.fire('Evento creado con éxito', '', 'success');
+      this.router.navigate(['/mis-eventos']);
+    }else{
+      Swal.fire('Error', 'Para crear un evento debe tener enlazado Zoom', 'error');
+    }
   }
-  }
+
   async subirImagen(){
     let nombre = Math.random().toString() + this.imagenSubir.name; 
     await this.cargaImagenService.subirCloudStorage(nombre, this.imagenSubir);

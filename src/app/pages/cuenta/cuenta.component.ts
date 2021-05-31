@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { UsuarioService } from "src/app/services/usuario.service";
 import { Usuario } from "../../models/usuario";
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-cuenta',
   templateUrl: './cuenta.component.html',
@@ -36,8 +38,10 @@ export class CuentaComponent implements OnInit {
 
   async borrarCuenta(){
     const resp = await this.usuarioService.borrarUsuarioZoom()
+  }
 
-
+  generarInvitacion(){
+    Swal.fire('Enlace de invitación', `https://comfystream-ppl.web.app/invitacion/${this.usuario._id}`, 'success');
   }
 
 

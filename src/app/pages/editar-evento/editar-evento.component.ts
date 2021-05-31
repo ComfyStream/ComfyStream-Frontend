@@ -4,10 +4,11 @@ import { EventoService } from "src/app/services/evento.service";
 import { UsuarioService } from "src/app/services/usuario.service";
 import { environment } from "src/environments/environment";
 import { CargaImagenesService } from "src/app/services/carga-imagenes.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import { Evento } from "src/app/models/evento";
 import { Usuario } from "../../models/usuario";
 import { AsistenciaService } from "../../services/asistencia.service";
+import Swal from "sweetalert2";
 
 const base_url = environment.apiUrl;
 
@@ -36,7 +37,8 @@ export class EditarEventoComponent implements OnInit {
     private usuarioService:UsuarioService,
     private eventoService:EventoService,
     private asistenciaService: AsistenciaService,
-    private cargaImagenService:CargaImagenesService) { }
+    private cargaImagenService:CargaImagenesService,
+    private router:Router) { }
 
   async ngOnInit() {
       this.usuario = await this.usuarioService.getUsuario();
@@ -58,8 +60,6 @@ export class EditarEventoComponent implements OnInit {
         precio:[this.evento.precio, [Validators.required, this.valorPositivo]],
         img:[]
       });
-
-
                
   }
 
@@ -74,13 +74,17 @@ export class EditarEventoComponent implements OnInit {
     
     const datos = this.editarEventoForm.value;
     delete datos.img;
+
+    Swal.showLoading();
     
     if(this.editarEventoForm.controls['img'].value){
-      const evento =  await this.eventoService.actualizarEvento(datos, this.eventoId, this.urlImagen);
+      await this.eventoService.actualizarEvento(datos, this.eventoId, this.urlImagen);
     }else{
-      const evento =  await this.eventoService.actualizarEvento(datos, this.eventoId, this.evento.img);
+      await this.eventoService.actualizarEvento(datos, this.eventoId, this.evento.img);
     }
     
+    Swal.fire('Evento editado con éxito', '', 'success');
+    this.router.navigate(['/evento/'+this.evento._id])
 
   }
 

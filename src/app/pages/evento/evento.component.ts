@@ -52,6 +52,7 @@ export class EventoComponent implements OnInit {
       this.eventoId = params['id']; 
     });
     this.evento = await this.eventoService.getEventoPorID(this.eventoId);
+    this.evento.descripcion = this.evento.descripcion.replace(/(?:\r\n|\r|\n)/g, '\n');
 
     this.usuario = await this.usuarioService.getUsuarioPorId(this.evento.profesional);
     this.puedoValorar = await this.valoracionService.puedoValorar(this.evento.profesional);
@@ -106,7 +107,7 @@ export class EventoComponent implements OnInit {
 
   esAsistencia(){
     for(let evento of this.misAsistencias){
-      if(evento._id === this.evento._id){//yo asisto a este evento
+      if(evento && evento._id === this.evento._id){//yo asisto a este evento
         this.asistido = true;
         break;
       }
@@ -140,8 +141,10 @@ export class EventoComponent implements OnInit {
       }
       const horaComienzo = new Date (datosReunion.start_time);
       const hoy = new Date();
-
-      if(Math.floor(Math.abs(horaComienzo.getTime() - hoy.getTime() )/36e5)<=1){
+      console.log(horaComienzo);
+      console.log(hoy);
+      
+      if((horaComienzo.getTime() <= hoy.getTime()) && (horaComienzo.getTime() + (datosReunion.duration *60000) >= hoy.getTime()) ){
           this.activo= true;
       }
     } 

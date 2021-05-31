@@ -8,8 +8,10 @@ export class Usuario{
     descripcion?:string;
     cuentaBancariaIBAN?:string;
     titularCuenta?:string;
+    precioSuscripcion?:number;
     valoracionMedia?:number;
     numeroValoraciones?: number;
+    bonos?:number;
     admin?:boolean;
     img?:string;
     _id?:string

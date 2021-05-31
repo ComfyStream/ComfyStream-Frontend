@@ -127,7 +127,6 @@ export class EventoService {
 
 
     return new Promise<Evento> ((resolve) => {
-
       this.http.post(`${ base_url }/evento/editar`, datos,{
         headers: { 
           'x-token': this.token
@@ -139,19 +138,16 @@ export class EventoService {
         }
         const evento= data["evento"];
 
-        Swal.fire('Guardado', 'Evento creado', 'success');
         resolve(evento);
-        this.router.navigate(['/evento/'+idEvento])
-
       });
     } )
   }
 
 
-  crearSalaZoom( datos: any):Promise<any>{
+  crearSalaZoom( datos: any):Promise<string>{
 
 
-    return new Promise<any> ((resolve) => {
+    return new Promise<string> ((resolve) => {
 
       this.http.post(`${ base_url }/zoom/room`, datos,{
         headers: { 
@@ -159,13 +155,42 @@ export class EventoService {
         }
       } )
       .subscribe((data) => {
-        const evento= data;
-        Swal.fire('Guardado', 'Evento creado', 'success');
-        resolve(evento);
-        this.router.navigate(['/mis-eventos'])
+        const respuesta= data["msg"];
+        if(respuesta== "200 Ok"){
+          const idEventoZoom = data["idReunion"]
+          resolve(idEventoZoom);
+        }else{
+          resolve(respuesta);
+        }
+        
       }, (err) => {
         console.log(err)
-        Swal.fire('Error de Zoom',"Vuelva a enlazar la cuenta de Zoom y borre el evento creado", 'error');
+        Swal.fire('Error de Zoom',err, 'error');
+      });
+    })
+  }
+
+  añadirIdEvento( datos: any):Promise<string>{
+
+
+    return new Promise<string> ((resolve) => {
+
+      this.http.put(`${ base_url }/zoom/asignarEvento`, datos,{
+        headers: { 
+          'x-token': this.token
+        }
+      } )
+      .subscribe((data) => {
+        const respuesta= data;
+        if(respuesta["msg"]== "200 Ok"){
+          resolve(respuesta["msg"]);
+        }else{
+          resolve(respuesta["error"]);
+        }
+        
+      }, (err) => {
+        console.log(err)
+        Swal.fire('Error de Zoom',err, 'error');
       });
     })
   }

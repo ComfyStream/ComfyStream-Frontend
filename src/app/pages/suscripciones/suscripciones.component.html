@@ -1,0 +1,19 @@
+<h2 style="text-align: center;">Mis suscripciones</h2>
+<hr>
+
+<table class="table w-50" style="margin: auto;">
+    <thead class="thead-dark">
+        <tr style="text-align: center;">
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha de suscripción</th>
+            <th scope="col">Fecha de expiración</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="color: white;text-align: center;" *ngFor="let suscripcion of suscripciones">
+            <td>{{suscripcion.usuario.nombre}}</td>
+            <td>{{suscripcion.suscripcion.fecha_compra | date: 'dd/MM/yyyy HH:mm':'+0000'}}</td>
+            <td>{{suscripcion.suscripcion.fecha_expiracion | date: 'dd/MM/yyyy HH:mm':'+0000'}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -12,31 +12,21 @@
 
                         <div class="form-group">
                             <label for="cuenta">Cuenta Bancaria</label>
-                            <div class="input-group">
-
-                                <input type="text" class="form-control" id="cuenta" formControlName="cuenta">
-                                <small *ngIf="cuentaCampoRequerido" class="text-danger">Campo requerido</small>
-                                <small *ngIf="validarCuentaM" class="text-danger">IBAN debe tener 24 caracteres sin espacios</small>
-                                <small *ngIf="validarCuentaMin" class="text-danger">IBAN debe tener 24 caracteres sin espacios</small>
-                            </div>
+                            <input type="text" placeholder="Ej: ES1411112222333344445555 (formado de España)" class="form-control" id="cuenta" formControlName="cuenta" [class.is-invalid]="cuentaNoValido">
+                            <small *ngIf="cuentaCampoRequerido" class="text-danger">Campo requerido</small>
+                            <small *ngIf="cuentaBancariaFormato" class="text-danger">Formato no válido. Ej: ES1411112222333344445555 (formado de España)</small>
                         </div>
 
                         <div class="form-group">
                             <label for="titular">Titular</label>
-                            <div class="input-group">
-
-                                <input type="text" class="form-control" id="titular" formControlName="titular">
-                                <small *ngIf="titularCampoRequerido" class="text-danger">Campo requerido</small>
-                            </div>
+                            <input type="text" class="form-control" id="titular" formControlName="titular" [class.is-invalid]="titularNoValido">
+                            <small *ngIf="titularCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
 
                         <div class="form-group">
                             <label for="contrasena">Contraseña</label>
-                            <div class="input-group">
-
-                                <input type="password" class="form-control" id="contrasena" formControlName="contrasena">
-                                <small *ngIf="contrasenaCampoRequerido" class="text-danger">Campo requerido</small>
-                            </div>
+                            <input type="password" class="form-control" id="contrasena" formControlName="contrasena" [class.is-invalid]="contrasenaValido">
+                            <small *ngIf="contrasenaCampoRequerido" class="text-danger">Campo requerido</small>
                         </div>
                         <button type="submit" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                         <i class="fa fa-save"></i>

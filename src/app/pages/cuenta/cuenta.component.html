@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <div class="row my-5">
+    <div class="row my-5 ">
         <div class="col"></div>
         <div class="col-md-3" *ngIf="usuario && token">
             <button (click)="cambiarContrasena()" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
@@ -24,6 +24,15 @@
         <div class="col-md-3" *ngIf="usuario.profesional && token">
             <button (click)="cambiarDatosBancarios()" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                 Actualizar datos bancarios
+            </button>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row my-5">
+        <div class="col"></div>
+        <div class="col-md-3" *ngIf="usuario && token">
+            <button (click)="generarInvitacion()" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+                Generar invitación
             </button>
         </div>
         <div class="col"></div>
