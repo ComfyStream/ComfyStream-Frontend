@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 import { UsuarioService } from "src/app/services/usuario.service";
 import { Usuario } from "../../models/usuario";
@@ -7,7 +7,8 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cuenta',
   templateUrl: './cuenta.component.html',
-  styleUrls: ['./cuenta.component.css']
+  styleUrls: ['./cuenta.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CuentaComponent implements OnInit {
   public zoom:string;
@@ -41,7 +42,7 @@ export class CuentaComponent implements OnInit {
   }
 
   generarInvitacion(){
-    Swal.fire('Enlace de invitación', `https://comfystream-ppl.web.app/invitacion/${this.usuario._id}`, 'success');
+    Swal.fire('Enlace de invitación', `https://comfystream-b27a1.web.app/invitacion/${this.usuario._id}`, 'success');
   }
 
 

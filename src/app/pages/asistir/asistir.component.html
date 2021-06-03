@@ -18,7 +18,9 @@
         <div class="col-md-3" style="padding-top: 20px; text-align: center;">
             <h5>Comprar entrada al evento</h5><br>
             <div *ngIf="!suscrito">
-                <a *ngIf="!bonoAplicado && usuarioLogado.bonos && usuarioLogado.bonos > 0" class="botones mb-3 w-100" (click)="aplicarBono()" style="border-radius: 4px;">Aplicar bono de descuento ({{bonosRestantes}})</a>
+                <a *ngIf="!bonoAplicado && usuarioLogado.bonos && usuarioLogado.bonos > 0" class="botones mb-3 w-100" (click)="aplicarBono()" style="border-radius: 4px;" mat-raised-button matTooltip="Se descontarán 5 euros al precio del evento." matTooltipPosition="right"
+                    matTooltipClass="example-tooltip-red">
+                    Aplicar bono de descuento ({{bonosRestantes}})</a>
                 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
             </div>
             <div *ngIf="suscrito">

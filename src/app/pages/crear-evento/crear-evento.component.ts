@@ -156,13 +156,16 @@ export class CrearEventoComponent implements OnInit {
   }
 
   get fechaNoValido(){
-    return this.fechaCampoRequerido || this.fechaFechaPosteriorAHoy
+    return this.fechaCampoRequerido || this.fechaFechaPosteriorAHoy || this.fechaFormatoNoValido
   }
   get fechaCampoRequerido(){
     return this.crearEventoForm.get('fecha').errors ? this.crearEventoForm.get('fecha').errors.required && this.crearEventoForm.get('fecha').touched : null
   }
   get fechaFechaPosteriorAHoy(){
     return this.crearEventoForm.get('fecha').errors ? this.crearEventoForm.get('fecha').errors.fechaPosteriorAHoy && this.crearEventoForm.get('fecha').touched : null
+  }
+  get fechaFormatoNoValido(){
+    return this.crearEventoForm.get('fecha').errors ? this.crearEventoForm.get('fecha').errors.fechaFormatoNoValido && this.crearEventoForm.get('fecha').touched : null
   }
 
   get duracionNoValido(){
@@ -188,6 +191,14 @@ export class CrearEventoComponent implements OnInit {
     if(f < hoy){
       return {
         fechaPosteriorAHoy:true
+      }
+    }
+    const isFirefox = navigator.userAgent.indexOf('Firefox') != -1
+    if(isFirefox){
+      if(!control.value.match("^([0]{0,1}[1-9]|1[012])/([1-9]|([012][0-9])|(3[01]))/\\d\\d\\d\\d (20|21|22|23|[0-1]?\\d):[0-5]?\\d$")){
+        return {
+          fechaFormatoNoValido:true
+        }
       }
     }
     return null

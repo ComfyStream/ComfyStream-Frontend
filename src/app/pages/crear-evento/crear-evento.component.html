@@ -56,9 +56,11 @@
                         </div>
                         <div class="form-group">
                             <label for="fecha">Fecha del evento *</label>
-                            <input type="datetime-local" class="form-control" id="fecha" formControlName="fecha" [class.is-invalid]="fechaNoValido">
+                            <input type="datetime-local" class="form-control" id="fecha" formControlName="fecha" placeholder="MM/dd/yyyy HH:mm" [class.is-invalid]="fechaNoValido">
                             <small *ngIf="fechaCampoRequerido" class="text-danger">Campo requerido</small>
                             <small *ngIf="fechaFechaPosteriorAHoy" class="text-danger">La fecha debe ser posterior a hoy</small>
+                            <small *ngIf="fechaFormatoNoValido" class="text-danger">La fecha debe cumplir el formato MM/dd/yyyy HH:mm</small>
+
                         </div>
                         <div class="form-group">
                             <label for="duracion">Duración (minutos) *</label>

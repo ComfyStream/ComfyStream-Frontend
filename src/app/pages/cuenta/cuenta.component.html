@@ -31,7 +31,7 @@
     <div class="row my-5">
         <div class="col"></div>
         <div class="col-md-3" *ngIf="usuario && token">
-            <button (click)="generarInvitacion()" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
+            <button (click)="generarInvitacion()" mat-raised-button matTooltip="Invita a un amigo a unirse a Comfystream y ganarás un bono de 5€ de descuento por cada amigo que invites. Podras usar un bono por cada evento." matTooltipClass="example-tooltip-red" class="btn btn-dark btn-block waves-effect waves-light m-r-10">
                 Generar invitación
             </button>
         </div>

@@ -21,7 +21,7 @@
                         <label for="exampleInputEmail1">Email address</label>
 
                         <div class="input-group-addon"><i class="ti-email"></i></div>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" formControlName="email" [class.is-invalid]="emailNoValido">
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" formControlName="email" [class.is-invalid]="emailNoValido" readonly>
                         <small *ngIf="emailCampoRequerido" class="text-danger">Campo requerido</small>
                         <small *ngIf="vvalidarEmail" class="text-danger">Email no valido</small>
 
@@ -63,8 +63,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="precio">Precio suscripción</label>
-
+                        <label for="precio">Precio suscripción <i style="cursor: pointer;" class="far fa-question-circle" mat-raised-button matTooltip="Precio para suscripción mensual. Tus suscriptores podrán asistir a tus eventos gratis durante el mes de suscripción." matTooltipClass="example-tooltip-red" ></i></label>
                         <input type="number" class="form-control" id="precio" min="1" max="999" formControlName="precioSuscripcion" [class.is-invalid]="precioSuscripcionNoValido">
                         <small *ngIf="precioSuscripcionRequerido" class="text-danger" style="padding-top: 5px;">Campo requerido.&nbsp;</small>
                         <small *ngIf="precioSuscripcionPositivo" class="text-danger" style="padding-top: 5px;">Debe ser un valor positivo</small>
@@ -123,7 +122,7 @@
                         <label for="exampleInputEmail1">Email address</label>
 
                         <div class="input-group-addon"><i class="ti-email"></i></div>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" formControlName="email" [class.is-invalid]="emailNoProfNoValido">
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" formControlName="email" [class.is-invalid]="emailNoProfNoValido" readonly>
                         <small *ngIf="emailNoProfCampoRequerido" class="text-danger">Campo requerido</small>
                         <small *ngIf="vvalidarNoProfEmail" class="text-danger">Email no valido</small>
                     </div>

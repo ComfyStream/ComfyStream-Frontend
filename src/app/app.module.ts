@@ -43,7 +43,8 @@ import { AsistenciasAdminComponent } from "./pages/asistencias-admin/asistencias
 import {NgxPaginationModule} from "ngx-pagination";
 import { SuscripcionesComponent } from './pages/suscripciones/suscripciones.component';
 import { SuscriptoresComponent } from './pages/suscriptores/suscriptores.component';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -108,7 +109,9 @@ import { SuscriptoresComponent } from './pages/suscriptores/suscriptores.compone
     }),
     AngularFireStorageModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NoopAnimationsModule,
+    MatTooltipModule
     
   ],
   providers: [],
